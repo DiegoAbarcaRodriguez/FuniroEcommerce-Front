@@ -1,0 +1,23 @@
+<div class="carrousel ms-4 d-flex gap-3">
+    <div class="carrousel__element" *ngFor="let element of carrouselElements; let i = index"
+        [ngStyle]="{display:i>=3?'none':''}"
+        [ngClass]="{'carrousel__element--secondary':i===1,'carrousel__element--third':i===2}">
+        <img class="carrousel__image" [src]="'../../../../assets/carrousel/' + element.img + '.png' ">
+        <div class="carrousel__content"  [ngStyle]="{display:i!==0?'none':''}">
+            <div class="carrousel__information p-2">
+                <p class="m-0">{{element.img}} ----- {{element.title}}</p>
+                <p class="fw-bold fs-5 m-0">{{element.type}}</p>
+            </div>
+            <div class="btn btn-primary fw-bold text-white carrousel__button" (click)="changeToNextImage(i)">
+                <img src="../../../../assets/icons/arrow-rigth.svg" alt="arrow">
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="carrousel__indicators">
+        <div class="carrousel__point" [ngClass]="{'carrousel__point--active':i===selectedIndex}"
+            *ngFor="let element of carrouselElements;let i = index"></div>
+    </div>
+</div>

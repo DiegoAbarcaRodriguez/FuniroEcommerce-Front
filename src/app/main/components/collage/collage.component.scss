@@ -1,0 +1,53 @@
+h2 {
+    color: #616161;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.collage {
+
+    
+    &__element{
+        object-fit: contain;
+        &--second{
+            width: 390px;
+
+        }
+        &--third{
+            width: 270px;
+
+        }
+        &--fourth{
+            width: 270px;
+            margin-top: -15%;
+        }
+        &--five{
+            width: 222px;
+            margin-top: -25%;
+        }
+        &--six{
+            width: 160px;
+            margin-top: -35%;
+        }
+        &--seven{
+            width: 300px;
+            margin-top: -35%;
+        }
+        &--eight{
+            width: 180px;
+            margin-top: -74%;
+        }
+        &--nine{
+            width: 300px;
+            margin-top: -62%;
+        }
+
+    }
+
+
+
+}
+
+.ms-customize{
+    margin-left: 61%;
+}

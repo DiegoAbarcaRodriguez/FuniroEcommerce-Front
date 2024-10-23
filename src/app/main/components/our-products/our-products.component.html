@@ -1,0 +1,23 @@
+<ul class="list-unstyled row mt-5 gy-5">
+    <div class="col-3 px-2 py-0 product position-relative" *ngFor="let furniture of furnitures; let i=index;" [attr.data-index]="i" select-furniture>
+
+        <div class="bg-danger circle--left circle text-white p-2" *ngIf="furniture.discount">
+            -{{furniture.discount}}%
+        </div>
+
+        <div class="bg-success circle circle--right text-white p-2" *ngIf="furniture.isNew">
+            New
+        </div>
+
+        <img src="../../../../assets/home/Images.jpg" alt="Image"  [attr.data-index]="i">
+        <div class="d-flex flex-column justify-content-around bg-gray p-3" [attr.data-index]="i">
+            <h3 class="fw-bold" [attr.data-index]="i">{{furniture.name}}</h3>
+            <p [attr.data-index]="i">{{furniture.description}}</p>
+
+            <div class="d-flex gap-3 justify-content-between align-items-center" [attr.data-index]="i">
+                <p class="fw-bold fs-5" *ngIf="furniture.price" [attr.data-index]="i">Rp {{furniture.price | number }}</p>
+                <p [ngClass]="{'text-decoration-line-through':furniture.price, 'fw-bold fs-5':!furniture.price}" [attr.data-index]="i">Rp {{furniture.realPrice |number}}</p>
+            </div>
+        </div>
+    </div>
+</ul>

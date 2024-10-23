@@ -1,0 +1,30 @@
+<section class="mt-4 border-bottom">
+    <h2 class="text-center">Share your setup with
+        <span class=" d-block fw-bold text-dark fs-2">#FuniroFurniture</span>
+    </h2>
+
+    <div class="collage w-100 mt-2 ">
+
+        <div class="d-inline-flex gap-2">
+            <img class="collage__element" [style.align-self]="value==2?'flex-end':'none'" [class.collage__element--second]="value===2" [src]="'../../../../assets/collage/'+value+'.png'" alt="image" *ngFor="let value of values |slice:0:2">
+        </div>
+
+        <div class="d-inline mx-2 ">
+            <img class="collage__element--third" src="../../../../assets/collage/3.png"  alt="Image">
+        </div>
+        
+        <div class="d-inline-flex gap-2 ">
+            <img class="collage__element" [style.align-self]="value==4?'flex-start':'none'" [ngClass]="{'collage__element--fourth':value==4,'collage__element--five':value===5}"  [src]="'../../../../assets/collage/'+value+'.png'" alt="image" *ngFor="let value of values |slice:3:5">
+        </div>
+
+        <div class="d-inline-flex gap-2 ">
+            <img class="collage__element" [style.align-self]="value==7?'flex-start':'none'" [ngClass]="{'collage__element--six':value==6,'collage__element--seven':value===7}"  [src]="'../../../../assets/collage/'+value+'.png'" alt="image" *ngFor="let value of values |slice:5:7">
+        </div>
+
+        <div class="d-inline-flex gap-2 ms-customize">
+            <img class="collage__element" [style.align-self]="value==9?'flex-start':'none'" [ngClass]="{'collage__element--eight':value==8,'collage__element--nine':value===9}"  [src]="'../../../../assets/collage/'+value+'.png'" alt="image" *ngFor="let value of values |slice:7:9">
+        </div>
+      
+       
+    </div>
+</section>
