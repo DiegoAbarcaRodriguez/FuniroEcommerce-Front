@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { SelectFunitureDirective } from './directives/select-furniture.directive';
 import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { CollageComponent } from './components/collage/collage.component';
+import { ButtonScrollUpComponent } from './components/button-scroll-up/button-scroll-up.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CollageComponent } from './components/collage/collage.component';
         OurProductsComponent,
         CarrouselComponent,
         CollageComponent,
+        ButtonScrollUpComponent,
         
         SelectFunitureDirective,
     ],

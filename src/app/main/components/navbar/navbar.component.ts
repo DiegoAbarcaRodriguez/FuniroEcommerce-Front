@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 
 @Component({
     selector: 'main-component-navbar',
@@ -19,12 +19,23 @@ import { Component, OnInit } from '@angular/core';
                 font-weight:bolder;
             }            
 
+            .fixate-navbar{
+                z-index:10;
+                position:fixed;
+                top:0;
+                left:0;
+                align-text:center;
+            }
            
         `
     ]
 })
 
 export class NavbarComponent implements OnInit {
+
+    @ViewChild('navbar')
+    navbar?: ElementRef<HTMLDivElement>
+
     mustShowHiddenMenu: boolean = false;
 
     constructor() { }
@@ -33,5 +44,18 @@ export class NavbarComponent implements OnInit {
 
     onToggleHiddenMenu() {
         this.mustShowHiddenMenu = !this.mustShowHiddenMenu;
+    }
+
+    @HostListener('window:scroll', ['$event'])
+    onFixateNavbar(event: any) {
+        const document: Document = event.target;
+        const headerDiv: HTMLDivElement = document.querySelector('.header-image')!;
+
+        if (headerDiv.getBoundingClientRect().top < 0) {
+            this.navbar?.nativeElement.classList.add('fixate-navbar');
+            return;
+        }
+
+        this.navbar?.nativeElement.classList.remove('fixate-navbar');
     }
 }

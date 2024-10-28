@@ -16,6 +16,5 @@ export class OurProductsComponent implements OnInit {
 
     ngOnInit() {
         this.furnitures = this._furnitureService.getFurnitures();
-        console.log(this.furnitures)
     }
 }
