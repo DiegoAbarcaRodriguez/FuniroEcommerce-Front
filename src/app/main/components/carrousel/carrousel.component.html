@@ -1,4 +1,4 @@
-<div class="carrousel ms-4 d-flex gap-3">
+<div class="carrousel ms-md-4 d-flex gap-3">
     <div class="carrousel__element" *ngFor="let element of carrouselElements; let i = index"
         [ngStyle]="{display:i>=3?'none':''}"
         [ngClass]="{'carrousel__element--secondary':i===1,'carrousel__element--third':i===2}">

@@ -53,7 +53,7 @@ export class SelectFunitureDirective {
             this._renderer2.addClass(flex, 'mt-4');
             this._renderer2.addClass(flex, 'text-white');
             flex.innerHTML = '<span class="text-white d-flex"><img src="../../../../assets/icons/share.svg" class="me-1 text-white">Share </span>';
-            flex.innerHTML += '<span class="text-white d-flex"><img src="../../../../assets/icons/compare.svg" class="me-1 text-white"> Compare </span>';
+            flex.innerHTML += '<span class="text-white d-flex"><img src="../../../../assets/icons/eye.svg" class="me-1 text-white"> View </span>';
             flex.innerHTML += '<span class="text-white d-flex"><img src="../../../../assets/icons/heart-white.svg" class="me-1 text-white"> Like </span>';
 
             this._renderer2.setAttribute(div, 'data-index', index);
@@ -85,7 +85,7 @@ export class SelectFunitureDirective {
 
         const wasClickedOnElementBackground = wasClickedOnButtonAdd || wasClickedOnOptionBackground;
 
-        if (wasClickedOnButtonAdd || wasClickedOnElementBackground) {
+        if (wasClickedOnElementBackground) {
             return;
         }
 

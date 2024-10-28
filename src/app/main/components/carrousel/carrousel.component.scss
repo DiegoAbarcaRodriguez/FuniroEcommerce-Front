@@ -4,18 +4,32 @@
     position: relative;
 
     &__element {
-        height: 582px;
+        height: auto;
         width: 404px;
         position: relative;
+
+        @media(min-width:576px) {
+            height: 582px;
+        }
 
         &--secondary {
             height: 482px;
             width: 372px;
+            display: none;
+
+            @media(min-width:576px) {
+                display: block;
+            }
         }
 
         &--third {
             height: 482px;
             width: 50px;
+            display: none;
+
+            @media(min-width:992px) {
+                display: block;
+            }
         }
 
     }
@@ -53,7 +67,10 @@
         align-items: center;
         gap: 10px;
         right: 43%;
-        bottom: 10%;
+        bottom: -3%;
+        @media(min-width: 992px){
+            bottom: 10%;
+        }
     }
 
     &__point {

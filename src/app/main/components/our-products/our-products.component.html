@@ -1,5 +1,5 @@
-<ul class="list-unstyled row mt-5 gy-5">
-    <div class="col-3 px-2 py-0 product position-relative" *ngFor="let furniture of furnitures; let i=index;" [attr.data-index]="i" select-furniture>
+<ul class="list-unstyled row mt-2  gy-5">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2 py-0 product position-relative" *ngFor="let furniture of furnitures; let i=index;" [attr.data-index]="i" select-furniture>
 
         <div class="bg-danger circle--left circle text-white p-2" *ngIf="furniture.discount">
             -{{furniture.discount}}%

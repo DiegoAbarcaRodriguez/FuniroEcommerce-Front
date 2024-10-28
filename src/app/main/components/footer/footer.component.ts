@@ -3,10 +3,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'main-component-footer',
     templateUrl: 'footer.component.html',
-    styles:[
+    styles: [
         `
             .address {
-                width:300px;
+                width:auto;
+                @media(min-width:992px){
+                    width:300px;
+                }
+                
             }
 
             li{

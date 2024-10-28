@@ -3,15 +3,26 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    height: 716px;
+    height: auto;
+
+    @media (min-width:992px) {
+        height: 716px;
+    }
 }
 
 .square {
     width: 643px;
     height: 443px;
-    background-color: #FFF3E3;
-    border-radius: 3%;
+    background-color: transparent;
     align-self: center;
+    
+
+    @media(min-width:992px) {
+        background-color: #FFF3E3;
+        border-radius: 3%;
+        align-self: center;
+        box-shadow: 0 .5rem 1rem #000000ab;
+    }
 
     .new-arrival {
         font-size: 16px;
@@ -19,15 +30,32 @@
     }
 
     &__title {
-        font-size: 52px;
+        font-size: 40px;
         font-weight: bold;
-        line-height: 65px;
+        line-height: 45px;
+        text-align: center;
+
+        @media(min-width: 992px) {
+            font-size: 52px;
+            line-height: 65px;
+            text-align: start;
+        }
+
     }
-    
+
     &__description {
-        font-size: 18px;
+
+        font-size: 17px;
+        text-align: center;
         font-weight: normal;
         line-height: 24px;
+
+        @media (min-width:992px) {
+            font-size: 18px;
+            text-align: start;
+        }
+
+
     }
 
 }

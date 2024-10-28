@@ -17,7 +17,7 @@ import { Component, OnInit } from '@angular/core';
 
             .active{
                 font-weight:bolder;
-            }
+            }            
 
            
         `
@@ -25,7 +25,13 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class NavbarComponent implements OnInit {
+    mustShowHiddenMenu: boolean = false;
+
     constructor() { }
 
     ngOnInit() { }
+
+    onToggleHiddenMenu() {
+        this.mustShowHiddenMenu = !this.mustShowHiddenMenu;
+    }
 }
