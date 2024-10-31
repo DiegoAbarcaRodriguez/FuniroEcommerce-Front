@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener,  Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({ selector: '[select-furniture]' })
 export class SelectFunitureDirective {
@@ -21,7 +21,7 @@ export class SelectFunitureDirective {
             return;
         }
 
-        if (event.target.classList.toString().includes('btn-white') || event.target.classList.toString().includes('text-white') ) {
+        if (event.target.classList.toString().includes('btn-white') || event.target.classList.toString().includes('text-white')) {
             return;
         }
 
@@ -53,7 +53,7 @@ export class SelectFunitureDirective {
             this._renderer2.addClass(flex, 'mt-4');
             this._renderer2.addClass(flex, 'text-white');
             flex.innerHTML = '<span class="text-white d-flex"><img src="../../../../assets/icons/share.svg" class="me-1 text-white">Share </span>';
-            flex.innerHTML += '<span class="text-white d-flex"><img src="../../../../assets/icons/eye.svg" class="me-1 text-white"> View </span>';
+            flex.innerHTML += '<span class="text-white d-flex view"><img src="../../../../assets/icons/eye.svg" class="me-1 text-white view"> View </span>';
             flex.innerHTML += '<span class="text-white d-flex"><img src="../../../../assets/icons/heart-white.svg" class="me-1 text-white"> Like </span>';
 
             this._renderer2.setAttribute(div, 'data-index', index);
@@ -61,6 +61,12 @@ export class SelectFunitureDirective {
             this._renderer2.appendChild(div, button);
             this._renderer2.appendChild(div, flex);
             this._renderer2.appendChild(this._elementHtml?.nativeElement, div);
+
+            this._renderer2.listen(flex, 'click', (e) => {
+                if (e.target.className.includes('view')) {
+                    window.location.href='/product'
+                }
+            })
         }
 
     }
@@ -101,9 +107,9 @@ export class SelectFunitureDirective {
             return;
         }
 
-       
+
         if ((wasClickedOutFromCard) || areDifferentBackgrounds) {
-        
+
             this._renderer2.removeChild(this._elementHtml!.nativeElement, this._elementHtml.nativeElement.querySelector('.show-options-background'));
 
         }

@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'main-button-scroll-up',
+    selector: 'main-component-button-scroll-up',
     templateUrl: 'button-scroll-up.component.html',
     styles: [
         `

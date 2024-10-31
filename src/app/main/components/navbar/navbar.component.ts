@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
         const document: Document = event.target;
         const headerDiv: HTMLDivElement = document.querySelector('.header-image')!;
 
-        if (headerDiv.getBoundingClientRect().top < 0) {
+        if (headerDiv?.getBoundingClientRect().top < 0) {
             this.navbar?.nativeElement.classList.add('fixate-navbar');
             return;
         }

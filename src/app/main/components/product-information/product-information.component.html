@@ -1,0 +1,161 @@
+<nav class="navbar flex-md-row flex-column justify-content-center gap-md-5 gap-3 mb-4  border-top pt-5">
+    <a class="text-decoration-none pointer text-gray" [ngClass]="{'text-black fw-bold':selectedOption==='description'}"
+        (click)="navigateToOption('description')">Description</a>
+    <a class="text-decoration-none pointer text-gray"
+        [ngClass]="{'text-black fw-bold':selectedOption==='additional information'}"
+        (click)="navigateToOption('additional information')">Additional Information</a>
+    <a class="text-decoration-none pointer text-gray" [ngClass]="{'text-black fw-bold':selectedOption==='reviews'}"
+        (click)="navigateToOption('reviews')">Reviews [5]</a>
+</nav>
+
+<div class="container-lg" *ngIf="selectedOption === 'description'">
+
+
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <p class="text-gray">
+                Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the
+                unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.
+                Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting
+                the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a
+                well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate
+                and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences
+                while the guitar-influenced leather strap enables easy and stylish travel.
+            </p>
+        </div>
+    </div>
+
+    <div class="mt-4 mb-5 d-flex flex-column flex-md-row align-items-start gap-5 justify-content-between">
+        <div>
+            <img class="img-fluid bg-secondary" src="../../../../assets/products/sofa1.png" alt="Sofa">
+        </div>
+
+        <div>
+            <img class="img-fluid bg-secondary" src="../../../../assets/products/sofa2.png" alt="Sofa">
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container-md my-4" *ngIf="selectedOption==='additional information'">
+    <div class="row g-5">
+        <div class="col-md-6 col-12">
+            <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">General</h3>
+            <ul class="list-unstyled list-group list-group-flush py-2 px-4">
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Sales Package</span>: 1 sectional sofa
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Model Number</span>: TFCBLIGRBL6SRHS
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Secondary Material</span>: Solid Wood
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Upholstery Material</span>: Fabric + Cotton
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Upholstery Color</span>: Bright Grey & Lion
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 col-12">
+            <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">Dimensions</h3>
+            <ul class="list-unstyled list-group list-group-flush py-2 px-4">
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Height</span>: 76cm
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Width</span>: 265.32cm
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Depth</span>: 167.76cm
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Weight</span>: 45kg
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6 col-12">
+            <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">Product</h3>
+            <ul class="list-unstyled list-group list-group-flush px-4 py-2">
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Filling Material</span>: Foam
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Adjustable Headrest</span>: No
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Maximum Load Capacity</span>: 280kg
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Origin of Manufacture</span>: India
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-md-6 col-12">
+            <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">Warranty</h3>
+            <ul class="list-unstyled list-group list-group-flush px-4 py-2">
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Warranty Summary</span>: 1 Year Manufacturing Warranty
+                </li>
+                <li class="list-group-item text-gray">
+                    <span class="fw-bold">Domestic Warranty</span>: 1 Year
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-md my-5" *ngIf="selectedOption==='reviews'">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="fw-bold text-gray">Sarah M.</span>
+                <div class="d-flex align-items-center justify-content-center gap-1">
+                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                </div>
+
+            </div>
+            <p class="text-gray">
+                Absolutely love this sofa! The quality is exceptional and it looks even better in person. Very
+                comfortable and the perfect addition to our living room.
+            </p>
+
+            <div class="d-flex flex-wrap gap-3">
+                <img width="250px" height="250px" src="../../../../assets/products/Sofa.png" alt="Product">
+
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="fw-bold text-gray">Sarah M.</span>
+                <div class="d-flex align-items-center justify-content-center gap-1">
+                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                </div>
+
+            </div>
+            <p class="text-gray">
+                Absolutely love this sofa! The quality is exceptional and it looks even better in person. Very
+                comfortable and the perfect addition to our living room.
+            </p>
+
+
+            <div class="d-flex flex-wrap gap-3">
+                <img width="250px" height="250px" src="../../../../assets/products/Sofa.png" alt="Product">
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

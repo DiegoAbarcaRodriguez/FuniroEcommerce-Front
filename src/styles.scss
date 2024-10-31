@@ -6,8 +6,10 @@ $primary: #B88E2F;
 $secondary: #F9F1E7;
 $danger: #E97171;
 $success: #2EC1AC;
+$gray: #9F9F9F;
 $card-bg: transparent;
 $card-border-width: none;
+$list-group-color: $gray;
 
 
 html {
@@ -47,6 +49,10 @@ html {
     cursor: pointer;
 }
 
+.text-gray {
+    color: $gray;
+}
+
 .product {
     position: relative;
 }
@@ -59,6 +65,10 @@ html {
     left: 0;
     bottom: 0;
     right: 0;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 

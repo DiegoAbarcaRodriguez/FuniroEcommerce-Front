@@ -1,0 +1,46 @@
+.bar {
+    color: #9F9F9F;
+    font-weight: 200;
+}
+
+
+.btn-outline-primary:hover {
+    color: white;
+}
+
+
+li {
+    color: #9F9F9F
+}
+
+.group-input {
+    border: 1px solid #B88E2F;
+    border-radius: 10%;
+
+
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button,
+    input {
+
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        text-align: center;
+        color: #B88E2F;
+    }
+
+    input {
+        width: 30px;
+
+    }
+
+    input,
+    button {
+        border: none;
+    }
+
+    button {
+        background-color: transparent;
+        color: #B88E2F;
+    }
+}

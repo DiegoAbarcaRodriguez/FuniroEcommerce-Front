@@ -1,0 +1,32 @@
+@use '../../../../styles.scss' as *;
+
+input[type='number'],
+select {
+    text-align: center;
+    border-radius: 10%;
+    border: none;
+    outline: none;
+    appearance: none;
+    height: 100%;
+    color: #9F9F9F;
+}
+
+
+input[type='number'] {
+    width: 50px;
+    
+}
+
+input:focus,
+select:focus {
+    text-align: center;
+    border: none;
+    border: $primary solid 2px;
+}
+
+
+
+.bar {
+    color: #9F9F9F;
+    font-weight: 200;
+}

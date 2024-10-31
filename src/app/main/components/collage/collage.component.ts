@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'main-collage-component',
+    selector: 'main-component-collage',
     templateUrl: 'collage.component.html',
     styleUrls:['collage.component.scss']
 })

@@ -12,6 +12,15 @@ import { SelectFunitureDirective } from './directives/select-furniture.directive
 import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { CollageComponent } from './components/collage/collage.component';
 import { ButtonScrollUpComponent } from './components/button-scroll-up/button-scroll-up.component';
+import { ShopComponent } from './pages/shop/shop.component';
+import { HeroImageComponent } from './components/hero-image/hero-image.component';
+import { NavbarFilterComponent } from './components/navbar-filter/navbar-filter.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { BannerSupportComponent } from './components/banner-support/banner-support.component';
+import { ProductComponent } from './pages/product/product.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductInformationComponent } from './components/product-information/product-information.component';
 
 
 @NgModule({
@@ -23,6 +32,8 @@ import { ButtonScrollUpComponent } from './components/button-scroll-up/button-sc
     declarations: [
         LayoutComponent,
         HomeComponent,
+        ShopComponent,
+
         NavbarComponent,
         FooterComponent,
         HeaderHomeComponent,
@@ -31,7 +42,15 @@ import { ButtonScrollUpComponent } from './components/button-scroll-up/button-sc
         CarrouselComponent,
         CollageComponent,
         ButtonScrollUpComponent,
-        
+        HeroImageComponent,
+        NavbarFilterComponent,
+        PaginationComponent,
+        BannerSupportComponent,
+        ProductComponent,
+        BreadcrumbComponent,
+        ProductCardComponent,
+        ProductInformationComponent,
+
         SelectFunitureDirective,
     ],
 })
