@@ -1,12 +1,6 @@
 .hero-image {
     width: 100%;
     height: 250px;
-    background: url('../../../../assets/headers/shop.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    
-
 
     @media(min-width: 968px) {
         height: 340px;
@@ -15,7 +9,30 @@
     .layout {
         background-color: rgba(255, 255, 255, 0.58);
         height: 100%;
-       
+
     }
-    
+
+}
+
+
+
+.shop {
+
+    background: url('../../../../assets/headers/shop.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.about {
+    background: url('../../../../assets/headers/about.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 65%;
+}
+.contact {
+    background: url('../../../../assets/headers/contact.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 65%;
 }

@@ -1,8 +1,8 @@
-<div class="hero-image">
+<div class="hero-image" [ngClass]="{'shop':pageName==='Shop', 'about':pageName==='About', 'contact':pageName === 'Contact'}">
 
     <div class=" d-flex flex-column align-items-center justify-content-center layout">
-        <h1 class="fw-bold">Shop</h1>
-        <p><span class="fw-bold">Home ></span> Shop</p>
+        <h1 class="fw-bold">{{pageName}}</h1>
+        <p><span class="fw-bold">Home ></span> {{pageName}}</p>
     </div>
     
 

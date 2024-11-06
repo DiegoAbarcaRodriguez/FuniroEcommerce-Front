@@ -21,6 +21,8 @@ import { ProductComponent } from './pages/product/product.component';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductInformationComponent } from './components/product-information/product-information.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { ProductInformationComponent } from './components/product-information/pr
         BreadcrumbComponent,
         ProductCardComponent,
         ProductInformationComponent,
+        AboutUsComponent,
+        ContactComponent,
 
         SelectFunitureDirective,
     ],
