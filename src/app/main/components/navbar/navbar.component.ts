@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { ShoppingCarService } from '../../services/shopping-car.service';
 
 @Component({
     selector: 'main-component-navbar',
@@ -38,7 +39,7 @@ export class NavbarComponent implements OnInit {
 
     mustShowHiddenMenu: boolean = false;
 
-    constructor() { }
+    constructor(private _shoppingCarService: ShoppingCarService) { }
 
     ngOnInit() { }
 
@@ -57,5 +58,10 @@ export class NavbarComponent implements OnInit {
         }
 
         this.navbar?.nativeElement.classList.remove('fixate-navbar');
+    }
+
+    onAddToShoppingCar() {
+        this._shoppingCarService.mustShowShoppingCarComponet = true;
+        document.querySelector('body')?.classList.add('no-scroll');
     }
 }

@@ -23,6 +23,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductInformationComponent } from './components/product-information/product-information.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { ShoppingCarComponent } from './components/shopping-car/shopping-car.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ContactComponent } from './pages/contact/contact.component';
         ProductInformationComponent,
         AboutUsComponent,
         ContactComponent,
+        ShoppingCarComponent,
 
         SelectFunitureDirective,
     ],

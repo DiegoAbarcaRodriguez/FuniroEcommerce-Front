@@ -1,0 +1,42 @@
+@use '../../../../../src/styles.scss' as *;
+
+.layout {
+    background-color: rgba(0, 0, 0, 0.47);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 3;
+}
+
+.bg-car {
+    position: absolute;
+    z-index: 4;
+    top: 0;
+    right: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    @media(min-width: 768px) {
+        width: 40%;
+        height: 80vh;
+    }
+
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: $primary $secondary;
+
+}
+
+
+
+
+
+.item-image {
+    width: 105px;
+    height: 105px;
+    background-color: $secondary;
+    border-radius: 10%;
+}

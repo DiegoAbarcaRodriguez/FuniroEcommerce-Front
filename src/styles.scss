@@ -71,5 +71,8 @@ html {
     cursor: pointer;
 }
 
+.no-scroll {
+    overflow: hidden;
+}
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
