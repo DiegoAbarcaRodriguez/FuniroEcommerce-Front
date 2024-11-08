@@ -52,7 +52,7 @@ export class SelectFunitureDirective {
             this._renderer2.addClass(flex, 'gap-3');
             this._renderer2.addClass(flex, 'mt-4');
             this._renderer2.addClass(flex, 'text-white');
-            flex.innerHTML = '<span class="text-white d-flex"><img src="../../../../assets/icons/share.svg" class="me-1 text-white">Share </span>';
+            flex.innerHTML = '<span class="text-white d-flex compare"><img src="../../../../assets/icons/compare.svg" class="me-1 text-white compare">Compare </span>';
             flex.innerHTML += '<span class="text-white d-flex view"><img src="../../../../assets/icons/eye.svg" class="me-1 text-white view"> View </span>';
             flex.innerHTML += '<span class="text-white d-flex"><img src="../../../../assets/icons/heart-white.svg" class="me-1 text-white"> Like </span>';
 
@@ -66,7 +66,13 @@ export class SelectFunitureDirective {
                 if (e.target.className.includes('view')) {
                     window.location.href='/product'
                 }
-            })
+            });
+
+            this._renderer2.listen(flex, 'click', (e) => {
+                if (e.target.className.includes('compare')) {
+                    window.location.href='/comparison'
+                }
+            });
         }
 
     }

@@ -1,8 +1,8 @@
-<div class="hero-image" [ngClass]="{'shop':pageName==='Shop', 'about':pageName==='About', 'contact':pageName === 'Contact'}">
+<div class="hero-image" [ngClass]="{'shop':pageName==='Shop' || pageName === 'Product Comparison', 'about':pageName==='About', 'contact':pageName === 'Contact'}">
 
     <div class=" d-flex flex-column align-items-center justify-content-center layout">
         <h1 class="fw-bold">{{pageName}}</h1>
-        <p><span class="fw-bold">Home ></span> {{pageName}}</p>
+        <p><span class="fw-bold">Home ></span> {{pageName==='Product Comparison'?'Comparison':pageName}}</p>
     </div>
     
 
