@@ -8,6 +8,7 @@ import { ProductComponent } from './pages/product/product.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ProductComparisonComponent } from './pages/product-comparison/product-comparison.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
     {
@@ -37,6 +38,10 @@ const routes: Routes = [
             {
                 path: 'comparison',
                 component: ProductComparisonComponent
+            },
+            {
+                path: 'cart',
+                component: CartComponent
             },
             {
                 path: '**',
