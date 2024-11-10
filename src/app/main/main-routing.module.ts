@@ -1,15 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { LayoutComponent } from './pages/layout/layout.component';
-import { ShopComponent } from './pages/shop/shop.component';
-import { ProductComponent } from './pages/product/product.component';
-import { AboutUsComponent } from './pages/about-us/about-us.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { ProductComparisonComponent } from './pages/product-comparison/product-comparison.component';
-import { CartComponent } from './pages/cart/cart.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
     {
@@ -18,35 +10,35 @@ const routes: Routes = [
         children: [
             {
                 path: 'home',
-                component: HomeComponent
+                loadChildren: () => import('../main/modules/home/home.module').then(m => m.HomeModule)
             },
             {
                 path: 'shop',
-                component: ShopComponent
+                loadChildren: () => import('../main/modules/shop/shop.module').then(m => m.ShopModule)
             },
             {
                 path: 'product',
-                component: ProductComponent
+                loadChildren: () => import('../main/modules/product/product.module').then(m => m.ProductModule)
             },
             {
                 path: 'about',
-                component: AboutUsComponent
+                loadChildren: () => import('../main/modules/about-us/about-us.module').then(m => m.AboutUsModule)
             },
             {
                 path: 'contact',
-                component: ContactComponent
+                loadChildren: () => import('../main/modules/contact/contact.module').then(m => m.ContactModule)
             },
             {
                 path: 'comparison',
-                component: ProductComparisonComponent
+                loadChildren: () => import('../main/modules/product-comparison/product-comparison.module').then(m => m.ProductComparisonModule)
             },
             {
                 path: 'cart',
-                component: CartComponent
+                loadChildren: () => import('../main/modules/cart/cart.module').then(m => m.CartModule)
             },
             {
                 path: 'checkout',
-                component: CheckoutComponent
+                loadChildren: () => import('../main/modules/checkout/checkout.module').then(m => m.CheckoutModule)
             },
             {
                 path: '**',

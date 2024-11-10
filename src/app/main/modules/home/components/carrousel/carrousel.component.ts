@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FurnitureService } from '../../services/furniture.service';
-import { Carrousel } from '../../interfaces/carrousel.interface';
+
+import { Carrousel } from 'src/app/main/interfaces/carrousel.interface';
+import { FurnitureService } from 'src/app/main/services/furniture.service';
+
 
 @Component({
     selector: 'main-component-carrousel',
