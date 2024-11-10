@@ -26,6 +26,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ShoppingCarComponent } from './components/shopping-car/shopping-car.component';
 import { ProductComparisonComponent } from './pages/product-comparison/product-comparison.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { CartComponent } from './pages/cart/cart.component';
         ShoppingCarComponent,
         ProductComparisonComponent,
         CartComponent,        
+        CheckoutComponent,
 
         SelectFunitureDirective,
     ],
