@@ -1,147 +1,138 @@
 <main-component-hero-image [pageName]="'Product Comparison'"></main-component-hero-image>
 
-<div class="container-lg my-5">
-    <div class="row">
-        <div class="col-3">
-            <h2 class="fw-bold">
-                Go to Product page for more
-                Products
-            </h2>
+<div class="container-lg my-5 ">
+    <div class="scroll-x">
+        <div class="max-width">
+            <div class="row ">
+                <div class="col-3">
+                    <h2 class="fw-bold">
+                        Go to Product page for more
+                        Products
+                    </h2>
 
-            <a routerLink="shop" class="text-ligth-gray fw-bold mt-5">View More</a>
-        </div>
-        <div class="col-3">
-            <product-comparison-component-product-card></product-comparison-component-product-card>
-        </div>
-        <div class="col-3">
-            <product-comparison-component-product-card></product-comparison-component-product-card>
+                    <a routerLink="shop" class="text-ligth-gray fw-bold mt-5">View More</a>
+                </div>
+                <div class="col-3">
+                    <product-comparison-component-product-card></product-comparison-component-product-card>
+                </div>
+                <div class="col-3">
+                    <product-comparison-component-product-card></product-comparison-component-product-card>
+
+                </div>
+                <div class="col-3">
+                    <product-comparison-add-product></product-comparison-add-product>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+
+                <div class="col-12  pt-3 mb-4">
+                    <h2 class="fw-bold">Product</h2>
+                </div>
+
+
+                <ul class="col-3 list-unstyled border-end text-left">
+                    <li class="mb-3">Filling Material</li>
+                    <li class="mb-3">Adjustable Headrest</li>
+                    <li class="mb-3">Maximum Load Capacity</li>
+                    <li class="mb-3">Origin of Manufacture:</li>
+                </ul>
+                <div class="col-3">
+                    <product-comparison-component-product-description></product-comparison-component-product-description>
+                </div>
+
+                <div class="col-3">
+                    <product-comparison-component-product-description></product-comparison-component-product-description>
+                </div>
+
+                <ul class="col-3 border-end">
+
+
+                </ul>
+
+            </div>
+
+            <div class="row">
+                <div class="col-12  pt-3 mb-4">
+                    <h2 class="fw-bold">Dimensions</h2>
+                </div>
+
+
+                <ul class="col-3 list-unstyled border-end text-left">
+                    <li class="mb-3">Height</li>
+                    <li class="mb-3">Width</li>
+                    <li class="mb-3">Depth</li>
+                    <li class="mb-3">Weight</li>
+                </ul>
+
+                <div class="col-3">
+                    <product-comparison-component-product-dimensions></product-comparison-component-product-dimensions>
+                </div>
+
+                <div class="col-3">
+                    <product-comparison-component-product-dimensions></product-comparison-component-product-dimensions>
+                </div>
+
+
+                <ul class="col-3 border-end">
+
+
+                </ul>
+            </div>
+
+            <div class="row">
+
+                <div class="col-12  pt-3 mb-4">
+                    <h2 class="fw-bold">Warranty</h2>
+                </div>
+
+
+                <ul class="col-3 list-unstyled border-end text-left">
+                    <li class="mb-3">Warranty Summary</li>
+                    <li class="mb-3">Domestic Warranty:</li>
+
+                </ul>
+
+                <div class="col-3">
+                    <product-comparison-component-product-warranty></product-comparison-component-product-warranty>
+                </div>
+
+                <div class="col-3">
+                    <product-comparison-component-product-warranty></product-comparison-component-product-warranty>
+                </div>
+
+
+                <ul class="col-3 border-end">
+
+
+                </ul>
+
+            </div>
+
+            <div class="row mb-5 mb-lg-0">
+
+                <div class="col-3"></div>
+
+
+                <div class="col-3 text-center">
+                    <product-comparison-component-add-cart></product-comparison-component-add-cart>
+                </div>
+                <div class="col-3 text-center">
+                    <product-comparison-component-add-cart></product-comparison-component-add-cart>
+                </div>
+                <div class="col-3"></div>
+
+
+
+
+            </div>
+
 
         </div>
-        <div class="col-3">
-            <product-comparison-add-product></product-comparison-add-product>
-        </div>
+
     </div>
 
-    <div class="row mt-5">
 
-        <div class="col-12 border-top pt-3 mb-4">
-            <h2 class="fw-bold">General</h2>
-        </div>
-
-
-        <ul class="col-3 list-unstyled border-end text-left">
-            <li class="mb-3">Sales Package</li>
-            <li class="mb-3">Model Number</li>
-            <li class="mb-3">Secondary Material</li>
-            <li class="mb-3">Upholstery Material</li>
-        </ul>
-
-        <div class="col-3">
-            <product-comparison-component-general-description></product-comparison-component-general-description>
-        </div>
-
-        <div class="col-3">
-            <product-comparison-component-general-description></product-comparison-component-general-description>
-        </div>
-
-
-
-
-        <ul class="col-3 border-end">
-
-
-        </ul>
-
-        <div class="col-12  pt-3 mb-4">
-            <h2 class="fw-bold">Product</h2>
-        </div>
-
-
-        <ul class="col-3 list-unstyled border-end text-left">
-            <li class="mb-3">Filling Material</li>
-            <li class="mb-3">Adjustable Headrest</li>
-            <li class="mb-3">Maximum Load Capacity</li>
-            <li class="mb-3">Origin of Manufacture:</li>
-        </ul>
-        <div class="col-3">
-            <product-comparison-component-product-description></product-comparison-component-product-description>
-        </div>
-
-        <div class="col-3">
-            <product-comparison-component-product-description></product-comparison-component-product-description>
-        </div>
-
-        <ul class="col-3 border-end">
-
-
-        </ul>
-
-        <div class="col-12  pt-3 mb-4">
-            <h2 class="fw-bold">Dimensions</h2>
-        </div>
-
-
-        <ul class="col-3 list-unstyled border-end text-left">
-            <li class="mb-3">Height</li>
-            <li class="mb-3">Width</li>
-            <li class="mb-3">Depth</li>
-            <li class="mb-3">Weight</li>
-        </ul>
-
-        <div class="col-3">
-            <product-comparison-component-product-dimensions></product-comparison-component-product-dimensions>
-        </div>
-
-        <div class="col-3">
-            <product-comparison-component-product-dimensions></product-comparison-component-product-dimensions>
-        </div>
-
-
-        <ul class="col-3 border-end">
-
-
-        </ul>
-
-        <div class="col-12  pt-3 mb-4">
-            <h2 class="fw-bold">Warranty</h2>
-        </div>
-
-
-        <ul class="col-3 list-unstyled border-end text-left">
-            <li class="mb-3">Warranty Summary</li>
-            <li class="mb-3">Domestic Warranty:</li>
-
-        </ul>
-
-        <div class="col-3">
-            <product-comparison-component-product-warranty></product-comparison-component-product-warranty>
-        </div>
-
-        <div class="col-3">
-            <product-comparison-component-product-warranty></product-comparison-component-product-warranty>
-        </div>
-
-
-        <ul class="col-3 border-end">
-
-
-        </ul>
-
-        <div class="col-3"></div>
-
-
-        <div class="col-3 text-center">
-            <product-comparison-component-add-cart></product-comparison-component-add-cart>
-        </div>
-        <div class="col-3 text-center">
-            <product-comparison-component-add-cart></product-comparison-component-add-cart>
-        </div>
-        <div class="col-3"></div>
-
-
-
-
-    </div>
 </div>
 
 <main-component-banner-support></main-component-banner-support>

@@ -3,6 +3,24 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     templateUrl: 'product-comparison.component.html',
     styles: [`
+
+        .scroll-x{
+            
+            width:100%;
+            overflow-x: scroll;
+            @media(min-width:992px){
+                width:auto;
+                overflow-x:unset;
+            }
+        }
+
+        .max-width{
+            width: max-content;
+            @media(min-width:992px){
+                width:auto;
+            }
+        }
+        
         a {
           text-decoration:underline;  
         }
