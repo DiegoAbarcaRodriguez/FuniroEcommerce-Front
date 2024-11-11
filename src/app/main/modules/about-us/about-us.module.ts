@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { AboutUsComponent } from './pages/about-us.component';
-import { MainModule } from '../../main.module';
 import { AboutUsRoutingModule } from './about-us-routing.module';
+import { SharedMainModule } from '../../shared/shared.module';
 
 
 
 @NgModule({
     imports: [
-        MainModule,
+        SharedMainModule,
         AboutUsRoutingModule
     ],
     declarations: [AboutUsComponent],

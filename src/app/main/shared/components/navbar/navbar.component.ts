@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { ShoppingCarService } from '../../services/shopping-car.service';
+import { ShoppingCarService } from './../../services/shopping-car.service';
 
 @Component({
     selector: 'main-component-navbar',

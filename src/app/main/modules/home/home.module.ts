@@ -7,7 +7,7 @@ import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HeaderHomeComponent } from './components/header-home/header-home.component';
-import { MainModule } from '../../main.module';
+import { SharedMainModule } from '../../shared/shared.module';
 
 
 
@@ -16,7 +16,7 @@ import { MainModule } from '../../main.module';
         RouterModule,
         CommonModule,
         HomeRoutingModule,
-        MainModule
+        SharedMainModule
     ],
     declarations: [
         BrowseRangeComponent,

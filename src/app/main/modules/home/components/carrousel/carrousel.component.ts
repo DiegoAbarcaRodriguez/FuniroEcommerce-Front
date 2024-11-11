@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Carrousel } from 'src/app/main/interfaces/carrousel.interface';
-import { FurnitureService } from 'src/app/main/services/furniture.service';
+import { Carrousel } from 'src/app/main/shared/interfaces/carrousel.interface';
+import { FurnitureService } from 'src/app/main/shared/services/furniture.service';
 
 
 @Component({

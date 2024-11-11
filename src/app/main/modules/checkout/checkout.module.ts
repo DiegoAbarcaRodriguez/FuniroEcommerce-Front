@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { MainModule } from '../../main.module';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './pages/checkout.component';
+import { SharedMainModule } from '../../shared/shared.module';
 
 @NgModule({
     imports: [
-        MainModule,
+        SharedMainModule,
         CheckoutRoutingModule
     ],
     declarations: [CheckoutComponent],

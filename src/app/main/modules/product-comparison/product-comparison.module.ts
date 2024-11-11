@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 
 
 import { ProductComparisonComponent } from './pages/product-comparison.component';
-import { MainModule } from '../../main.module';
 import { ProductComparisonRoutingModule } from './product-comparison-routing.module';
+import { SharedMainModule } from '../../shared/shared.module';
 
 @NgModule({
     imports: [
-        MainModule,
+        SharedMainModule,
         ProductComparisonRoutingModule
     ],
     exports: [],

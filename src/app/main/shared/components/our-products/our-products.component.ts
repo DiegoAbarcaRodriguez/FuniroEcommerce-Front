@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FurnitureService } from '../../services/furniture.service';
 import { Furniture } from '../../interfaces/furniture.interface';
 import { Router } from '@angular/router';
