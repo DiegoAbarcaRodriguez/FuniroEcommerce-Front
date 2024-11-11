@@ -5,7 +5,7 @@ import { FurnitureService } from 'src/app/main/shared/services/furniture.service
 
 
 @Component({
-    selector: 'main-component-carrousel',
+    selector: 'home-component-carrousel',
     templateUrl: 'carrousel.component.html',
     styleUrls: ['carrousel.component.scss'],
 })

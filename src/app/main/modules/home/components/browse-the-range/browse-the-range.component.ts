@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'main-component-browse-range',
+    selector: 'home-component-browse-range',
     templateUrl: 'browse-the-range.component.html'
 })
 

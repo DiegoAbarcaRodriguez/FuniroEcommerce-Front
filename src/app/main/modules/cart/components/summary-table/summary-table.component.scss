@@ -1,0 +1,30 @@
+th,
+td {
+    border: none;
+}
+
+.img-product {
+    width: 108px;
+    height: 105px;
+    border-radius: 5%;
+}
+
+td {
+    vertical-align: middle;
+}
+
+input[type=number] {
+    width: 45px;
+    height: 45px;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
