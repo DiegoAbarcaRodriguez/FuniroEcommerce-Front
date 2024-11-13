@@ -47,12 +47,18 @@ export class NavbarComponent implements OnInit {
         this.mustShowHiddenMenu = !this.mustShowHiddenMenu;
     }
 
+    @HostListener('window:resize', ['$event'])
+    onResizeWindow(event: any) {
+        this.mustShowHiddenMenu = event.currentTarget.innerWidth < 992;
+    }
+
     @HostListener('window:scroll', ['$event'])
     onFixateNavbar(event: any) {
         const document: Document = event.target;
         const headerDiv: HTMLDivElement = document.querySelector('.header-image')!;
+        const h1Tag: HTMLElement = document.querySelector('h1')!;
 
-        if (headerDiv?.getBoundingClientRect().top < 0) {
+        if (headerDiv?.getBoundingClientRect().top < 0 || h1Tag?.getBoundingClientRect().top < 0) {
             this.navbar?.nativeElement.classList.add('fixate-navbar');
             return;
         }
@@ -62,6 +68,7 @@ export class NavbarComponent implements OnInit {
 
     onAddToShoppingCar() {
         this._shoppingCarService.mustShowShoppingCarComponet = true;
+        window.scrollTo(0,0);
         document.querySelector('body')?.classList.add('no-scroll');
     }
 }
