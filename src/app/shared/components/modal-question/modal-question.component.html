@@ -1,0 +1,28 @@
+<div class="modal" id="modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn-close me-3 my-3" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body text-center py-5">
+
+                <p class="fw-bold fs-3">
+                    Do you want to eliminate {{content?.username}}?
+                </p>
+
+                <i class="blink fa-solid fa-question"></i>
+
+                <div class="d-flex justify-content-center align-items-center gap-3 mt-3">
+                    <button class="btn btn-danger text-white fw-bold px-4 py-2" (click)="onReply(true)">
+                        Yes
+                    </button>
+
+                    <button class="btn btn-warning text-white fw-bold px-4 py-2" (click)="onReply(false)">
+                        No
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

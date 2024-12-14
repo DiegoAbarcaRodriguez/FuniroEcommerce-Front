@@ -1,0 +1,20 @@
+<div class="modal" id="modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn-close me-3 my-3" aria-label="Close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body text-center py-5">
+
+        <p class="fw-bold fs-3"
+          [ngClass]="{'text-danger':contentModal?.status === 'error' ,'text-success': contentModal?.status === 'success'}">
+          {{contentModal?.message}}
+        </p>
+
+        <i *ngIf="contentModal?.status === 'error'" class="text-danger blink fa-solid fa-circle-exclamation"></i>
+        <i *ngIf="contentModal?.status === 'success'" class="text-success blink fa-regular fa-circle-check"></i>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+@import '../../../styles.scss';
+
+.d-flex {
+    height: 100vh;
+    background: linear-gradient(to bottom, $secondary 50%, white 100%);
+
+}
+
+
+
+.login {
+    width: 340px;
+    height: auto;
+
+    @media(min-width: 468px) {
+        width: 400px;
+    }
+
+    border-radius: 3%;
+    background-color: transparentize($color: white, $amount: .9);
+    box-shadow: .5px .5px 10px 1px $primary;
+}
+
+input,
+input::placeholder {
+    color: $primary !important;
+}

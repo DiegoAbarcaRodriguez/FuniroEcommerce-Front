@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <table class="table table-white  rounded my-5">
+        <thead>
+            <tr class="table-primary">
+                <th class="text-primary fw-bold text-center">Id</th>
+                <th class="text-primary fw-bold">Username</th>
+                <th class="text-primary fw-bold">Password</th>
+                <th class="text-primary fw-bold">Modify by</th>
+                <th class="text-primary fw-bold">Modify at</th>
+                <th class="text-primary fw-bold">Tier</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>*******</td>
+                <td>{{user.user?.username}}</td>
+                <td>{{user.modify_at | date:'short'}}</td>
+                <td>{{user.is_admin | userStatus}}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-warning fw-bold text-white" (click)="openFormModal(user)">Edit</button>
+                        <button class="btn btn-danger fw-bold text-white"
+                            (click)="openQuestionModal(user)">Delete</button>
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

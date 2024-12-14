@@ -1,0 +1,10 @@
+<div class="d-flex">
+    <dashboard-sidebar-component></dashboard-sidebar-component>
+
+    <div class="flex-fill">
+        <dashboard-toolbar-component></dashboard-toolbar-component>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<dashboard-modal-users-component *ngIf="mustShowModalUserForm"></dashboard-modal-users-component>>

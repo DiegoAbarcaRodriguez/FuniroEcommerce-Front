@@ -1,0 +1,83 @@
+<div class="modal" id="modal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn-close me-3 my-3" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body text-center pt-0 pb-5">
+
+
+                <form (ngSubmit)="submitForm()" [formGroup]="userForm!">
+
+                    <legend *ngIf="!user" [ngStyle]="{border:'none'}">Create new user</legend>
+                    <legend *ngIf="user" [ngStyle]="{border:'none'}">{{'Update the user '+ user.username}}</legend>
+
+                    <div class="input-group my-4"
+                        [ngClass]="{'my-2':isFieldValid('username'),'my-4':!isFieldValid('username')}">
+                        <label for="username" class="input-group-text">
+                            <i class="fa-solid fa-user"></i>
+                        </label>
+                        <input formControlName="username" class="form-control" type="text" id="username"
+                            placeholder="Username">
+                    </div>
+
+                    <div *ngIf="isFieldValid('username')">
+                        <p *ngFor="let error of getFieldErrors('username')"
+                            class="form-text fw-bold text-danger text-start">
+                            {{error}}</p>
+                    </div>
+
+                    <div class="my-2" *ngIf="user">
+
+                        <input type="checkbox" class="form-check-input me-3 pointer" id="question"
+                            (change)="toggleShowPasswordsFormsOption()">
+
+                        <label for="question" class="form-check-label pointer">
+                            Do you want to change the password?
+                        </label>
+                    </div>
+
+                    <div *ngIf="!user || user && mustShowPasswordForms"
+                        class="input-group my-4"
+                        [ngClass]="{'my-2':isFieldValid('password'),'my-4':!isFieldValid('password')}">
+                        <label for="password" class="input-group-text">
+                            <i class="fa-solid fa-key"></i>
+                        </label>
+                        <input formControlName="password" class="form-control" type="password" id="password"
+                            placeholder="Password">
+                    </div>
+
+                    <div
+                        *ngIf="isFieldValid('password') && !user || user && mustShowPasswordForms">
+                        <p *ngFor="let error of getFieldErrors('password')"
+                            class="form-text fw-bold text-danger text-start">
+                            {{error}}</p>
+                    </div>
+
+                    <div class="input-group my-4"
+                        *ngIf="!user || user && mustShowPasswordForms"
+                        [ngClass]="{'my-2':isFieldValid('password2'),'my-4':!isFieldValid('password2')}">
+                        <label for="password2" class="input-group-text">
+                            <i class="fa-solid fa-key"></i>
+                        </label>
+                        <input formControlName="password2" class="form-control" type="password" id="password2"
+                            placeholder="Repeat password">
+                    </div>
+
+                    <div
+                        *ngIf="isFieldValid('password2') && !user || user && mustShowPasswordForms">
+                        <p *ngFor="let error of getFieldErrors('password2')"
+                            class="form-text fw-bold text-danger text-start">
+                            {{error}}</p>
+                    </div>
+
+                    <button
+                        [disabled]="userForm?.invalid && user || user && mustShowPasswordForms && userForm?.invalid"
+                        class="btn btn-primary text-white fw-bold px-5 py-2" type="submit">Save</button>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

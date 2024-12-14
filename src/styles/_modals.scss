@@ -1,0 +1,44 @@
+.modal {
+    background-color: rgba(0, 0, 0, 0.47);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    display: block;
+
+}
+
+.modal-dialog {
+    animation: fading 500ms ease-in-out none 1;
+}
+
+.blink {
+    animation: blinking 1000ms ease-in none infinite;
+    font-size: 60px;
+}
+
+@keyframes fading {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes blinking {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
