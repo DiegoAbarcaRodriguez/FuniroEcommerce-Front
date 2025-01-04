@@ -1,0 +1,9 @@
+<h2 class="text-primary fw-bold mt-3">Users</h2>
+
+<p class="my-1 fs-5 text-ligth-gray">Welcome to your manager panel of Funiro Ecommerce.</p>
+
+<dashboard-users-table-users-component [users]="users"></dashboard-users-table-users-component>
+
+<div class="d-flex justify-content-end" *ngIf="mustShowAddButton">
+    <button class="btn btn-primary text-white fw-bold" (click)="openModalForm()">Add User</button>
+</div>

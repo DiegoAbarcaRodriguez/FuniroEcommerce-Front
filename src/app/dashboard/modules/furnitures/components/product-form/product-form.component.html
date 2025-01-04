@@ -1,0 +1,41 @@
+<form [formGroup]="form">
+    <legend class="text-primary fw-bold fs-5 ">Product</legend>
+
+    <div class="row">
+        <div class="mb-3 col-3">
+            <label for="filling_material" class="col-form-label text-ligth-gray" >Filling Material</label>
+            <input type="text" id="filling_material" class="form-control" formControlName="filling_material">
+        </div>
+        <div class="mb-3 col-3">
+            <label for="origin" class="col-form-label text-ligth-gray">Origin</label>
+            <span class="text-danger fw-bold">*</span>
+            <select id="origin" class="form-select" formControlName="origin" [class.is-invalid]="isValidField('origin')">
+                <option selected value="">Select an option</option>
+                <option value="1">Mexico</option>
+                <option value="2">China</option>
+                <option value="3">USA</option>
+            </select>
+            <div class="mt-2" *ngIf="isValidField('origin')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('origin')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-3">
+            <label for="max_load" class="col-form-label text-ligth-gray">Max Load Supportive (Kg)</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="number" min="0" value="0" id="max_load" class="form-control" formControlName="max_load" [class.is-invalid]="isValidField('max_load')">
+            <div class="mt-2" *ngIf="isValidField('max_load')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('max_load')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3 form-check">
+            <label for="has_adjustable_headrest" class="form-check-label text-ligth-gray">Adjustable
+                Headrest</label>
+            <input type="checkbox" id="has_adjustable_headrest" class="form-check-input" formControlName="has_adjustable_headrest" >
+        </div>
+    </div>
+</form>

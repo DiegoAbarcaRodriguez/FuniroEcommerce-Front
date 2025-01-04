@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+    <legend class="text-primary fw-bold fs-5 ">Dimensions</legend>
+
+    <div class="row">
+        <div class="mb-3 col-3">
+            <label for="height" class="col-form-label text-ligth-gray">Height (Cm)</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="number" min="0" value="0" id="height" class="form-control" formControlName="height" [class.is-invalid]="isValidField('height')">
+            <div class="mt-2" *ngIf="isValidField('height')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('height')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-3">
+            <label for="depth" class="col-form-label text-ligth-gray">Depth (Cm)</label>
+            <input type="number" min="0" value="0" id="depth" class="form-control" formControlName="depth" [class.is-invalid]="isValidField('depth')">
+            <div class="mt-2" *ngIf="isValidField('depth')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('depth')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-3">
+            <label for="width" class="col-form-label text-ligth-gray">Width (Cm)</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="number" min="0" value="0" id="width" class="form-control" formControlName="width" [class.is-invalid]="isValidField('width')">
+            <div class="mt-2" *ngIf="isValidField('width')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('width')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-3">
+            <label for="weight" class="col-form-label text-ligth-gray">weight (Kg)</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="number" min="0" value="0" id="weight" class="form-control" formControlName="weight" [class.is-invalid]="isValidField('weight')">
+            <div class="mt-2" *ngIf="isValidField('weight')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('weight')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

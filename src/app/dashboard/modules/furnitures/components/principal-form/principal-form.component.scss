@@ -1,0 +1,73 @@
+.grid {
+    display: grid;
+    grid-template-areas: 'name price image'
+        'stock discount image'
+        'category category   image'
+        'description description description ';
+    gap: 20px;
+
+    &__image {
+        grid-area: image;
+
+    }
+
+    &__description {
+        grid-area: description;
+    }
+
+}
+
+input[type='file'] {
+    opacity: 0;
+    width: 10%;
+
+}
+
+input[type='file']::-webkit-file-upload-button {
+    cursor: pointer;
+
+}
+
+.file::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+
+    position: absolute;
+    left: 47%;
+    top: 0;
+    font-size: 25px;
+
+    content: "\f03e";
+
+}
+
+.file-bottom {
+    .file::before {
+        top: 50%;
+    }
+}
+
+.file-error {
+    .file::before {
+        color: #E97171;
+    }
+}
+
+
+
+img {
+    object-fit: scale-down;
+    width: 442.34px;
+    height: 266px;
+
+}
+
+.invisible{
+    height: 0px;
+    width: 0px;
+    position: absolute;
+}

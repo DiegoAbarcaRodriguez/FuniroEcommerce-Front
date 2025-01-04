@@ -1,0 +1,29 @@
+<div class="table-responsive">
+    <table class="table table-white  rounded my-5">
+        <thead>
+            <tr class="table-primary">
+                <th class="text-primary fw-bold text-center">Model Number</th>
+                <th class="text-primary fw-bold">Name</th>
+                <th class="text-primary fw-bold">Description</th>
+                <th class="text-primary fw-bold">Price</th>
+                <th class="text-primary fw-bold">Stock</th>
+                <th class="text-primary fw-bold">Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let furniture of furnitures;let i =index;">
+                <td></td>
+
+                <td>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-warning fw-bold text-white">View</button>
+                        <button class="btn btn-danger fw-bold text-white">Delete</button>
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

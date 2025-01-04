@@ -1,0 +1,93 @@
+<form [formGroup]="form">
+
+    <legend class="text-primary fw-bold fs-5 ">Principal</legend>
+
+    <div class="grid">
+        <div>
+            <label for="name" class="col-form-label text-ligth-gray">Name</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="text" id="name" class="form-control" formControlName="name" [class.is-invalid]="isValidField('name')">
+            <div class="mt-2" *ngIf="isValidField('name')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('name')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div>
+            <label for="price" class="col-form-label text-ligth-gray">Price (USD)</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="number" min="0" id="price" class="form-control" value="0" formControlName="price" [class.is-invalid]="isValidField('price')">
+            <div class="mt-2" *ngIf="isValidField('price')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('price')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="grid__image">
+            <label for="image" class="text-ligth-gray">Image</label>
+            <span class="text-danger fw-bold">*</span>
+            <div class="d-flex align-items-center justify-content-center h-100 bg-white rounded"
+                [ngClass]="{'file-bottom':temporalImg,'file-error': hasInputImageTouched && !temporalImg,'border border-danger border-2':hasInputImageTouched&& !temporalImg}">
+                <div class="bg-white position-relative file d-flex justify-content-center">
+                    <input [ngClass]="{'position-absolute top-50':temporalImg}"
+                        (input)="uploadImage($any($event).srcElement.files[0])" id="image" type="file" name="image"
+                        accept="image/jpg, image/jpeg, image/png, image/webp, image/avif">
+                    <input type="text" formControlName="image" class="invisible">
+                    <img *ngIf="temporalImg" [src]="temporalImg" alt="image">
+                </div>
+
+            </div>
+
+            <p class="text-danger  my-2 fw-bold" *ngIf="hasInputImageTouched && !temporalImg">
+                Must upload an image!
+            </p>
+        </div>
+        <div class="">
+            <label for="stock" class="col-form-label text-ligth-gray">Stock</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="number" min="0" id="stock" class="form-control" value="0" formControlName="stock" [class.is-invalid]="isValidField('stock')">
+            <div class="mt-2" *ngIf="isValidField('stock')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('stock')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <label for="discount" class="col-form-label text-ligth-gray">Discount</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="number" id="discount" min="0" class="form-control" value="0" formControlName="discount" [class.is-invalid]="isValidField('discount')">
+            <div class="mt-2" *ngIf="isValidField('discount')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('discount')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+
+        <div class="">
+            <label for="category" class="col-form-label text-ligth-gray">Category</label>
+            <span class="text-danger fw-bold">*</span>
+            <select id="category" class="form-select" formControlName="category" [class.is-invalid]="isValidField('category')">
+                <option selected value="">Select an option</option>
+                <option selected value="1">1</option>
+                <option selected value="2">2</option>
+            </select>
+
+            <div class="mt-2" *ngIf="isValidField('category')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('category')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="grid__description">
+            <label for="description" class="col-form-label text-ligth-gray">Description</label>
+            <span class="text-danger fw-bold">*</span>
+            <textarea id="name" rows="5" class="form-control" formControlName="description" [class.is-invalid]="isValidField('description')"></textarea>
+            <div class="mt-2" *ngIf="isValidField('description')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('description')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

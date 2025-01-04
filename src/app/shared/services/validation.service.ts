@@ -12,9 +12,10 @@ export class ValidationService {
     getErrorsField(fieldName: string, form: FormGroup): string[] {
         const errors: string[] = [];
         const errorObject = form.controls[fieldName].errors || {};
-       
+
 
         const errorsFromField = Object.keys(errorObject);
+
 
         errorsFromField.forEach(error => {
             switch (error) {
@@ -24,8 +25,14 @@ export class ValidationService {
                 case 'minlength':
                     errors.push(`The ${fieldName} must have at least ${errorObject['minlength']['requiredLength']} characters`);
                     break;
+                case 'min':
+                    errors.push(`The ${fieldName} must be greater than ${errorObject['min']['min']}`);
+                    break;
                 case 'notEqual':
                     errors.push(`The passwords are differents`);
+                    break;
+                case 'notGreater':
+                    errors.push(`The ${fieldName} is not valid in comparison to the discount`);
                     break;
                 default:
                     throw new Error(`The error: ${error} is not handled`);
@@ -41,8 +48,6 @@ export class ValidationService {
         return (form: FormGroup): ValidationErrors | undefined => {
             const password = form.get(fieldName)?.value || '';
             const password2 = form.get(fieldName2)?.value || '';
-            
-
             if (password !== password2) {
                 form.get(fieldName2)?.setErrors({ notEqual: true });
                 return {
@@ -50,6 +55,25 @@ export class ValidationService {
                 }
             }
 
+            return undefined;
+        }
+    }
+
+    mustBeGreaterFirstFieldThanSecondField(fieldName: string, fieldName2: string) {
+        return (form: FormGroup): ValidationErrors | undefined => {
+            const field = form.get(fieldName)?.value || 0;
+            const field2 = form.get(fieldName2)?.value || 0;
+
+            if (field <= field2) {
+                form.get(fieldName)?.setErrors({
+                    notGreater: true
+                });
+                return {
+                    notGreater: true
+                }
+            }
+
+            form.get(fieldName)?.setErrors(null);
             return undefined;
         }
     }

@@ -2,9 +2,18 @@
     <dashboard-sidebar-component></dashboard-sidebar-component>
 
     <div class="flex-fill">
+
         <dashboard-toolbar-component></dashboard-toolbar-component>
-        <router-outlet></router-outlet>
+
+        <div class="bg-secondary">
+            <div class="container-fluid">
+                <div class="row ms-4 ">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<dashboard-modal-users-component *ngIf="mustShowModalUserForm"></dashboard-modal-users-component>>
+<dashboard-modal-users-component *ngIf="mustShowModalUserForm"></dashboard-modal-users-component>

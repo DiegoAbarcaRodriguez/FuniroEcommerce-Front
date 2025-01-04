@@ -1,21 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/shared/interfaces';
 import { Subscription } from 'rxjs';
 
 @Component({
     templateUrl: 'dashboard-users.component.html',
-    styles: [`
-           .bg-secondary{
-                height:100vh;
-           }
-
-           .container-fluid{
-                height:80vh;
-                overflow-y:scroll;
-           }
-        `]
 })
 
 export class DashboardUsersComponent implements OnInit, OnDestroy {

@@ -1,9 +1,19 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { UserService } from '../modules/users/services/user.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-    templateUrl: 'dashboard-layout.component.html'
+    templateUrl: 'dashboard-layout.component.html',
+    styles: [`
+        .bg-secondary{
+            height:100vh;
+           }
+
+           .container-fluid{
+                height:80vh;
+                overflow-y:scroll;
+           }
+        `]
 })
 
 export class DahsboardLayoutComponent implements OnInit, AfterViewInit, OnDestroy {

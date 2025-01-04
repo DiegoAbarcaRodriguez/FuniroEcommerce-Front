@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../modules/users/services/user.service';
 import { User } from 'src/app/shared/interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
+
 
 @Component({
     selector: 'dashboard-modal-users-component',

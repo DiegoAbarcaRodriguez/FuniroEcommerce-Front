@@ -6,7 +6,7 @@ import { Subscription, switchMap } from 'rxjs';
 
 
 @Component({
-    selector: 'dashboard-table-users-component',
+    selector: 'dashboard-users-table-users-component',
     templateUrl: 'table-users.component.html',
     styles: [
         `

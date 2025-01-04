@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+    <legend class="text-primary fw-bold fs-5 ">Warranty</legend>
+
+    <div class="row">
+        <div class="mb-3 col-3">
+            <span class="text-danger fw-bold">*</span>
+            <label for="warranty_domestic" class="col-form-label text-ligth-gray">Warranty Domestic (Years)</label>
+            <input type="number" min="0" value="0" id="warranty_domestic" class="form-control"
+                formControlName="warranty_domestic" [class.is-invalid]="isValidField('warranty_domestic')">
+            <div class="mt-2" *ngIf="isValidField('warranty_domestic')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('warranty_domestic')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-3">
+            <span class="text-danger fw-bold">*</span>
+            <label for="warranty_general" class="col-form-label text-ligth-gray">Warranty General (Years)</label>
+            <input type="number" min="0" value="0" id="warranty_general" class="form-control"
+                formControlName="warranty_general" [class.is-invalid]="isValidField('warranty_general')">
+            <div class="mt-2" *ngIf="isValidField('warranty_general')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('warranty_general')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>

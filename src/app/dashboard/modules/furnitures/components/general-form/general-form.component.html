@@ -1,0 +1,51 @@
+<form [formGroup]="form!">
+    <legend class="text-primary fw-bold fs-5 ">General</legend>
+
+    <div class="row">
+        <div class="mb-3 col-3">
+            <label for="model_number" class="col-form-label text-ligth-gray">Model Number</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="text" id="model_number" class="form-control" formControlName="model_number" [class.is-invalid]="isValidField('model_number')">
+
+            <div class="mt-2" *ngIf="isValidField('model_number')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('model_number')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-3">
+            <label for="sales_package" class="col-form-label text-ligth-gray">Sales Package</label>
+            <span class="text-danger fw-bold">*</span>
+            <input type="text" id="sales_package" class="form-control" formControlName="sales_package" [class.is-invalid]="isValidField('sales_package')">
+
+            <div class="mt-2" *ngIf="isValidField('sales_package')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('sales_package')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-3">
+            <label for="secondary_material" class="col-form-label text-ligth-gray">Secondary Material</label>
+            <input type="text" id="secondary_material" class="form-control" formControlName="secondary_material" [class.is-invalid]="isValidField('secondary_material')">
+        </div>
+        <div class="mb-3 col-3">
+            <label for="upholstery_material" class="col-form-label text-ligth-gray">Upholstery Material</label>
+            <input type="text" id="upholstery_material" class="form-control" formControlName="upholstery_material" [class.is-invalid]="isValidField('upholstery_material')">
+        </div>
+        <div class="mb-3 col-3">
+            <label for="upholstery_color" class="col-form-label text-ligth-gray">Upholstery Color</label>
+            <span class="text-danger fw-bold">*</span>
+            <select id="upholstery_color" class="form-select" formControlName="upholstery_color" [class.is-invalid]="isValidField('upholstery_color')">
+                <option selected value="">Select an option</option>
+                <option selected value="1">Red</option>
+                <option selected value="2">Blue</option>
+            </select>
+
+            <div class="mt-2" *ngIf="isValidField('upholstery_color')">
+                <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('upholstery_color')">
+                    {{error}}!
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
