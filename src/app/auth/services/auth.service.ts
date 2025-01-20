@@ -16,12 +16,18 @@ export class AuthService {
     private _url = Environment.url + '/auth';
     private _token?: string;
     private _user?: User;
+    private _headers?: object;
+
 
     get token(): string | undefined {
         return this._token;
     }
     get user(): User | undefined {
         return this._user;
+    }
+
+    get headers() {
+        return this._headers;
     }
 
     constructor(private _http: HttpClient) {
@@ -31,7 +37,7 @@ export class AuthService {
     private saveToken(token: string) {
         localStorage.setItem('token', token);
         this._token = token;
-
+        this._headers = { headers: { 'Authorization': `Bearer ${token}` } };
     }
 
     private getTokenFromLocalStorage() {
@@ -57,7 +63,7 @@ export class AuthService {
             .pipe(
                 map(({ token, user, ok }) => {
                     if (!user.is_admin || !ok) return false;
-                    this._token = token;
+                    this.saveToken(token);
                     this._user = user;
                     return true;
 
