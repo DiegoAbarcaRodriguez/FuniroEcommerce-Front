@@ -68,7 +68,7 @@ export class ModalUsersComponent implements OnInit {
     }
 
     submitForm() {
-        if (this.userForm!.invalid && !this.user || this.mustShowPasswordForms && this.userForm?.invalid || this.userForm?.get('username')?.invalid) {
+        if (this.userForm!.invalid && !this.user || this.mustShowPasswordForms && this.userForm?.invalid) {
             this.userForm?.markAllAsTouched();
             return;
         }

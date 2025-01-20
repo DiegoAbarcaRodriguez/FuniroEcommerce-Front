@@ -3,6 +3,7 @@ import { FurnitureForm, KeyOfFurnitureForm } from '../../constant/furniture-form
 import { FurnitureService } from '../../services/furniture.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { FormGroup } from '@angular/forms';
+import { Furniture } from '../../interfaces/furniture.interface';
 import { Router } from '@angular/router';
 import { filter, switchMap } from 'rxjs';
 import { ImageService } from '../../services/image.service';
@@ -33,7 +34,7 @@ export class AddFurnitureComponent implements OnInit {
     }
 
     onToggleStatusForm(event: { value: boolean, form: FormGroup }, typeForm: KeyOfFurnitureForm) {
-        const { value } = event;
+        const { value, form } = event;
 
         FurnitureForm[typeForm] = value;
 

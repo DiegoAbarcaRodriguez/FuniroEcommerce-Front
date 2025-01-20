@@ -53,6 +53,20 @@ html {
     color: $gray;
 }
 
+.product {
+    position: relative;
+}
+
+.show-options-background {
+    z-index: 2;
+    position: absolute;
+    background-color: #3a3a3aa1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
 .pointer {
     cursor: pointer;
 }
