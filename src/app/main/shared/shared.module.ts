@@ -5,7 +5,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeroImageComponent } from './components/hero-image/hero-image.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { OurProductsComponent } from './components/our-products/our-products.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { ShoppingCarComponent } from './components/shopping-car/shopping-car.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -23,7 +22,6 @@ import { SelectFunitureDirective } from './directives/select-furniture.directive
         HeroImageComponent,
         NavbarComponent,
         OurProductsComponent,
-        PaginationComponent,
         ShoppingCarComponent,
 
         SelectFunitureDirective
@@ -35,7 +33,6 @@ import { SelectFunitureDirective } from './directives/select-furniture.directive
         HeroImageComponent,
         NavbarComponent,
         OurProductsComponent,
-        PaginationComponent,
         ShoppingCarComponent,
 
         SelectFunitureDirective

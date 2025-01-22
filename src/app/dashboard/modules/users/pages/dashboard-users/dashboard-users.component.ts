@@ -13,6 +13,8 @@ export class DashboardUsersComponent implements OnInit, OnDestroy {
     users: User[] = [];
     mustShowAddButton: boolean = false;
     subscription: Subscription = new Subscription();
+    pagesNumber: number = 0;
+    limit: number = 5;
 
     constructor(
         private _userService: UserService,
@@ -36,10 +38,11 @@ export class DashboardUsersComponent implements OnInit, OnDestroy {
         this._userService.mustShowModalForm = true;
     }
 
-    getUsers() {
+    getUsers(page?: number, limit?: number) {
         this.subscription.add(
-            this._userService.getUsers().subscribe(users => {
+            this._userService.getUsers(page, limit).subscribe(({ total, users }) => {
                 this.users = users;
+                this.pagesNumber = Math.round(total / this.limit);
             })
         );
     }
@@ -56,11 +59,12 @@ export class DashboardUsersComponent implements OnInit, OnDestroy {
                         }
                         return userElement;
                     });
+                    this.users = this.users.sort((a, b) => a.modify_at < b.modify_at ? 1 : -1);
                     return;
                 }
 
                 this.users.unshift(user);
-
+                this.users.splice(this.limit, 1);
             })
         );
     }

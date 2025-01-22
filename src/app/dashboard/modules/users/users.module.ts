@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardUsersComponent } from './pages/dashboard-users/dashboard-users.component';
 import { TableUsersComponent } from './components/table-users/table-users.component';
 import { UserStatusPipe } from './pipes/user-status.pipe';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -11,7 +12,7 @@ import { UserStatusPipe } from './pipes/user-status.pipe';
     imports: [
         UsersRoutingModule,
         CommonModule,
-
+        SharedModule
     ],
     declarations: [
         DashboardUsersComponent,

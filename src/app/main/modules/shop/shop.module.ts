@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NavbarFilterComponent } from './components/navbar-filter/navbar-filter.component';
 import { ShopRoutingModule } from './shop-routing.module';
 import { SharedMainModule } from '../../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -13,6 +14,7 @@ import { SharedMainModule } from '../../shared/shared.module';
         CommonModule,
         RouterModule,
         SharedMainModule,
+        SharedModule,
         ShopRoutingModule
     ],
     exports: [],

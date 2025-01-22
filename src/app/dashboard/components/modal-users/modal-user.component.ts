@@ -79,7 +79,8 @@ export class ModalUsersComponent implements OnInit {
             this._userService.createUser({ ...this.userForm?.value, username, is_admin: true }).subscribe({
                 next: ({ message, user }) => {
                     this._userService.createdOrUpdatedUser = user;
-                    this.launchStatusModal(message, 'success')
+                    this.launchStatusModal(message, 'success');
+                    this.closeModal();
                 },
                 error: ({ error }) => this.launchStatusModal(error.message, 'error')
             });
@@ -91,6 +92,7 @@ export class ModalUsersComponent implements OnInit {
             next: ({ message, user }) => {
                 this._userService.createdOrUpdatedUser = user;
                 this.launchStatusModal(message, 'success');
+                this.closeModal();
             },
             error: ({ error }) => this.launchStatusModal(error.message, 'error')
 

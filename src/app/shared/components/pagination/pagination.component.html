@@ -1,0 +1,12 @@
+<div class="w-50 mx-auto d-flex justify-content-center gap-3 my-5">
+    <button class="btn btn-primary text-white  px-4 py-2" *ngIf="currentPage-1>0" (click)="changeCurrentPage(currentPage -1)">
+        <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <button *ngFor="let element of indexArray | slice:lowerLimit:upperLimit" (click)="changeCurrentPage(element)"
+        [ngClass]="{'btn-primary text-white':element === currentPage,'btn-secondary':element!==currentPage}"
+        class="btn px-3 py-2">{{element}}
+    </button>
+    <button class="btn btn-primary text-white  px-4 py-2" *ngIf="currentPage+1<=pagesNumber" (click)="changeCurrentPage(currentPage +1)">
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</div>

@@ -17,3 +17,8 @@ export interface RespondSuccessfullUserApi {
     message: string,
     user: User
 }
+
+export interface RespondGetUsersApi {
+    users: User[],
+    total: number
+}

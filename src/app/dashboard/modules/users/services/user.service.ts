@@ -5,7 +5,7 @@ import { Environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { catchError, Observable, of, Subject } from 'rxjs';
 import { User } from 'src/app/shared/interfaces';
-import { CreateUserBody, RespondSuccessfullUserApi, UpdateUserBody } from '../interfaces/user.interface';
+import { CreateUserBody, RespondSuccessfullUserApi, UpdateUserBody, RespondGetUsersApi } from '../interfaces/user.interface';
 
 
 
@@ -69,10 +69,10 @@ export class UserService {
         return this._http.delete<RespondSuccessfullUserApi>(`${this._baseURL}/${id}`, this._authService.headers);
     }
 
-    getUsers(): Observable<User[]> {
-        return this._http.get<User[]>(`${this._baseURL}`, this._authService.headers)
+    getUsers(page: number = 1, limit: number = 5): Observable<RespondGetUsersApi> {
+        return this._http.get<RespondGetUsersApi>(`${this._baseURL}?page=${page}&limit=${limit}`, this._authService.headers)
             .pipe(
-                catchError(() => of([]))
+                catchError(() => of({ total: 0, users: [] }))
             );
     }
 
