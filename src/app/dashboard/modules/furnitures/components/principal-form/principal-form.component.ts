@@ -4,6 +4,7 @@ import { distinctUntilChanged, tap } from 'rxjs';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { ImageService } from '../../services/image.service';
 import { FurnitureService } from '../../services/furniture.service';
+import { FurnitureNameValidator } from '../../validators/name.validator';
 
 @Component({
     selector: 'dashborad-furnitures-principal-form',
@@ -20,7 +21,7 @@ export class PrincipalFormComponent implements OnInit {
     hasInputImageTouched: boolean = false;
 
     form = this._fb.group({
-        name: ['', [Validators.required]],
+        name: ['', [Validators.required], [this._furnitureNameValidator]],
         price: ['', [Validators.required, Validators.min(0)]],
         stock: ['', [Validators.required, Validators.min(0)]],
         discount: ['', [Validators.required, Validators.min(0)]],
@@ -38,6 +39,7 @@ export class PrincipalFormComponent implements OnInit {
         private _validationService: ValidationService,
         private _imageService: ImageService,
         private _furnitureService: FurnitureService,
+        private _furnitureNameValidator: FurnitureNameValidator
 
     ) { }
 

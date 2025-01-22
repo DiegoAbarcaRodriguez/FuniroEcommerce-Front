@@ -12,7 +12,6 @@ import { FormGroup } from '@angular/forms';
 export class FurnitureService {
 
     private _url = `${Environment.url}/furniture`;
-    private _headers?: Object;
     private _furniturePayload?: Furniture;
 
     set furniturePayload(form: FormGroup) {
@@ -22,14 +21,23 @@ export class FurnitureService {
     constructor(
         private _http: HttpClient,
         private _authService: AuthService
-    ) {
-        this._headers = { headers: { 'Authorization': `Bearer ${this._authService.token}` } };
-    }
+    ) { }
 
     createFurniture(imageName: string): Observable<RespondApiFurniture> {
-        return this._http.post<RespondApiFurniture>(this._url, { ...this._furniturePayload, image: imageName }, this._headers)
+
+        const [name, model_number] = this.normalizeNameAndModelNumber();
+        
+        return this._http.post<RespondApiFurniture>(this._url, { ...this._furniturePayload, name, model_number, image: imageName }, this._authService.headers)
+
+    }
+
+    private normalizeNameAndModelNumber(): [string?, string?] {
+        const { name, model_number } = this._furniturePayload!;
+        const formatedName = name.toLocaleLowerCase().trimStart().trimEnd();
+        const formatedModelNumber = model_number.toLocaleLowerCase().trimStart().trimEnd();
 
 
+        return [formatedName, formatedModelNumber];
     }
 
 }

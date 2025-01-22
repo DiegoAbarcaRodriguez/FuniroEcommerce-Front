@@ -34,6 +34,12 @@ export class ValidationService {
                 case 'notGreater':
                     errors.push(`The ${fieldName} is not valid in comparison to the discount`);
                     break;
+                case 'hasTaken':
+                    errors.push(`This ${fieldName} has already been taken`);
+                    break;
+                case 'hasError':
+                    errors.push('It has been an error about the service');
+                    break;
                 default:
                     throw new Error(`The error: ${error} is not handled`);
             }
@@ -77,6 +83,5 @@ export class ValidationService {
             return undefined;
         }
     }
-
 
 }

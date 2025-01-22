@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { distinctUntilChanged } from 'rxjs';
 import { FurnitureService } from '../../services/furniture.service';
+import { ModelNumberValidator } from '../../validators/model-number.validator';
 
 @Component({
     selector: 'dashboard-furnitures-general-form-component',
@@ -15,7 +16,7 @@ export class GeneralFormComponent implements OnInit {
     isValidTheForm: EventEmitter<{ value: boolean, form: FormGroup }> = new EventEmitter();
 
     form = this._fb.group({
-        model_number: ['', [Validators.required, Validators.minLength(6)]],
+        model_number: ['', [Validators.required, Validators.minLength(6)], [this._modelNumberValidator]],
         sales_package: ['', Validators.required],
         upholstery_color: ['', Validators.required],
         upholstery_material: [''],
@@ -27,6 +28,7 @@ export class GeneralFormComponent implements OnInit {
         private _fb: FormBuilder,
         private _validationService: ValidationService,
         private _furnitureService: FurnitureService,
+        private _modelNumberValidator: ModelNumberValidator,
     ) {
 
     }
