@@ -42,7 +42,7 @@ export class DashboardUsersComponent implements OnInit, OnDestroy {
         this.subscription.add(
             this._userService.getUsers(page, limit).subscribe(({ total, users }) => {
                 this.users = users;
-                this.pagesNumber = Math.round(total / this.limit);
+                this.pagesNumber = Math.ceil(total / this.limit);
             })
         );
     }
