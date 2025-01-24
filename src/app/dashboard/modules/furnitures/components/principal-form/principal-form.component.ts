@@ -1,10 +1,13 @@
 import { Component, EventEmitter, OnInit, Output, Pipe } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { distinctUntilChanged, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { ImageService } from '../../services/image.service';
 import { FurnitureService } from '../../services/furniture.service';
 import { FurnitureNameValidator } from '../../validators/name.validator';
+import { Furniture } from '../../interfaces/furniture.interface';
+import { Environment } from 'src/environments/environment';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'dashborad-furnitures-principal-form',
@@ -19,6 +22,7 @@ export class PrincipalFormComponent implements OnInit {
 
     temporalImg?: string;
     hasInputImageTouched: boolean = false;
+    private _urlImageServer: string = Environment.imagesUrl;
 
     form = this._fb.group({
         name: ['', [Validators.required], [this._furnitureNameValidator]],
@@ -46,6 +50,7 @@ export class PrincipalFormComponent implements OnInit {
     ngOnInit() {
         this.onChangeStatusForm();
         this.onChangeValuesForm();
+        this.onLoadForm();
     }
 
     uploadImage(image: File) {
@@ -92,6 +97,22 @@ export class PrincipalFormComponent implements OnInit {
     }
 
     onChangeValuesForm() {
-        this.form.valueChanges.subscribe(() => this._furnitureService.furniturePayload = this.form);
+        this.form.valueChanges.subscribe(() => {
+            this._furnitureService.furniturePayload = this.form;
+        });
+
+
     }
+
+    onLoadForm() {
+        this._furnitureService.loadedFurniture.subscribe((furniture: Furniture) => {
+            const { image } = furniture;
+
+            this.form.reset({ ...furniture });
+            this.form.get('image')?.setValue(image);
+            this.temporalImg = `${this._urlImageServer}/${image}`;
+
+        });
+    }
+
 }

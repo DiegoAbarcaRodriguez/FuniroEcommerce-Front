@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../interfaces';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -9,14 +8,16 @@ import { ModalService } from '../../services/modal.service';
 
 export class ModalQuestionComponent implements OnInit {
 
-    content?: User;
+    content?: string = '';
 
     constructor(
         private _modalService: ModalService
     ) { }
 
     ngOnInit() {
-        this.content = this._modalService.contentQuestionModal;
+        this.content = this._modalService.contentQuestionModal.username
+            ? this._modalService.contentQuestionModal.username
+            : this._modalService.contentQuestionModal.name;
     }
 
     onReply(respond: boolean) {

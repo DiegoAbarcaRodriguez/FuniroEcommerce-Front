@@ -1,8 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { AbstractControl, AsyncValidator, ValidationErrors } from "@angular/forms";
-import { catchError, map, Observable } from "rxjs";
-import { AuthService } from "src/app/auth/services/auth.service";
+import { AbstractControl, AsyncValidator } from "@angular/forms";
+import { catchError, map, Observable, of } from "rxjs";
 import { Environment } from "src/environments/environment";
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +12,6 @@ export class ModelNumberValidator implements AsyncValidator {
 
     constructor(
         private _http: HttpClient,
-        private _authService: AuthService
     ) { }
 
     validate(control: AbstractControl): Observable<any> {
@@ -21,16 +19,21 @@ export class ModelNumberValidator implements AsyncValidator {
         const modelNumber = control.value.toLocaleLowerCase().trimStart().trimEnd();
 
 
-        return this._http.get(`${this._urlBase}/${modelNumber}`, this._authService.headers)
+        return this._http.get(`${this._urlBase}/${modelNumber}`)
             .pipe(
-                map(() => ({ hasTaken: true })),
+                map(() => {
+                    if (control.touched) {
+                        return { hasTaken: true };
+                    }
+                    return null;
+                }),
                 catchError((error): any => {
 
                     if (error.status == 404) {
-                        return null;
+                        return of(null);
                     }
 
-                    return { hasError: true }
+                    return of({ hasError: true });
                 }),
 
             );

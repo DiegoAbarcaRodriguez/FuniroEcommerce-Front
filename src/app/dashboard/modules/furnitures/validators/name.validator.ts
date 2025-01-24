@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
-import { catchError, debounce, debounceTime, delay, map, Observable, take } from 'rxjs';
+import { AbstractControl, AsyncValidator } from '@angular/forms';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { Environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -17,19 +17,23 @@ export class FurnitureNameValidator implements AsyncValidator {
 
         const name = control.value.toLocaleLowerCase().trimStart().trimEnd();
 
-
         return this._http.get(`${this._urlBase}/${name}`)
             .pipe(
-                map(() => ({ hasTaken: true })),
+                map(() => {
+                    if (control.touched) {
+                        return { hasTaken: true }
+                    }
+                    return null;
+                }),
                 catchError((error): any => {
 
                     if (error.status == 404) {
-                        return null;
+                        return of(null);
                     }
-
-                    return { hasError: true }
+                   
+                    return of({ hasError: true });
                 }),
-                
+
             );
 
 

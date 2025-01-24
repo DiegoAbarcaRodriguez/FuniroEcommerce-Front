@@ -38,9 +38,9 @@ export class DashboardUsersComponent implements OnInit, OnDestroy {
         this._userService.mustShowModalForm = true;
     }
 
-    getUsers(page?: number, limit?: number) {
+    getUsers(page?: number) {
         this.subscription.add(
-            this._userService.getUsers(page, limit).subscribe(({ total, users }) => {
+            this._userService.getUsers(page, this.limit).subscribe(({ total, users }) => {
                 this.users = users;
                 this.pagesNumber = Math.ceil(total / this.limit);
             })

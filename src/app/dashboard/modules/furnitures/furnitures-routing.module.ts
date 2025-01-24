@@ -7,8 +7,13 @@ const routes: Routes = [
     {
         path: '',
         component: DashboardFurnituresComponent,
-    }, {
+    },
+    {
         path: 'add',
+        component: AddFurnitureComponent
+    },
+    {
+        path: 'add/:name',
         component: AddFurnitureComponent
     }, {
         path: '**',

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ContentModal } from '../interfaces/content-modal.interface';
 import { filter, Observable, Subject } from 'rxjs';
 import { User } from '../interfaces';
+import { Furniture } from 'src/app/dashboard/modules/furnitures/interfaces/furniture.interface';
+
 
 @Injectable({ providedIn: 'root' })
 export class ModalService {
@@ -11,7 +13,7 @@ export class ModalService {
 
     private _respondFromQuestionModal: Subject<boolean> = new Subject();
     private _mustShowQuestionModal: Subject<boolean> = new Subject();
-    private _contentQuestionModal?: User;
+    private _contentQuestionModal?: any;
 
 
     get mustShowQuestionModal(): Observable<boolean> {
@@ -30,7 +32,7 @@ export class ModalService {
         this.closeQuestionModal();
     }
 
-    get contentQuestionModal(): User | undefined {
+    get contentQuestionModal() {
         return this._contentQuestionModal;
     }
 
@@ -44,7 +46,7 @@ export class ModalService {
 
     constructor() { }
 
-    openQuestionModal(content: User) {
+    openQuestionModal(content: User | Furniture) {
         this._mustShowQuestionModal.next(true);
         this._contentQuestionModal = content;
         document.querySelector('body')?.classList.add('no-scroll');

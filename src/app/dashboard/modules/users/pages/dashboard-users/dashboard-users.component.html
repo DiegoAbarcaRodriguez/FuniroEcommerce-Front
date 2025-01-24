@@ -5,7 +5,7 @@
 <dashboard-users-table-users-component [users]="users"></dashboard-users-table-users-component>
 
 
-<shared-component-pagination (changedPage)="getUsers($event,limit)" [pagesNumber]="pagesNumber"></shared-component-pagination>
+<shared-component-pagination (changedPage)="getUsers($event)" [pagesNumber]="pagesNumber"></shared-component-pagination>
 
 <div class="d-flex justify-content-end" *ngIf="mustShowAddButton">
     <button class="btn btn-primary text-white fw-bold" (click)="openModalForm()">Add User</button>

@@ -50,7 +50,7 @@ export class TableUsersComponent implements OnInit, OnDestroy {
 
     onReplyQuestionModal() {
         this.subscription = this._modalService.respondFromQuestionModal
-            .pipe(switchMap(() => this._userService.deleteUser(this._modalService.contentQuestionModal!.id)))
+            .pipe(switchMap(() => this._userService.deleteUser(this._modalService.contentQuestionModal.id)))
             .subscribe({
                 next: ({ message, user }) => {
                     this._userService.deletedUser = user;

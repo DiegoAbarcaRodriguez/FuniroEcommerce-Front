@@ -18,6 +18,9 @@ export class ImageService {
         this._formDataImage.append('image', image);
     }
 
+    get formDataImage(): FormData {
+        return this._formDataImage;
+    }
 
     constructor(
         private _http: HttpClient,
@@ -26,8 +29,12 @@ export class ImageService {
         this._headers = { headers: { 'Authorization': `Bearer ${this._authService.token}` } };
     }
 
-    uploadImage(): Observable<ImageRespondApi> {
-        return this._http.post<ImageRespondApi>(this._url, this._formDataImage, this._headers);
+    uploadImage(id: string = ''): Observable<ImageRespondApi> {
+        return this._http.post<ImageRespondApi>(this._url + '/' + id, this._formDataImage, this._headers);
+    }
+
+    deleteImage(id: string) {
+        return this._http.delete<ImageRespondApi>(this._url + '/' + id, this._headers);
     }
 
 }

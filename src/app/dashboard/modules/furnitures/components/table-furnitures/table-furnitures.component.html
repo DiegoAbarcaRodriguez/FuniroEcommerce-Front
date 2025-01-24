@@ -4,21 +4,26 @@
             <tr class="table-primary">
                 <th class="text-primary fw-bold text-center">Model Number</th>
                 <th class="text-primary fw-bold">Name</th>
-                <th class="text-primary fw-bold">Description</th>
                 <th class="text-primary fw-bold">Price</th>
                 <th class="text-primary fw-bold">Stock</th>
+                <th class="text-primary fw-bold">Modify at</th>
                 <th class="text-primary fw-bold">Image</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let furniture of furnitures;let i =index;">
-                <td></td>
+            <tr *ngFor="let furniture of furnitures">
+                <td>{{furniture.model_number}}</td>
+                <td>{{furniture.name}}</td>
+                <td>{{furniture.price | currency:'USD':'symbol'}}</td>
+                <td>{{furniture.stock}}</td>
+                <td>{{furniture.modify_at | date:'short'}}</td>
+                <td><img class="bg-secondary img-product" [src]="baseUrlImage+'/'+furniture.image" alt="Image"></td>
 
                 <td>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-warning fw-bold text-white">View</button>
-                        <button class="btn btn-danger fw-bold text-white">Delete</button>
+                        <button class="btn btn-warning fw-bold text-white" [routerLink]="['/dashboard/furnitures/add/',furniture.name]">View</button>
+                        <button class="btn btn-danger fw-bold text-white" (click)="deleteFurniture(furniture)">Delete</button>
                     </div>
 
                 </td>

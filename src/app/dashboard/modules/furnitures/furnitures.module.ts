@@ -10,6 +10,7 @@ import { GeneralFormComponent } from './components/general-form/general-form.com
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { DimensionFormComponent } from './components/dimension-form/dimension-form.component';
 import { WarrantyFormComponent } from './components/warranty-form/warranty-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -17,7 +18,8 @@ import { WarrantyFormComponent } from './components/warranty-form/warranty-form.
     imports: [
         FurnituresRoutingModule,
         CommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
     ],
     exports: [],
     declarations: [

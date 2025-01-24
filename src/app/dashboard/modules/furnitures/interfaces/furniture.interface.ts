@@ -1,39 +1,32 @@
-export interface Furniture{
-    name: string,
-    description: string,
-    main_description: string,
-    short_description: string,
-    image: string,
-    user_fk: string,
+import { User } from "src/app/shared/interfaces";
 
-    sales_package: string,
-    model_number: string,
-
-    height: number,
-    width: number,
-    weight: number,
-
-    warranty_domestic: number,
-    warranty_general: number,
-
-    max_load: number,
-    origin: string,
-
-
-    discount?: number,
-    isNew?: boolean,
-    category?: string, //Todo Definir enum de categorias
-    price?: number,
-    stock?: number,
-    created_at?: Date,
-
-    secondary_material?: string,
-    upholstery_material?: string,
-    upholstery_color?: string,
-
-    depth?: number,
-
-    filling_material?: string,
-    has_adjustable_headrest?: boolean,
-    id?: string
+export interface Furniture {
+    id: number;
+    user_fk: string;
+    name: string;
+    description: string;
+    discount: number | null;
+    is_new: boolean;
+    category: null | string;
+    price: number;
+    stock: number;
+    sales_package: string;
+    model_number: string;
+    secondary_material: null | string;
+    upholstery_material: null | string;
+    upholstery_color: null | string;
+    height: number;
+    width: number;
+    depth: null;
+    weight: number;
+    warranty_domestic: number;
+    warranty_general: number;
+    filling_material: null | string;
+    has_adjustable_headrest: boolean | null;
+    max_load: number;
+    origin: string;
+    modify_at: Date;
+    image: null | string;
+    user: User;
 }
+

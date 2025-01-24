@@ -5,6 +5,7 @@ import { distinctUntilChanged } from 'rxjs';
 import { FurnitureService } from '../../services/furniture.service';
 import { ModelNumberValidator } from '../../validators/model-number.validator';
 
+
 @Component({
     selector: 'dashboard-furnitures-general-form-component',
     templateUrl: 'general-form.component.html'
@@ -36,6 +37,7 @@ export class GeneralFormComponent implements OnInit {
     ngOnInit() {
         this.onChangeStatusForm();
         this.onChangeValuesForm();
+        this.onLoadForm();
     }
 
     isValidField(fieldName: string): boolean {
@@ -55,6 +57,14 @@ export class GeneralFormComponent implements OnInit {
 
     onChangeValuesForm() {
         this.form.valueChanges.subscribe(() => this._furnitureService.furniturePayload = this.form);
+    }
+
+
+
+    onLoadForm() {
+        this._furnitureService.loadedFurniture.subscribe((furniture: any) => {
+            this.form.reset({ ...furniture });
+        });
     }
 
 }

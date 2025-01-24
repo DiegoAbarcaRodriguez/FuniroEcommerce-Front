@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { FurnitureService } from '../../services/furniture.service';
+import { Furniture } from '../../interfaces/furniture.interface';
 
 @Component({
     selector: 'dashboard-furnitures-dimension-form-component',
@@ -30,6 +31,8 @@ export class DimensionFormComponent implements OnInit {
     ngOnInit() {
         this.onChangeStatusForm();
         this.onChangeValuesForm();
+        this.onLoadForm();
+
     }
 
     isValidField(fieldName: string): boolean {
@@ -49,5 +52,11 @@ export class DimensionFormComponent implements OnInit {
 
     onChangeValuesForm() {
         this.form.valueChanges.subscribe(() => this._furnitureService.furniturePayload = this.form);
+    }
+
+    onLoadForm() {
+        this._furnitureService.loadedFurniture.subscribe((furniture: Furniture) => {
+            this.form.reset({ ...furniture });
+        });
     }
 }
