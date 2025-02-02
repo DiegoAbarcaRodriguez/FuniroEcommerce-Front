@@ -30,4 +30,9 @@ export class DashboardFurnituresComponent implements OnInit, OnDestroy {
             this.pagesNumber = Math.ceil(total / this.limit)
         }));
     }
+
+    onGetFurnituresByQuery(term: string) {
+        this.subscription.add(this._furnitureService.getFurnituresByQuery(term, this.limit)
+            .subscribe(({ furnitures }) => this.furnitures = furnitures));
+    }
 }

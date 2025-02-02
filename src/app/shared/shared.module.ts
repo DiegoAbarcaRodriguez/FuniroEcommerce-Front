@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalQuestionComponent } from './components/modal-question/modal-question.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { SearcherComponent } from './components/searcher/searcher.component';
 
 
 
@@ -15,12 +16,14 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     exports: [
         ModalComponent,
         ModalQuestionComponent,
-        PaginationComponent
+        PaginationComponent,
+        SearcherComponent
     ],
     declarations: [
         ModalComponent,
         ModalQuestionComponent,
-        PaginationComponent
+        PaginationComponent,
+        SearcherComponent
     ],
 })
 export class SharedModule { }

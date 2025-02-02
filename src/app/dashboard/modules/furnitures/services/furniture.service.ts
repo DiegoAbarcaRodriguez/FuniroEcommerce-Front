@@ -4,7 +4,7 @@ import { catchError, Observable, of, Subject } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Environment } from 'src/environments/environment';
 import { Furniture } from '../interfaces/furniture.interface';
-import { RespondApiFurniture, RespondApiGetFurnitures, RespondApiGetOneFurniture } from '../interfaces/furniture-api.interface';
+import { RespondApiFurniture, RespondApiGetFurnitures, RespondApiGetFurnituresByQuery, RespondApiGetOneFurniture } from '../interfaces/furniture-api.interface';
 import { FormGroup } from '@angular/forms';
 import { GenericRespondApi } from 'src/app/shared/interfaces';
 
@@ -60,6 +60,12 @@ export class FurnitureService {
         return this._http.get<RespondApiGetFurnitures>(`${this._url}/?page=${page}&limit=${limit}`)
             .pipe(
                 catchError(() => of({ furnitures: [], total: 0 }))
+            );
+    }
+    getFurnituresByQuery(query: string, limit: number = 5): Observable<RespondApiGetFurnituresByQuery> {
+        return this._http.get<RespondApiGetFurnituresByQuery>(`${this._url}/byQuery?q=${query}&limit=${limit}`)
+            .pipe(
+                catchError(() => of({ furnitures: [], ok: false }))
             );
     }
 

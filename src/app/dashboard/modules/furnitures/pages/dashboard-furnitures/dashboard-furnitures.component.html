@@ -2,6 +2,11 @@
 
 <p class="my-1 fs-5 text-ligth-gray">Welcome to your manager panel of Funiro Ecommerce.</p>
 
+<div class="d-flex justify-content-start mt-4">
+    <shared-component-searcher (onEmit)="onGetFurnituresByQuery($event)"></shared-component-searcher>
+</div>
+
+
 <dashboard-furnitures-table-furnitures-component
     [furnitures]="furnitures"></dashboard-furnitures-table-furnitures-component>
 
