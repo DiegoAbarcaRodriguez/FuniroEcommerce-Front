@@ -1,11 +1,16 @@
 <main-component-hero-image [pageName]="'Shop'"></main-component-hero-image>
 
-<shop-component-navbar-filter></shop-component-navbar-filter>
+<shop-component-navbar-filter (onEmitSortBy)="getFurnitures(1,$event); sortBy = $event" (onEmitShowOption)="numberOfFurnitureToShow = $event" [totalByPage]="totalOfDisplayedFurnitures" [total]="totalFurnitures"></shop-component-navbar-filter>
 
 <div class="container-md">
-    <main-component-our-products></main-component-our-products>
+    
+    <div class="mt-5" >
+        <shared-component-searcher (onEmit)="onGetFurnituresByQuery($event)"></shared-component-searcher>
+    </div>
+
+    <main-component-our-products [furnitures]="furnitures" [numberOfFurnituresToShow]="numberOfFurnitureToShow"></main-component-our-products>
 </div>
 
-<shared-component-pagination></shared-component-pagination>
+<shared-component-pagination [pagesNumber]="pagesNumber" (changedPage)="getFurnitures($event)"></shared-component-pagination>
 
 <main-component-banner-support></main-component-banner-support>

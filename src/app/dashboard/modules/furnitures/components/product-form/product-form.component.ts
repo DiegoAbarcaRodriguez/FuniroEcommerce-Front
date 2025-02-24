@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { distinctUntilChanged } from 'rxjs';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { FurnitureService } from '../../services/furniture.service';
-import { Furniture } from '../../interfaces/furniture.interface';
+import { Furniture } from '../../../../../shared/interfaces/furniture.interface';
 
 @Component({
     selector: 'dashboard-furnitures-product-form-component',

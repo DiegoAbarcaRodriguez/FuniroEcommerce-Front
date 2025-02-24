@@ -26,6 +26,7 @@ export class SelectFunitureDirective {
         }
 
         let index = event.target.getAttribute('data-index');
+        let name = this._elementHtml.nativeElement.getAttribute('data-name');
 
         if (!event.srcElement.classList.toString().includes('show-options-background')) {
             const div: HTMLElement = this._renderer2.createElement('div');
@@ -64,13 +65,13 @@ export class SelectFunitureDirective {
 
             this._renderer2.listen(flex, 'click', (e) => {
                 if (e.target.className.includes('view')) {
-                    window.location.href='/product'
+                    window.location.href = '/product/' + name;
                 }
             });
 
             this._renderer2.listen(flex, 'click', (e) => {
                 if (e.target.className.includes('compare')) {
-                    window.location.href='/comparison'
+                    window.location.href = '/comparison'
                 }
             });
         }

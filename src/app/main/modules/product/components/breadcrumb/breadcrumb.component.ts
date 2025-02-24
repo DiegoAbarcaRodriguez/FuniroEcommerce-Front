@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Furniture } from 'src/app/shared/interfaces';
 
 @Component({
     selector: 'product-component-breadcrumb',
@@ -24,6 +25,10 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class BreadcrumbComponent implements OnInit {
+
+    @Input()
+    furniture?: Furniture;
+
     constructor() { }
 
     ngOnInit() { }

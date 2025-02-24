@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Furniture } from '../../interfaces/furniture.interface';
+import { Furniture } from '../../../../../shared/interfaces/furniture.interface';
 import { Environment } from 'src/environments/environment';
 import { FurnitureService } from '../../services/furniture.service';
 import { ModalService } from 'src/app/shared/services/modal.service';

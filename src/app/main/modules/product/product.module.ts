@@ -7,6 +7,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductInformationComponent } from './components/product-information/product-information.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { SharedMainModule } from '../../shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -15,7 +17,9 @@ import { SharedMainModule } from '../../shared/shared.module';
         CommonModule,
         RouterModule,
         SharedMainModule,
-        ProductRoutingModule
+        ProductRoutingModule,
+        FormsModule,
+        SharedModule
     ],
     exports: [],
     declarations: [

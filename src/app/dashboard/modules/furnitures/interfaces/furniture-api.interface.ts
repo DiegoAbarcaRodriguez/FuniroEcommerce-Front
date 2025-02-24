@@ -1,4 +1,4 @@
-import { Furniture } from "./furniture.interface"
+import { Furniture } from "../../../../shared/interfaces/furniture.interface"
 
 export interface RespondApiFurniture {
     ok: boolean,

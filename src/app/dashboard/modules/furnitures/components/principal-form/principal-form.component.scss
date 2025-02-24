@@ -1,20 +1,35 @@
 .grid {
     display: grid;
-    grid-template-areas: 'name price image'
-        'stock discount image'
-        'category category   image'
+    grid-template-areas:
+        'name      price     stock'
+        'discount category category'
+        'image-1 image-2 image-3'
+        'image-1 image-2  image-3'
         'description description description ';
     gap: 20px;
 
-    &__image {
-        grid-area: image;
+    &__image-1 {
+        grid-area: image-1;
 
+    }
+
+    &__image-2 {
+        grid-area: image-2;
+    }
+
+    &__image-3 {
+        grid-area: image-3;
     }
 
     &__description {
         grid-area: description;
     }
 
+}
+
+.h-grid-image {
+    width: 100%;
+    height: 266px;
 }
 
 input[type='file'] {
@@ -61,12 +76,12 @@ input[type='file']::-webkit-file-upload-button {
 
 img {
     object-fit: scale-down;
-    width: 442.34px;
+    width: 100%;
     height: 266px;
 
 }
 
-.invisible{
+.invisible {
     height: 0px;
     width: 0px;
     position: absolute;

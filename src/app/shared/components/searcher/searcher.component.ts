@@ -8,7 +8,7 @@ import { debounceTime, Subject, Subscription } from 'rxjs';
                 color:#9F9F9F
             }
         `],
-    template: `<input class="form-control text-primary" placeholder="Search an item" type="search" (keydown)="onSearch($event)" #input>`
+    template: `<input class="form-control text-primary" placeholder="Search an item" type="search" (keyup)="onSearch($event)" #input>`
 })
 
 export class SearcherComponent implements OnInit, OnDestroy {
@@ -40,6 +40,7 @@ export class SearcherComponent implements OnInit, OnDestroy {
     onSearch(event: KeyboardEvent) {
 
         const value = this.input?.nativeElement.value;
+        if (value?.length === 0) return;
 
         if (event.key === 'Enter') {
             this.onEmit.emit(value);

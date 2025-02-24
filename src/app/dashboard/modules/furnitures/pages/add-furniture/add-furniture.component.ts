@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, switchMap } from 'rxjs';
 import { ImageService } from '../../services/image.service';
-import { Furniture } from '../../interfaces/furniture.interface';
+import { Furniture } from '../../../../../shared/interfaces/furniture.interface';
 
 
 
@@ -60,19 +60,19 @@ export class AddFurnitureComponent implements OnInit {
         if (this.areInValidAllTheForms)
             return;
 
-        if (this._imageService.formDataImage.get('image')) {
+        if (this._imageService.images.length > 0) {
             this._imageService.uploadImage(this.furniture?.id.toString() || '')
                 .pipe(
                     filter(({ ok }) => ok),
-                    switchMap(({ name }) => {
+                    switchMap(({ names }) => {
 
-                        this._imageService.formDataImage.delete('image');
+                        this._imageService.resetImages();
 
                         if (this.furniture) {
-                            return this._furnitureService.updateFurniture(this.furniture.name, name)
+                            return this._furnitureService.updateFurniture(this.furniture.name, names)
                         }
 
-                        return this._furnitureService.createFurniture(name);
+                        return this._furnitureService.createFurniture(names);
 
                     }
                     ))
@@ -81,7 +81,10 @@ export class AddFurnitureComponent implements OnInit {
                         this._modalService.openModal({ status: 'success', message });
                         this._router.navigateByUrl('/dashboard/furnitures');
                     },
-                    error: (({ error }) => this._modalService.openModal({ status: 'error', message: error.message }))
+                    error: (({ error }) => {
+                        this._imageService.resetImages();
+                        this._modalService.openModal({ status: 'error', message: error.message });
+                    })
                 });
             return;
         }

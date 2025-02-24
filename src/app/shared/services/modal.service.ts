@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ContentModal } from '../interfaces/content-modal.interface';
 import { filter, Observable, Subject } from 'rxjs';
 import { User } from '../interfaces';
-import { Furniture } from 'src/app/dashboard/modules/furnitures/interfaces/furniture.interface';
+import { Furniture } from 'src/app/shared/interfaces/furniture.interface';
 
 
 @Injectable({ providedIn: 'root' })

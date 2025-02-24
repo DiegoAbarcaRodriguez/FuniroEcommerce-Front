@@ -1,75 +1,54 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Furniture } from '../interfaces/furniture.interface';
+
 import { Carrousel } from '../interfaces/carrousel.interface';
+import { Furniture } from 'src/app/shared/interfaces';
+import { catchError, map, Observable, of } from 'rxjs';
+import { RespondApiGetFurnitures, RespondApiGetFurnituresByQuery, RespondApiGetOneFurniture } from 'src/app/dashboard/modules/furnitures/interfaces/furniture-api.interface';
+import { Environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class FurnitureService {
 
 
-    constructor(private http: HttpClient) { }
+    private _url = `${Environment.url}/furniture`;
 
-    getFurnitures(): Furniture[] {
-        return [
-            {
-                name: 'Syltherine',
-                type: 'Dining', //todo Ver opciones para establecer ENUM
-                description: 'Stylish cafe chair',
-                price: 2500,
-                discount: 30,
-                realPrice: 2900,
-                isNew: false,
-                isLiked: false
-            },
-            {
-                name: 'Syltherine',
-                type: 'Dining', //todo Ver opciones para establecer ENUM
-                description: 'Stylish cafe chair',
-                price: 2500,
-                discount: 30,
-                realPrice: 2900,
-                isNew: false,
-                isLiked: false
-            },
-            {
-                name: 'Syltherine',
-                type: 'Dining', //todo Ver opciones para establecer ENUM
-                description: 'Stylish cafe chair',
-                price: 2500,
-                discount: 30,
-                realPrice: 2900,
-                isNew: false,
-                isLiked: false
-            },
-            {
-                name: 'Syltherine',
-                type: 'Dining', //todo Ver opciones para establecer ENUM
-                description: 'Stylish cafe chair',
-                price: 2500,
-                discount: 30,
-                realPrice: 2900,
-                isNew: false,
-                isLiked: false
-            },
-            {
-                name: 'Syltherine',
-                type: 'Dining', //todo Ver opciones para establecer ENUM
-                description: 'Stylish cafe chair',
-                price: 2500,
-                discount: 30,
-                realPrice: 2900,
-                isNew: true,
-                isLiked: false
-            },
-            {
-                name: 'Syltherine',
-                type: 'Dining', //todo Ver opciones para establecer ENUM
-                description: 'Stylish cafe chair',
-                realPrice: 2900,
-                isNew: true,
-                isLiked: false
-            },
-        ]
+    constructor(private _http: HttpClient) { }
+
+    getFurnitures(page: number = 1, limit: number = 5, sortBy = ''): Observable<RespondApiGetFurnitures> {
+        return this._http.get<RespondApiGetFurnitures>(`${this._url}/?page=${page}&limit=${limit}&sortBy=${sortBy}`)
+            .pipe(
+                map(({ furnitures, total }) => {
+                    furnitures = furnitures.map(furniture => ({
+                        ...furniture,
+                        discount_percentage: (furniture.discount || 0 * 100) / furniture.price
+                    }));
+
+                    return { furnitures, total };
+                }),
+                catchError(() => of({ furnitures: [], total: 0 }))
+            );
+    }
+
+    getFurnituresByQuery(query: string, limit: number = 5): Observable<RespondApiGetFurnituresByQuery> {
+        return this._http.get<RespondApiGetFurnituresByQuery>(`${this._url}/byQuery?q=${query}&limit=${limit}`)
+            .pipe(
+                map(({ furnitures }) => {
+                    furnitures = furnitures.map(furniture => ({
+                        ...furniture,
+                        discount_percentage: (furniture.discount || 0 * 100) / furniture.price
+                    }));
+
+                    return { furnitures, ok: true };
+                }),
+                catchError(() => of({ furnitures: [], ok: false }))
+            );
+    }
+
+    getOneFurniture(name: string): Observable<RespondApiGetOneFurniture> {
+        name = isNaN(+name) ? name.toLocaleLowerCase().trimStart().trimEnd() : name;
+        return this._http.get<RespondApiGetOneFurniture>(`${this._url}/${name}`);
+
     }
 
     getCarrouselElements(): Carrousel[] {

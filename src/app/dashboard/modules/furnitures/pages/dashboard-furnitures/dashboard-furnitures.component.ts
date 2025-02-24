@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FurnitureService } from '../../services/furniture.service';
-import { Furniture } from '../../interfaces/furniture.interface';
+import { Furniture } from '../../../../../shared/interfaces/furniture.interface';
 import { Subscription } from 'rxjs';
 
 @Component({

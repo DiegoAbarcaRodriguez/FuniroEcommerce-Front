@@ -1,13 +1,12 @@
-import { Component, EventEmitter, OnInit, Output, Pipe } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs';
 import { ValidationService } from 'src/app/shared/services/validation.service';
 import { ImageService } from '../../services/image.service';
 import { FurnitureService } from '../../services/furniture.service';
 import { FurnitureNameValidator } from '../../validators/name.validator';
-import { Furniture } from '../../interfaces/furniture.interface';
+import { Furniture } from '../../../../../shared/interfaces/furniture.interface';
 import { Environment } from 'src/environments/environment';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'dashborad-furnitures-principal-form',
@@ -20,7 +19,7 @@ export class PrincipalFormComponent implements OnInit {
     @Output()
     isValidTheForm: EventEmitter<{ value: boolean, form: FormGroup }> = new EventEmitter();
 
-    temporalImg?: string;
+    temporalImages: any[] = [undefined, undefined, undefined];
     hasInputImageTouched: boolean = false;
     private _urlImageServer: string = Environment.imagesUrl;
 
@@ -53,14 +52,18 @@ export class PrincipalFormComponent implements OnInit {
         this.onLoadForm();
     }
 
-    uploadImage(image: File) {
+    uploadImage(image: File, index: number) {
 
 
         if (!image) {
-            this.temporalImg = undefined;
-            this.hasInputImageTouched = true;
-            this._imageService.formDataImage = undefined;
-            this.form.controls['image'].setValue('');
+
+            if (index === 0) {
+                this.hasInputImageTouched = true;
+                this.form.controls['image'].setValue('');
+            }
+
+            this.temporalImages?.splice(index, 1, undefined);
+            this._imageService.formDataImage(undefined, index);
             return;
         };
 
@@ -72,9 +75,10 @@ export class PrincipalFormComponent implements OnInit {
         fileReader.onloadend = ({ srcElement }: any) => {
             const { result } = srcElement;
 
-            this.temporalImg = result;
-            this._imageService.formDataImage = image;
-            this.form.controls['image'].setValue('true');
+            this.temporalImages!.splice(index, 1, result);
+
+            this._imageService.formDataImage(image, index);
+            if (index === 0) this.form.controls['image'].setValue('true');
         };
 
 
@@ -106,11 +110,18 @@ export class PrincipalFormComponent implements OnInit {
 
     onLoadForm() {
         this._furnitureService.loadedFurniture.subscribe((furniture: Furniture) => {
-            const { image } = furniture;
+            const { images } = furniture;
 
             this.form.reset({ ...furniture });
-            this.form.get('image')?.setValue(image);
-            this.temporalImg = `${this._urlImageServer}/${image}`;
+            this.form.get('image')?.setValue(images[0]);
+            images.forEach((image, index) => {
+                if (image !== '') {
+                    this.temporalImages?.splice(index, 1, `${this._urlImageServer}/${image}`);
+                    this._imageService.formDataImage(`${this._urlImageServer}/${image}`, index);
+                }
+
+            });
+            console.log(this.temporalImages)
 
         });
     }

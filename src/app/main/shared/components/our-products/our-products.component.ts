@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FurnitureService } from '../../services/furniture.service';
-import { Furniture } from '../../interfaces/furniture.interface';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Furniture } from 'src/app/shared/interfaces';
+import { Environment } from 'src/environments/environment';
 
 @Component({
     selector: 'main-component-our-products',
@@ -9,21 +8,17 @@ import { Router } from '@angular/router';
     styleUrls: ['our-products.component.scss']
 })
 
-export class OurProductsComponent implements OnInit {
+export class OurProductsComponent {
 
+    url_images: string = Environment.imagesUrl;
+
+    @Input()
     furnitures: Furniture[] = [];
-    url?: string;
 
-    constructor(
-        private _furnitureService: FurnitureService,
-        private _router: Router
-    ) { }
+    @Input()
+    numberOfFurnituresToShow?: number;
 
-    ngOnInit() {
-        this.furnitures = this._furnitureService.getFurnitures();
-        this.url = this._router.url;
-        if (this.url.includes('product')) {
-            this.furnitures.splice(0, 2);
-        }
-    }
+
+    constructor() { }
+
 }

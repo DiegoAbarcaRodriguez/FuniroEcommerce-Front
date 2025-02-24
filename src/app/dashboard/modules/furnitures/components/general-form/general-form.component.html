@@ -5,7 +5,7 @@
         <div class="mb-3 col-3">
             <label for="model_number" class="col-form-label text-ligth-gray">Model Number</label>
             <span class="text-danger fw-bold">*</span>
-            <input type="text" id="model_number" class="form-control" formControlName="model_number" [class.is-invalid]="isValidField('model_number')" autocomplete="off">
+            <input maxlength="6" type="text" id="model_number" class="form-control" formControlName="model_number" [class.is-invalid]="isValidField('model_number')" autocomplete="off">
 
             <div class="mt-2" *ngIf="isValidField('model_number')">
                 <div class="form-text text-danger fw-bold my-1" *ngFor="let error of getErrors('model_number')">

@@ -9,11 +9,13 @@ import { ShoppingCarComponent } from './components/shopping-car/shopping-car.com
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SelectFunitureDirective } from './directives/select-furniture.directive';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        SharedModule
     ],
     exports: [
         BannerSupportComponent,

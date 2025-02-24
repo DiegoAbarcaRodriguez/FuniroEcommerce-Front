@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FurnitureService } from 'src/app/main/shared/services/furniture.service';
+import { Furniture } from 'src/app/shared/interfaces';
 
 @Component({
     selector: 'main-index',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomeComponent implements OnInit {
-    constructor() { }
 
-    ngOnInit() { }
+    furnitures: Furniture[] = [];
+
+    constructor(private _furnitureService: FurnitureService) { }
+
+    ngOnInit() {
+        this._furnitureService.getFurnitures().subscribe({ next: ({ furnitures }) => this.furnitures = furnitures });
+    }
 }

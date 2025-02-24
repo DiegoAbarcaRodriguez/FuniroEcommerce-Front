@@ -7,6 +7,7 @@
                 <th class="text-primary fw-bold">Price</th>
                 <th class="text-primary fw-bold">Stock</th>
                 <th class="text-primary fw-bold">Modify at</th>
+                <th class="text-primary fw-bold">Modify by</th>
                 <th class="text-primary fw-bold">Image</th>
                 <th></th>
             </tr>
@@ -18,7 +19,8 @@
                 <td>{{furniture.price | currency:'USD':'symbol'}}</td>
                 <td>{{furniture.stock}}</td>
                 <td>{{furniture.modify_at | date:'short'}}</td>
-                <td><img class="bg-secondary img-product" [src]="baseUrlImage+'/'+furniture.image" alt="Image"></td>
+                <td>{{furniture.user.username}}</td>
+                <td><img class="bg-secondary img-product" [src]="baseUrlImage+'/'+furniture.images[0]" alt="Image"></td>
 
                 <td>
                     <div class="d-flex gap-2">

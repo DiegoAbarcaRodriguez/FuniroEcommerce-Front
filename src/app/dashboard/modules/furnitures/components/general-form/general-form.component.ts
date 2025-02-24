@@ -17,7 +17,7 @@ export class GeneralFormComponent implements OnInit {
     isValidTheForm: EventEmitter<{ value: boolean, form: FormGroup }> = new EventEmitter();
 
     form = this._fb.group({
-        model_number: ['', [Validators.required, Validators.minLength(6)], [this._modelNumberValidator]],
+        model_number: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(6)], [this._modelNumberValidator]],
         sales_package: ['', Validators.required],
         upholstery_color: ['', Validators.required],
         upholstery_material: [''],

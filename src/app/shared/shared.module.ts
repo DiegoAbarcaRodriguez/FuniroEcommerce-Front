@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalQuestionComponent } from './components/modal-question/modal-question.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SearcherComponent } from './components/searcher/searcher.component';
+import { YesOrNoPipe } from './pipes/yes-or-no.pipe';
 
 
 
@@ -17,13 +18,15 @@ import { SearcherComponent } from './components/searcher/searcher.component';
         ModalComponent,
         ModalQuestionComponent,
         PaginationComponent,
-        SearcherComponent
+        SearcherComponent,
+        YesOrNoPipe
     ],
     declarations: [
         ModalComponent,
         ModalQuestionComponent,
         PaginationComponent,
-        SearcherComponent
+        SearcherComponent,
+        YesOrNoPipe
     ],
 })
 export class SharedModule { }

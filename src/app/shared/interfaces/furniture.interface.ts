@@ -1,7 +1,7 @@
 import { User } from "src/app/shared/interfaces";
 
 export interface Furniture {
-    id: number;
+    id: string;
     user_fk: string;
     name: string;
     description: string;
@@ -26,7 +26,10 @@ export interface Furniture {
     max_load: number;
     origin: string;
     modify_at: Date;
-    image: null | string;
+    images: string[];
     user: User;
+    discount_percentage?: number;
 }
+
+
 

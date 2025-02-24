@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, of, Subject } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Environment } from 'src/environments/environment';
-import { Furniture } from '../interfaces/furniture.interface';
+import { Furniture } from '../../../../shared/interfaces/furniture.interface';
 import { RespondApiFurniture, RespondApiGetFurnitures, RespondApiGetFurnituresByQuery, RespondApiGetOneFurniture } from '../interfaces/furniture-api.interface';
 import { FormGroup } from '@angular/forms';
 import { GenericRespondApi } from 'src/app/shared/interfaces';
@@ -32,18 +32,18 @@ export class FurnitureService {
         private _authService: AuthService
     ) { }
 
-    createFurniture(imageName: string): Observable<RespondApiFurniture> {
+    createFurniture(imageNames: string[]): Observable<RespondApiFurniture> {
 
         const [name, model_number] = this.normalizeNameAndModelNumber();
 
-        return this._http.post<RespondApiFurniture>(this._url, { ...this._furniturePayload, name, model_number, image: imageName }, this._authService.headers)
+        return this._http.post<RespondApiFurniture>(this._url, { ...this._furniturePayload, name, model_number, images: [...imageNames] }, this._authService.headers)
 
     }
-    updateFurniture(term: string, imageName: string = ''): Observable<RespondApiFurniture> {
+    updateFurniture(term: string, imageNames: string[] = []): Observable<RespondApiFurniture> {
 
         const [name, model_number] = this.normalizeNameAndModelNumber();
 
-        return this._http.patch<RespondApiFurniture>(this._url + '/' + term, { ...this._furniturePayload, name, model_number, image: imageName, modify_at: new Date() }, this._authService.headers)
+        return this._http.patch<RespondApiFurniture>(this._url + '/' + term, { ...this._furniturePayload, name, model_number, images: [...imageNames], modify_at: new Date() }, this._authService.headers)
 
     }
 

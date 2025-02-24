@@ -5,7 +5,7 @@
         [ngClass]="{'text-black fw-bold':selectedOption==='additional information'}"
         (click)="navigateToOption('additional information')">Additional Information</a>
     <a class="text-decoration-none pointer text-gray" [ngClass]="{'text-black fw-bold':selectedOption==='reviews'}"
-        (click)="navigateToOption('reviews')">Reviews [5]</a>
+        (click)="navigateToOption('reviews')">Reviews [{{reviews.length}}]</a>
 </nav>
 
 <div class="container-lg" *ngIf="selectedOption === 'description'">
@@ -14,25 +14,16 @@
     <div class="row justify-content-center">
         <div class="col-10">
             <p class="text-gray">
-                Embodying the raw, wayward spirit of rock ‘n’ roll, the Kilburn portable active stereo speaker takes the
-                unmistakable look and sound of Marshall, unplugs the chords, and takes the show on the road.
-                Weighing in under 7 pounds, the Kilburn is a lightweight piece of vintage styled engineering. Setting
-                the bar as one of the loudest speakers in its class, the Kilburn is a compact, stout-hearted hero with a
-                well-balanced audio which boasts a clear midrange and extended highs for a sound that is both articulate
-                and pronounced. The analogue knobs allow you to fine tune the controls to your personal preferences
-                while the guitar-influenced leather strap enables easy and stylish travel.
+                {{furniture?.description}}
             </p>
         </div>
     </div>
 
     <div class="mt-4 mb-5 d-flex flex-column flex-md-row align-items-start gap-5 justify-content-between">
-        <div>
-            <img class="img-fluid bg-secondary" src="../../../../assets/products/sofa1.png" alt="Sofa">
+        <div *ngFor="let image of furniture?.images | slice:1:2">
+            <img class="img-fluid bg-secondary" width="500" height="500" [src]="url_images+'/'+image" alt="Sofa">
         </div>
 
-        <div>
-            <img class="img-fluid bg-secondary" src="../../../../assets/products/sofa2.png" alt="Sofa">
-        </div>
 
     </div>
 
@@ -44,19 +35,19 @@
             <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">General</h3>
             <ul class="list-unstyled list-group list-group-flush py-2 px-4">
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Sales Package</span>: 1 sectional sofa
+                    <span class="fw-bold">Sales Package</span>: {{furniture?.sales_package}}
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Model Number</span>: TFCBLIGRBL6SRHS
+                    <span class="fw-bold">Model Number</span>: {{furniture?.model_number}}
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Secondary Material</span>: Solid Wood
+                    <span class="fw-bold">Secondary Material</span>: {{furniture?.secondary_material}}
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Upholstery Material</span>: Fabric + Cotton
+                    <span class="fw-bold">Upholstery Material</span>: {{furniture?.upholstery_material}}
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Upholstery Color</span>: Bright Grey & Lion
+                    <span class="fw-bold">Upholstery Color</span>: {{furniture?.upholstery_color}}
                 </li>
             </ul>
         </div>
@@ -64,16 +55,16 @@
             <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">Dimensions</h3>
             <ul class="list-unstyled list-group list-group-flush py-2 px-4">
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Height</span>: 76cm
+                    <span class="fw-bold">Height</span>: {{furniture?.height}}cm
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Width</span>: 265.32cm
+                    <span class="fw-bold">Width</span>: {{furniture?.width}}cm
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Depth</span>: 167.76cm
+                    <span class="fw-bold">Depth</span>: {{furniture?.depth}}cm
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Weight</span>: 45kg
+                    <span class="fw-bold">Weight</span>: {{furniture?.weight}}kg
                 </li>
             </ul>
         </div>
@@ -81,16 +72,17 @@
             <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">Product</h3>
             <ul class="list-unstyled list-group list-group-flush px-4 py-2">
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Filling Material</span>: Foam
+                    <span class="fw-bold">Filling Material</span>: {{furniture?.filling_material}}
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Adjustable Headrest</span>: No
+                    <span class="fw-bold">Adjustable Headrest</span>: {{furniture?.has_adjustable_headrest || false |
+                    yesOrNo }}
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Maximum Load Capacity</span>: 280kg
+                    <span class="fw-bold">Maximum Load Capacity</span>: {{furniture?.max_load}}kg
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Origin of Manufacture</span>: India
+                    <span class="fw-bold">Origin of Manufacture</span>: {{furniture?.origin}}
                 </li>
             </ul>
 
@@ -99,10 +91,11 @@
             <h3 class="fw-bold mb-1 fs-6 text-center text-md-start">Warranty</h3>
             <ul class="list-unstyled list-group list-group-flush px-4 py-2">
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Warranty Summary</span>: 1 Year Manufacturing Warranty
+                    <span class="fw-bold">Warranty Summary</span>: {{furniture?.warranty_general}} Year Manufacturing
+                    Warranty
                 </li>
                 <li class="list-group-item text-gray">
-                    <span class="fw-bold">Domestic Warranty</span>: 1 Year
+                    <span class="fw-bold">Domestic Warranty</span>: {{furniture?.warranty_domestic}} Year
                 </li>
             </ul>
         </div>
@@ -112,20 +105,17 @@
 
 <div class="container-md my-5" *ngIf="selectedOption==='reviews'">
     <div class="row">
-        <div class="col-12">
+
+        <div class="col-12" *ngFor="let review of reviews">
             <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="fw-bold text-gray">Sarah M.</span>
+                <span class="fw-bold text-gray">{{review.customer.first_name+' '+ review.customer.last_name}}</span>
                 <div class="d-flex align-items-center justify-content-center gap-1">
-                    <img src="../../../../assets/icons/star.svg" alt="Star">
-                    <img src="../../../../assets/icons/star.svg" alt="Star">
-                    <img src="../../../../assets/icons/star.svg" alt="Star">
-                    <img src="../../../../assets/icons/star.svg" alt="Star">
+                    <img src="../../../../assets/icons/star.svg" alt="Star" *ngFor="let start of stars">
                 </div>
 
             </div>
             <p class="text-gray">
-                Absolutely love this sofa! The quality is exceptional and it looks even better in person. Very
-                comfortable and the perfect addition to our living room.
+                {{review.comment}}
             </p>
 
             <div class="d-flex flex-wrap gap-3">
@@ -134,28 +124,5 @@
             </div>
         </div>
 
-        <div class="col-12">
-            <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="fw-bold text-gray">Sarah M.</span>
-                <div class="d-flex align-items-center justify-content-center gap-1">
-                    <img src="../../../../assets/icons/star.svg" alt="Star">
-                    <img src="../../../../assets/icons/star.svg" alt="Star">
-                    <img src="../../../../assets/icons/star.svg" alt="Star">
-                </div>
-
-            </div>
-            <p class="text-gray">
-                Absolutely love this sofa! The quality is exceptional and it looks even better in person. Very
-                comfortable and the perfect addition to our living room.
-            </p>
-
-
-            <div class="d-flex flex-wrap gap-3">
-                <img width="250px" height="250px" src="../../../../assets/products/Sofa.png" alt="Product">
-            </div>
-
-
-
-        </div>
     </div>
 </div>

@@ -1,22 +1,22 @@
 <ul class="list-unstyled row mt-2  gy-5">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2 py-0 product position-relative" *ngFor="let furniture of furnitures; let i=index;" [attr.data-index]="i" select-furniture>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 px-2 py-0 product position-relative" *ngFor="let furniture of furnitures | slice:0:numberOfFurnituresToShow ; let i=index;" [attr.data-name]="furniture.name" [attr.data-index]="i" select-furniture>
 
         <div class="bg-danger circle--left circle text-white p-2" *ngIf="furniture.discount">
-            -{{furniture.discount}}%
+            -{{furniture.discount_percentage | percent}}
         </div>
 
-        <div class="bg-success circle circle--right text-white p-2" *ngIf="furniture.isNew">
+        <div class="bg-success circle circle--right text-white p-2" *ngIf="furniture.is_new">
             New
         </div>
 
-        <img src="../../../../assets/home/Images.jpg" alt="Image"  [attr.data-index]="i">
+        <img [src]="url_images+'/'+furniture.images[0]" alt="Image"  [attr.data-index]="i">
         <div class="d-flex flex-column justify-content-around bg-gray p-3" [attr.data-index]="i">
             <h3 class="fw-bold" [attr.data-index]="i">{{furniture.name}}</h3>
-            <p [attr.data-index]="i">{{furniture.description}}</p>
+            <p [attr.data-index]="i">{{furniture.description.length > 30? furniture.description.substring(0,60) + '...' : furniture.description}}</p>
 
             <div class="d-flex gap-3 justify-content-between align-items-center" [attr.data-index]="i">
-                <p class="fw-bold fs-5" *ngIf="furniture.price" [attr.data-index]="i">Rp {{furniture.price | number }}</p>
-                <p [ngClass]="{'text-decoration-line-through':furniture.price, 'fw-bold fs-5':!furniture.price}" [attr.data-index]="i">Rp {{furniture.realPrice |number}}</p>
+                <p class="fw-bold fs-5" *ngIf="furniture.discount" [attr.data-index]="i">Rp {{furniture.price - furniture.discount! | currency:'USD':'symbol-narrow':'1.2-2' }}</p>
+                <p  [ngClass]="{'text-decoration-line-through':furniture.discount, 'fw-bold fs-5':!furniture.discount}" [attr.data-index]="i">Rp {{furniture.price|number}}</p>
             </div>
         </div>
     </div>
