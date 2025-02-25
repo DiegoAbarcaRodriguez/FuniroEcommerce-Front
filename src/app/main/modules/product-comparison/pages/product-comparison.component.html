@@ -12,19 +12,35 @@
 
                     <a routerLink="shop" class="text-ligth-gray fw-bold mt-5">View More</a>
                 </div>
-                <div class="col-3">
-                    <product-comparison-component-product-card></product-comparison-component-product-card>
+                <div class="col-3" *ngFor="let furniture  of furnituresToCompare">
+                    <product-comparison-component-product-card *ngIf="furniture" [furniture]="furniture"></product-comparison-component-product-card>
+                    <product-comparison-add-product *ngIf="!furniture"></product-comparison-add-product>
                 </div>
-                <div class="col-3">
-                    <product-comparison-component-product-card></product-comparison-component-product-card>
-
-                </div>
-                <div class="col-3">
-                    <product-comparison-add-product></product-comparison-add-product>
-                </div>
+              
             </div>
 
             <div class="row mt-5">
+
+                <div class="col-12  pt-3 mb-4">
+                    <h2 class="fw-bold">General</h2>
+                </div>
+
+
+                <ul class="col-3 list-unstyled border-end text-left">
+                    <li class="mb-3">Sales Package</li>
+                    <li class="mb-3">Model Number</li>
+                    <li class="mb-3">Secondary Material</li>
+                    <li class="mb-3">upholstery Material</li>
+                </ul>
+                <div class="col-3" *ngFor="let furniture of furnituresToCompare">
+                    <product-comparison-component-general-description *ngIf="furniture" [furniture]="furniture"></product-comparison-component-general-description>
+                    <ul class="col-3 border-end" *ngIf="!furniture"></ul>
+                </div>
+
+
+            </div>
+
+            <div class="row ">
 
                 <div class="col-12  pt-3 mb-4">
                     <h2 class="fw-bold">Product</h2>
@@ -37,18 +53,11 @@
                     <li class="mb-3">Maximum Load Capacity</li>
                     <li class="mb-3">Origin of Manufacture:</li>
                 </ul>
-                <div class="col-3">
-                    <product-comparison-component-product-description></product-comparison-component-product-description>
+                <div class="col-3" *ngFor="let furniture of furnituresToCompare">
+                    <product-comparison-component-product-description *ngIf="furniture" [furniture]="furniture"></product-comparison-component-product-description>
+                    <ul class="col-3 border-end" *ngIf="!furniture"></ul>
                 </div>
 
-                <div class="col-3">
-                    <product-comparison-component-product-description></product-comparison-component-product-description>
-                </div>
-
-                <ul class="col-3 border-end">
-
-
-                </ul>
 
             </div>
 
@@ -65,19 +74,11 @@
                     <li class="mb-3">Weight</li>
                 </ul>
 
-                <div class="col-3">
-                    <product-comparison-component-product-dimensions></product-comparison-component-product-dimensions>
+                <div class="col-3" *ngFor="let furniture of furnituresToCompare">
+                    <product-comparison-component-product-dimensions *ngIf="furniture" [furniture]="furniture"></product-comparison-component-product-dimensions>
+                     <ul class="col-3 border-end" *ngIf="!furniture"></ul>
                 </div>
 
-                <div class="col-3">
-                    <product-comparison-component-product-dimensions></product-comparison-component-product-dimensions>
-                </div>
-
-
-                <ul class="col-3 border-end">
-
-
-                </ul>
             </div>
 
             <div class="row">
@@ -93,19 +94,10 @@
 
                 </ul>
 
-                <div class="col-3">
-                    <product-comparison-component-product-warranty></product-comparison-component-product-warranty>
+                <div class="col-3" *ngFor="let furniture of furnituresToCompare">
+                    <product-comparison-component-product-warranty *ngIf="furniture" [furniture]="furniture"></product-comparison-component-product-warranty>
+                    <ul class="col-3 border-end" *ngIf="!furniture"></ul>
                 </div>
-
-                <div class="col-3">
-                    <product-comparison-component-product-warranty></product-comparison-component-product-warranty>
-                </div>
-
-
-                <ul class="col-3 border-end">
-
-
-                </ul>
 
             </div>
 
@@ -114,20 +106,12 @@
                 <div class="col-3"></div>
 
 
-                <div class="col-3 text-center">
-                    <product-comparison-component-add-cart></product-comparison-component-add-cart>
+                <div class="col-3 text-center" *ngFor="let furniture of furnituresToCompare">
+                    <product-comparison-component-add-cart *ngIf="furniture"></product-comparison-component-add-cart>
+                    <div class="col-3" *ngIf="!furniture"></div>
                 </div>
-                <div class="col-3 text-center">
-                    <product-comparison-component-add-cart></product-comparison-component-add-cart>
-                </div>
-                <div class="col-3"></div>
-
-
-
-
+            
             </div>
-
-
         </div>
 
     </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Furniture } from 'src/app/shared/interfaces';
 
 @Component({
     selector: 'product-comparison-component-product-description',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ProductDescriptionComponent implements OnInit {
+
+    @Input()
+    furniture?: Furniture;
+
     constructor() { }
 
     ngOnInit() { }

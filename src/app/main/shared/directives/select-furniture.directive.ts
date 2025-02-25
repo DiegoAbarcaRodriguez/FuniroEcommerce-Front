@@ -1,14 +1,20 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Furniture } from 'src/app/shared/interfaces';
+import { ComparisonService } from '../services/comparison.service';
 
 @Directive({ selector: '[select-furniture]' })
 export class SelectFunitureDirective {
 
     private _elementHtml?: ElementRef<HTMLElement>;
 
+    @Input()
+    furniture?: Furniture;
+
 
     constructor(
         elementHtml: ElementRef<HTMLElement>,
-        private _renderer2: Renderer2
+        private _renderer2: Renderer2,
+        private _comparisonService: ComparisonService
     ) {
         this._elementHtml = elementHtml;
     }
@@ -71,6 +77,7 @@ export class SelectFunitureDirective {
 
             this._renderer2.listen(flex, 'click', (e) => {
                 if (e.target.className.includes('compare')) {
+                    this._comparisonService.furnituresToCompare = this.furniture!;
                     window.location.href = '/comparison'
                 }
             });

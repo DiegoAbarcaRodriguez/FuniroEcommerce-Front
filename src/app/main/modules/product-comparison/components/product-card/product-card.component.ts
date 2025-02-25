@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Furniture } from 'src/app/shared/interfaces';
+import { Environment } from 'src/environments/environment';
 
 @Component({
     selector: 'product-comparison-component-product-card',
@@ -27,6 +29,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ProductCardComponent implements OnInit {
+
+    @Input()
+    furniture?: Furniture;
+
+    image_url = Environment.imagesUrl;
+
     constructor() { }
 
     ngOnInit() { }

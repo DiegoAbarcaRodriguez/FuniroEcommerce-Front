@@ -1,7 +1,14 @@
-<img class="bg-secondary product-image" src="../../../../assets/products/Sofa.png" alt="Image">
+<img class="bg-secondary product-image" [src]="image_url+'/'+furniture!.images[0]" alt="Image">
 
-<h3 class="mt-2 fw-bold">Asgaard Sofa</h3>
-<span class="mt-2">Rs. 250,000.00</span>
+<h3 class="mt-2 fw-bold">{{furniture?.name | titlecase}}</h3>
+<p class="fw-bold fs-5 mb-1" *ngIf="furniture?.discount">{{furniture!.price - furniture!.discount! |
+    currency:'USD':'symbol-narrow':'1.2-2' }}
+</p>
+<p class="mb-1"
+    [ngClass]="{'text-decoration-line-through':furniture?.discount, 'fw-bold fs-5':!furniture?.discount}">
+    {{furniture?.price | currency:'USD':'symbol-narrow':'1.2-2' }}
+</p>
+
 <div class="d-flex flex-nowrap  align-items-center gap-1">
     <span>5</span>
     <div class="d-flex gap-1">

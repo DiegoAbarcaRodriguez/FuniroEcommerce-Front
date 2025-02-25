@@ -9,11 +9,15 @@ import { ProductDescriptionComponent } from './components/product-description/pr
 import { ProductDimensionsComponent } from './components/product-dimensions/product-dimensions.component';
 import { ProductWarrantyComponent } from './components/product-warranty/product-warranty.component';
 import { AddCartComponent } from './components/add-cart/add-cart.component';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
     imports: [
         SharedMainModule,
-        ProductComparisonRoutingModule
+        ProductComparisonRoutingModule,
+        CommonModule,
+        SharedModule
     ],
     declarations: [
         ProductComparisonComponent,

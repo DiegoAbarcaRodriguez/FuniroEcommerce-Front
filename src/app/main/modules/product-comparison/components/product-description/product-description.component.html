@@ -1,7 +1,7 @@
 <ul class="list-unstyled border-end text-center">
-    <li class="mb-3">Foam</li>
-    <li class="mb-3">No</li>
-    <li class="mb-3">280kg</li>
-    <li class="mb-3">India</li>
+    <li class="mb-3">{{furniture?.filling_material ? furniture?.filling_material  :'No Available'}}</li>
+    <li class="mb-3">{{furniture?.has_adjustable_headrest || false | yesOrNo}}</li>
+    <li class="mb-3">{{furniture?.max_load}}kg</li>
+    <li class="mb-3">{{furniture?.origin}}</li>
 
 </ul>
