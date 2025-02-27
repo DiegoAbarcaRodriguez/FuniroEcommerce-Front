@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SelectFunitureDirective } from './directives/select-furniture.directive';
 import { SharedModule } from "../../shared/shared.module";
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import { SharedModule } from "../../shared/shared.module";
         NavbarComponent,
         OurProductsComponent,
         ShoppingCarComponent,
+        SnackbarComponent,
 
         SelectFunitureDirective
     ],
@@ -36,6 +38,7 @@ import { SharedModule } from "../../shared/shared.module";
         NavbarComponent,
         OurProductsComponent,
         ShoppingCarComponent,
+        SnackbarComponent,
 
         SelectFunitureDirective
 

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Furniture } from 'src/app/shared/interfaces';
 import { Environment } from 'src/environments/environment';
+import { ShoppingCarService } from '../../services/shopping-car.service';
 
 @Component({
     selector: 'main-component-our-products',
@@ -19,6 +20,9 @@ export class OurProductsComponent {
     numberOfFurnituresToShow?: number;
 
 
-    constructor() { }
+    constructor(private _shoppingCartService: ShoppingCarService) { }
 
+    addFurnitureToCart(furniture: Furniture) {
+        this._shoppingCartService.setFurnituresToBuy(furniture, 1);
+    }
 }

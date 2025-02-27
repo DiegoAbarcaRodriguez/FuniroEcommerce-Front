@@ -1,6 +1,7 @@
 import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 import { Furniture } from 'src/app/shared/interfaces';
 import { ComparisonService } from '../services/comparison.service';
+import { ShoppingCarService } from '../services/shopping-car.service';
 
 @Directive({ selector: '[select-furniture]' })
 export class SelectFunitureDirective {
@@ -14,7 +15,8 @@ export class SelectFunitureDirective {
     constructor(
         elementHtml: ElementRef<HTMLElement>,
         private _renderer2: Renderer2,
-        private _comparisonService: ComparisonService
+        private _comparisonService: ComparisonService,
+        private _shoppingCartService: ShoppingCarService
     ) {
         this._elementHtml = elementHtml;
     }
@@ -68,6 +70,10 @@ export class SelectFunitureDirective {
             this._renderer2.appendChild(div, button);
             this._renderer2.appendChild(div, flex);
             this._renderer2.appendChild(this._elementHtml?.nativeElement, div);
+
+            this._renderer2.listen(button, 'click', (e) => {
+                this._shoppingCartService.setFurnituresToBuy(this.furniture!, 1);
+            });
 
             this._renderer2.listen(flex, 'click', (e) => {
                 if (e.target.className.includes('view')) {

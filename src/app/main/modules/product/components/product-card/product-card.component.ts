@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { ComparisonService } from 'src/app/main/shared/services/comparison.service';
+import { ShoppingCarService } from 'src/app/main/shared/services/shopping-car.service';
 import { Furniture } from 'src/app/shared/interfaces';
 import { Environment } from 'src/environments/environment';
 
@@ -8,7 +11,7 @@ import { Environment } from 'src/environments/environment';
     styleUrls: ['product-card.component.scss']
 })
 
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
 
     @Input()
     furniture?: Furniture;
@@ -17,14 +20,26 @@ export class ProductCardComponent implements OnInit {
 
     url_images: string = Environment.imagesUrl;
 
-    constructor() { }
+    constructor(
+        private _shoppingCarService: ShoppingCarService,
+        private _comparisonService: ComparisonService,
+        private _router: Router
+    ) { }
 
-    ngOnInit() { }
 
     changeNumberInput(value: number) {
         if (this.inputValue <= 0 && value < 0) return;
 
         this.inputValue += value;
 
+    }
+
+    addFurnitureToCart() {
+        this._shoppingCarService.setFurnituresToBuy(this.furniture!, this.inputValue, true);
+    }
+
+    addToComparisonOption() {
+        this._comparisonService.furnituresToCompare = this.furniture!;
+        this._router.navigateByUrl('/comparison');
     }
 }

@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-3" *ngFor="let furniture  of furnituresToCompare">
                     <product-comparison-component-product-card *ngIf="furniture" [furniture]="furniture"></product-comparison-component-product-card>
-                    <product-comparison-add-product *ngIf="!furniture"></product-comparison-add-product>
+                    <product-comparison-add-product *ngIf="!furniture" ></product-comparison-add-product>
                 </div>
               
             </div>
@@ -107,7 +107,7 @@
 
 
                 <div class="col-3 text-center" *ngFor="let furniture of furnituresToCompare">
-                    <product-comparison-component-add-cart *ngIf="furniture"></product-comparison-component-add-cart>
+                    <product-comparison-component-add-cart *ngIf="furniture" [furniture]="furniture"></product-comparison-component-add-cart>
                     <div class="col-3" *ngIf="!furniture"></div>
                 </div>
             
