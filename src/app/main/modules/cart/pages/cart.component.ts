@@ -6,10 +6,13 @@ import { ShoppingCarService } from 'src/app/main/shared/services/shopping-car.se
 })
 
 export class CartComponent implements OnInit {
+
     constructor(private _shoppingCarService: ShoppingCarService) { }
 
     ngOnInit() {
-    this._shoppingCarService.mustShowShoppingCarComponet = false;
-    document.querySelector('body')?.classList.remove('no-scroll');
+        this._shoppingCarService.mustShowShoppingCarComponet = false;
+        document.querySelector('body')?.classList.remove('no-scroll');
+
     }
+
 }

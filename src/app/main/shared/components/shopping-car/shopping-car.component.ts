@@ -28,6 +28,10 @@ export class ShoppingCarComponent implements OnInit {
 
         this.furnituresToBuy = this._shoppingCarService.furnituresToBuy;
 
+        if (this.furnituresToBuy.length === 0) {
+            this._shoppingCarService.mustRefreshFurnituresToBuy = true;
+        }
+
         this.furnitures = this.furnituresToBuy.map(({ furniture }) => furniture);
         this.quantities = this.furnituresToBuy.map(({ quantity }) => quantity);
         this.calculateTotal();
@@ -45,8 +49,8 @@ export class ShoppingCarComponent implements OnInit {
         document.querySelector('body')?.classList.remove('no-scroll')
     }
 
-    removeFurnitureFromList(index: number) {
-        this._shoppingCarService.removeFurnitureFromList(index);
+    removeFurnitureFromList(id: string) {
+        this._shoppingCarService.removeFurnitureFromList(id);
         this.subtotal = 0;
         this.getFurnituresAndQuantities();
     }

@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
+import { PaymentGuard } from './guards/payment.guard';
 
 const routes: Routes = [
     {
@@ -34,15 +35,17 @@ const routes: Routes = [
             },
             {
                 path: 'cart',
+                canActivate: [PaymentGuard],
                 loadChildren: () => import('../main/modules/cart/cart.module').then(m => m.CartModule)
             },
             {
                 path: 'checkout',
+                canActivate: [PaymentGuard],
                 loadChildren: () => import('../main/modules/checkout/checkout.module').then(m => m.CheckoutModule)
             },
             {
                 path: '**',
-                redirectTo:'home'
+                redirectTo: 'home'
             }
 
         ]

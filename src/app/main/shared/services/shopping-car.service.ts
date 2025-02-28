@@ -8,6 +8,7 @@ export class ShoppingCarService {
 
     private _furnituresToBuy: { furniture: Furniture, quantity: number }[] = [];
     private _mustShowShoppingCarComponent: Subject<boolean> = new Subject();
+    private _mustRefreshFurnituresToBuy: Subject<boolean> = new Subject();
 
     get furnituresToBuy(): { furniture: Furniture, quantity: number }[] {
         return this._furnituresToBuy;
@@ -19,6 +20,14 @@ export class ShoppingCarService {
 
     set mustShowShoppingCarComponet(value: boolean) {
         this._mustShowShoppingCarComponent.next(value);
+    }
+
+    get mustRefreshFurnituresToBuy(): Observable<boolean> {
+        return this._mustRefreshFurnituresToBuy.asObservable();
+    }
+
+    set mustRefreshFurnituresToBuy(value: boolean) {
+        this._mustRefreshFurnituresToBuy.next(value);
     }
 
 
@@ -75,8 +84,19 @@ export class ShoppingCarService {
 
     }
 
-    removeFurnitureFromList(index: number) {
-        this._furnituresToBuy.splice(index, 1);
+    removeFurnitureFromList(id: string) {
+        this._furnituresToBuy = this._furnituresToBuy.filter(({ furniture }) => furniture.id !== id);
+        localStorage.setItem('furnituresToBuy', JSON.stringify(this._furnituresToBuy));
+    }
+
+    changeQuantityOfFurniture(quantity: number, id: string) {
+        this._furnituresToBuy = this._furnituresToBuy.map(furniture => {
+            if (furniture.furniture.id === id) {
+                furniture.quantity = quantity;
+            }
+            return furniture
+        });
+
         localStorage.setItem('furnituresToBuy', JSON.stringify(this._furnituresToBuy));
     }
 
