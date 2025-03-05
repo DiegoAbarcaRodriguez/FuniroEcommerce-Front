@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SnackbarService } from 'src/app/shared/services/snackbar.service';
+import { SnackbarService } from 'src/app/main/shared/services/snackbar.service';
 
 
 @Component({
-    selector: 'main-snackbar-component',
+    selector: 'main-component-snackbar',
     templateUrl: 'snackbar.component.html',
     styleUrls: ['snackbar.component.scss']
 })

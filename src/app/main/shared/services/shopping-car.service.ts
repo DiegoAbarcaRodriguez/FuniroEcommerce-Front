@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Furniture } from 'src/app/shared/interfaces';
-import { SnackbarService } from 'src/app/shared/services/snackbar.service';
+import { SnackbarService } from 'src/app/main/shared/services/snackbar.service';
 
 @Injectable({ providedIn: 'root' })
 export class ShoppingCarService {

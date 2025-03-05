@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ShoppingCarService } from './../../services/shopping-car.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
     selector: 'main-component-navbar',
@@ -38,10 +39,16 @@ export class NavbarComponent implements OnInit {
     navbar?: ElementRef<HTMLDivElement>
 
     mustShowHiddenMenu: boolean = false;
+    mustShowFavoriteList: boolean = false;
 
-    constructor(private _shoppingCarService: ShoppingCarService) { }
+    constructor(
+        private _shoppingCarService: ShoppingCarService,
+        private _favoritesService: FavoritesService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this._favoritesService.mustShowFavoritesListComponent.subscribe(mustShow => this.mustShowFavoriteList = mustShow);
+    }
 
     onToggleHiddenMenu() {
         this.mustShowHiddenMenu = !this.mustShowHiddenMenu;
@@ -68,7 +75,11 @@ export class NavbarComponent implements OnInit {
 
     onAddToShoppingCar() {
         this._shoppingCarService.mustShowShoppingCarComponet = true;
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         document.querySelector('body')?.classList.add('no-scroll');
+    }
+
+    onDeployFavoritesList() {
+        this._favoritesService.mustShowFavoritesListComponent = true;
     }
 }

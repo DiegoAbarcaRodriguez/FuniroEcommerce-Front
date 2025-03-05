@@ -1,14 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShoppingCarService } from '../shared/services/shopping-car.service';
 import { Subscription } from 'rxjs';
-import { SnackbarService } from '../../shared/services/snackbar.service';
+import { SnackbarService } from '../shared/services/snackbar.service';
 
 
 @Component({
     templateUrl: 'layout.component.html'
 })
 
-export class LayoutComponent implements OnInit, OnDestroy {
+export class LayoutComponent implements OnInit {
 
     subscription?: Subscription;
     mustShowShoppingCarComponent: boolean = false;
@@ -19,12 +19,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
         private _snackbarService: SnackbarService
     ) { }
 
-    ngOnDestroy(): void {
-        this.subscription?.unsubscribe();
-    }
-
     ngOnInit() {
-        this.subscription = this._shoppingCarService.mustShowShoppingCarComponet.subscribe(mustShow => this.mustShowShoppingCarComponent = mustShow);
-        this.subscription = this._snackbarService.mustShowSnackBar.subscribe(mustShow => this.mustShowSnackbarComponent = mustShow);
+        this._shoppingCarService.mustShowShoppingCarComponet.subscribe(mustShow => this.mustShowShoppingCarComponent = mustShow);
+        this._snackbarService.mustShowSnackBar.subscribe(mustShow => this.mustShowSnackbarComponent = mustShow);
     }
 }

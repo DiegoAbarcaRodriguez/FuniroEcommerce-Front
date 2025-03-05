@@ -19,7 +19,10 @@
             <div class="d-flex gap-5 me-lg-5 align-items-center">
                 <img src="../../../../assets/icons/user.svg" alt="user">
                 <img src="../../../../assets/icons/search.svg" alt="search">
-                <img src="../../../../assets/icons/heart.svg" alt="heart">
+                <div class="position-relative" >
+                    <img src="../../../../assets/icons/heart.svg" alt="heart" (click)="onDeployFavoritesList()">
+                    <main-component-favorites-list *ngIf="mustShowFavoriteList"></main-component-favorites-list>
+                </div>
                 <img src="../../../../assets/icons/cart.svg" alt="cart" (click)="onAddToShoppingCar()">
                 <i class="fa-solid fa-bars fs-4 d-lg-none d-inline" (click)="onToggleHiddenMenu()"></i>
             </div>
