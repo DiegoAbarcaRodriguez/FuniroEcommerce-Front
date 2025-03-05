@@ -30,7 +30,7 @@ export class SummaryPricesComponent implements OnInit {
 
     constructor(
         private _shoppingCartService: ShoppingCarService,
-        private _router: Router
+        private _router: Router,
     ) { }
 
     ngOnInit() {

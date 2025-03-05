@@ -15,6 +15,7 @@ export class ShoppingCarComponent implements OnInit {
     furnitures: Furniture[] = [];
     quantities: number[] = [];
     subtotal: number = 0;
+    mustDisableButton: boolean = false;
 
     images_url = Environment.imagesUrl;
 
@@ -30,6 +31,7 @@ export class ShoppingCarComponent implements OnInit {
 
         if (this.furnituresToBuy.length === 0) {
             this._shoppingCarService.mustRefreshFurnituresToBuy = true;
+            this.mustDisableButton = true;
         }
 
         this.furnitures = this.furnituresToBuy.map(({ furniture }) => furniture);
