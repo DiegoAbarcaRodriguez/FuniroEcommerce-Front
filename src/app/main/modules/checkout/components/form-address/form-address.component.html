@@ -1,21 +1,54 @@
-<form class="mt-4 mb-3">
-    <label for="zip-code" class="mb-3">Zip Code</label>
-    <input type="text" id="zip-code" class="py-4 px-2  w-100 mb-3">
+<form class="mt-4 mb-3" [formGroup]="form">
 
-    <label for="company" class="mt-4 mb-3">Country</label>
-    <select id="company" class="py-4 px-2  w-100 mb-3">
+    <label for="country" class="mt-4 mb-3">Country</label>
+    <select id="country" class="py-4 px-2  w-100 mb-3" formControlName="country">
         <option value="" selected>Select a Country</option>
-        <option value="Mexico">Mexico</option>
-        <option value="USA">Usa</option>
-        <option value="Colombia">Colombia</option>
+        <option value="mx">Mexico</option>
+        <option value="us">Usa</option>
     </select>
 
+    <ng-container *ngIf="mustShowError('country')">
+        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('country')">
+            {{message}}!
+        </p>
+    </ng-container>
+
+    <label for="zip-code" class="mb-3">Zip Code</label>
+    <input type="number"  min="0" id="zip-code" class="py-4 px-2  w-100 mb-3" formControlName="zip_code" [class.disable]="mustDisableZipCodeInput" [readOnly]="mustDisableZipCodeInput">
+
+    <ng-container *ngIf="mustShowError('zip_code')">
+        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('zip_code')">
+            {{message}}!
+        </p>
+    </ng-container>
+
+    
+
     <label for="city" class="mt-4 mb-3">Town / City</label>
-    <input type="text" id="city" class="py-4 px-2  w-100 mb-3" disabled>
+    <input type="text" id="city" class="py-4 px-2  w-100 mb-3 disable" formControlName="city" readonly>
+
+    <ng-container *ngIf="mustShowError('city')">
+        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('city')">
+            {{message}}!
+        </p>
+    </ng-container>
+
 
     <label for="province" class="mt-4 mb-3">Province</label>
-    <input type="text" id="province" class="py-4 px-2  w-100 mb-3" disabled>
+    <input type="text" id="province" class="py-4 px-2  w-100 mb-3 disable" formControlName="province" readonly>
+
+    <ng-container *ngIf="mustShowError('province')">
+        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('province')">
+            {{message}}!
+        </p>
+    </ng-container>
 
     <label for="street" class="mt-4 mb-3">Street address</label>
-    <input type="text" id="street" class="py-4 px-2  w-100">
+    <input type="text" id="street" class="py-4 px-2  w-100" formControlName="street">
+
+    <ng-container *ngIf="mustShowError('street')">
+        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('street')">
+            {{message}}!
+        </p>
+    </ng-container>
 </form>

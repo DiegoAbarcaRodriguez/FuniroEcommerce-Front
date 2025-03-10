@@ -1,18 +1,31 @@
-
-<form>
+<form [formGroup]="form">
     <div class="row">
         <div class="col-6">
             <label for="first-name" class="mb-3">First Name</label>
-            <input class="py-4 px-2 w-100" type="text" id="firt-name">
+            <input class="py-4 px-2 w-100" type="text" id="firt-name" formControlName="first_name">
+
+            <ng-container *ngIf="mustShowError('first_name')">
+                <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('first_name')">
+                    {{message}}!
+                </p>
+            </ng-container>
+
         </div>
-    
+
         <div class="col-6">
             <label for="last-name" class="mb-3">Last Name</label>
-            <input class="py-4 px-2 w-100" type="text" id="last-name">
+            <input class="py-4 px-2 w-100" type="text" id="last-name" formControlName="last_name">
+
+            <ng-container *ngIf="mustShowError('last_name')">
+                <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('last_name')">
+                    {{message}}!
+                </p>
+            </ng-container>
+
         </div>
-    
+
     </div>
-    
+
     <label for="company" class="mt-4 mb-3">Company Name (Optional)</label>
-    <input type="text" id="company" class="py-4 px-2  w-100 mb-3">
+    <input type="text" id="company" class="py-4 px-2  w-100 mb-3" formControlName="company_name">
 </form>

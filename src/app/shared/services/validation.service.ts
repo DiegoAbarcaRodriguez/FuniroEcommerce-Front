@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, ValidationErrors } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class ValidationService {
@@ -39,6 +39,12 @@ export class ValidationService {
                     break;
                 case 'hasError':
                     errors.push('It has been an error about the service');
+                    break;
+                case 'email':
+                    errors.push('The email is not valid');
+                    break;
+                case 'maxExtension':
+                    errors.push(`The ${fieldName} must have a extension equal to 5`);
                     break;
                 default:
                     throw new Error(`The error: ${error} is not handled`);
@@ -84,4 +90,14 @@ export class ValidationService {
         }
     }
 
+
+    validateMaxExtensionZipCodeInput(formControl: FormControl): ValidationErrors | null {
+        const value: string = (formControl.value as number)?.toString();
+        
+        if (value?.length !== 5) return ({ maxExtension: true });
+
+
+
+        return null;
+    }
 }

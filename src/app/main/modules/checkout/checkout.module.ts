@@ -6,11 +6,15 @@ import { CardPaymentComponent } from './components/card-payment/card-payment.com
 import { FormNamesComponent } from './components/form-names/form-names.component';
 import { FormAddressComponent } from './components/form-address/form-address.component';
 import { FormContactComponent } from './components/form-contact/form-contact.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         SharedMainModule,
-        CheckoutRoutingModule
+        CheckoutRoutingModule,
+        ReactiveFormsModule,
+        CommonModule
     ],
     declarations: [
         CheckoutComponent,

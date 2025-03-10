@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ValidationService } from 'src/app/shared/services/validation.service';
+import { EmailValidatorService } from '../../validators/email.validator';
+import { FormsService } from '../../services/forms.service';
 
 @Component({
     selector: 'checkout-component-form-contact',
@@ -6,7 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FormContactComponent implements OnInit {
-    constructor() { }
 
-    ngOnInit() { }
+    form = this._fb.group({
+        phone: ['', [Validators.required, Validators.minLength(10)]],
+        email: ['', [Validators.required, Validators.email], [this._emailValidatorService]],
+        additional: ['']
+    });
+
+    constructor(
+        private _fb: FormBuilder,
+        private _validationService: ValidationService,
+        private _emailValidatorService: EmailValidatorService,
+        private _formsService: FormsService
+    ) { }
+
+    ngOnInit() {
+        this._formsService.formContact = this.form;
+    }
+
+    getMessageErrors(fieldName: string): string[] {
+        return this._validationService.getErrorsField(fieldName, this.form);
+    }
+
+    mustShowError(fieldName: string): boolean {
+        return this._validationService.isValidField(fieldName, this.form);
+    }
+
 }
