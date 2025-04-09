@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { PaymentGuard } from './guards/payment.guard';
+import { ThankyouGuard } from './guards/thank-you.guard';
 
 const routes: Routes = [
     {
@@ -42,6 +43,11 @@ const routes: Routes = [
                 path: 'checkout',
                 canActivate: [PaymentGuard],
                 loadChildren: () => import('../main/modules/checkout/checkout.module').then(m => m.CheckoutModule)
+            },
+            {
+                path: 'thank-you',
+                canActivate: [ThankyouGuard],
+                loadChildren: () => import('../main/modules/thank-you/thank-you.module').then(m => m.ThankyouModule)
             },
             {
                 path: '**',

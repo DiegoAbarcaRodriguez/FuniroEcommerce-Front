@@ -3,6 +3,10 @@ import { ShoppingCarService } from 'src/app/main/shared/services/shopping-car.se
 import { Furniture } from 'src/app/shared/interfaces';
 import { FormGroup } from '@angular/forms';
 import { FormsService } from '../../services/forms.service';
+import { PaymentService } from '../../services/payment.service';
+import { filter, switchMap } from 'rxjs';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'checkout-component-card-payment',
@@ -32,7 +36,9 @@ export class CardPaymentComponent implements OnInit {
 
     constructor(
         private _shoppingCartService: ShoppingCarService,
-        private _formsService: FormsService
+        private _formsService: FormsService,
+        private _paymentService: PaymentService,
+        private _modalService: ModalService,
     ) { }
 
 
@@ -58,7 +64,6 @@ export class CardPaymentComponent implements OnInit {
     }
 
     private updateButtonStatus() {
-        console.log(!(this.formNames?.valid && this.formAddress?.valid && this.formContact?.valid))
         this.mustDisableButton = !(this.formNames?.valid && this.formAddress?.valid && this.formContact?.valid);
     }
 
@@ -67,6 +72,27 @@ export class CardPaymentComponent implements OnInit {
         this.furnituresToBuy.forEach(({ furniture, quantity }) => {
             this.total += (furniture.price - furniture.discount! || 0) * quantity;
             this.subtotal += (furniture.price) * quantity;
+        });
+    }
+
+    proceedToPay() {
+        this.mustDisableButton = true;
+        const furnitures_id = this.furnituresToBuy.map(({ furniture }) => furniture.id);
+        const quantities = this.furnituresToBuy.map(({ quantity }) => +quantity);
+
+        this._paymentService.verifyFurnituresStock(furnitures_id, quantities).pipe(
+            filter(({ ok }) => ok),
+            switchMap(() => this._paymentService.executePayment(furnitures_id, quantities, this.total.toString()))
+        ).subscribe({
+            next: ({ session_id, url}) => {
+                localStorage.setItem('session_id', session_id);
+                this.mustDisableButton = false;
+                window.location.href = url;
+            },
+            error: ({ error }: HttpErrorResponse) => {
+                this._modalService.openModal({ status: 'error', message: error?.message });
+                this.mustDisableButton = false;
+            }
         });
     }
 }

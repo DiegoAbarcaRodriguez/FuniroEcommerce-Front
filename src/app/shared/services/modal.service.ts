@@ -62,6 +62,7 @@ export class ModalService {
     openModal(content: ContentModal) {
         this._mustShowModal.next(true);
         this._contentModal = content;
+        window.scrollTo(0, 0);
         document.querySelector('body')?.classList.add('no-scroll');
     }
 

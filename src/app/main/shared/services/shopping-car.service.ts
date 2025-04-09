@@ -100,4 +100,8 @@ export class ShoppingCarService {
         localStorage.setItem('furnituresToBuy', JSON.stringify(this._furnituresToBuy));
     }
 
+    resetFurniturestoBuy() {
+        this._furnituresToBuy = [];
+        localStorage.removeItem('furnituresToBuy');
+    }
 }
