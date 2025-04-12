@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { FormsService } from './forms.service';
+import { CustomerService } from 'src/app/main/shared/services/customer.service';
 
 @Injectable({ providedIn: 'root' })
 export class PaymentService {
@@ -20,7 +21,8 @@ export class PaymentService {
 
     constructor(
         private _http: HttpClient,
-        private _formsService: FormsService
+        private _formsService: FormsService,
+        private _customerService: CustomerService
     ) { }
 
     private _preparePayload(furniture_id: string[], quantity: number[], total: string) {
@@ -33,6 +35,7 @@ export class PaymentService {
             ...this._formsService.formNames?.value,
             phone: (this._formsService.formContact?.get('phone')?.value as number).toString(),
             zip_code: (this._formsService.formAddress?.get('zip_code')?.value as number).toString(),
+            email: (this._formsService.formContact?.get('email')?.value as string).trim().toLocaleLowerCase(),
             total,
             status: 'confirm'
         }));
@@ -45,6 +48,7 @@ export class PaymentService {
             ...this._formsService.formNames?.value,
             phone: (this._formsService.formContact?.get('phone')?.value as number).toString(),
             zip_code: (this._formsService.formAddress?.get('zip_code')?.value as number).toString(),
+            email: (this._formsService.formContact?.get('email')?.value as string).trim().toLocaleLowerCase(),
             total,
             status: 'confirm'
         });
@@ -66,7 +70,8 @@ export class PaymentService {
     createOrder(): Observable<{ ok: boolean, message: string, token: string, email: string }> {
         this._payload = JSON.parse(localStorage.getItem('payload')!);
         this._getCustomerData();
-        return this._http.post<{ ok: boolean, message: string, token: string, email: string }>(`${this._baseUrl}/order`, { ...this._payload, session_id: localStorage.getItem('session_id') || '' });
+        return this._http.post<{ ok: boolean, message: string, token: string, email: string }>(`${this._baseUrl}/order`, { ...this._payload, session_id: localStorage.getItem('session_id') || '' })
+            .pipe(tap(() => this._customerService.customer = this._payload));
     }
 
 }

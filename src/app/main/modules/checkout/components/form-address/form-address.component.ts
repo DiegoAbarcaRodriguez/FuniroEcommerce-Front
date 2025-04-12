@@ -13,6 +13,11 @@ import { FormsService } from '../../services/forms.service';
             .disable {
                 cursor:not-allowed;
             }
+
+            .disable {
+                background-color:#E8F0FE;
+                border: gray solid 1px;
+            }
       `
     ]
 })

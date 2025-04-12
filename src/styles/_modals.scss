@@ -14,6 +14,10 @@
     animation: fading 500ms ease-in-out none 1;
 }
 
+.modal-dialog-y {
+    animation: fading-vertical 700ms ease-in none 1;
+}
+
 .blink {
     animation: blinking 1000ms ease-in none infinite;
     font-size: 60px;
@@ -26,6 +30,16 @@
 
     to {
         transform: translateX(0%);
+    }
+}
+
+@keyframes fading-vertical {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0%);
     }
 }
 

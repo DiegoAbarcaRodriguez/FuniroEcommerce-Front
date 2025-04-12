@@ -12,7 +12,7 @@ import { FormsService } from '../../services/forms.service';
 export class FormContactComponent implements OnInit {
 
     form = this._fb.group({
-        phone: ['', [Validators.required, Validators.minLength(10)]],
+        phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern(this._validationService.telefonoRegx)]],
         email: ['', [Validators.required, Validators.email], [this._emailValidatorService]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         password2: ['', [Validators.required, Validators.minLength(6)]],

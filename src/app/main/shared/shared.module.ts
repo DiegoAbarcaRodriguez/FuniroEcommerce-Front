@@ -12,12 +12,15 @@ import { SelectFunitureDirective } from './directives/select-furniture.directive
 import { SharedModule } from "../../shared/shared.module";
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { FavoritesListComponent } from './components/favorites-list/favorites-list.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule
     ],
     exports: [
         BannerSupportComponent,
@@ -29,6 +32,7 @@ import { FavoritesListComponent } from './components/favorites-list/favorites-li
         ShoppingCarComponent,
         SnackbarComponent,
         FavoritesListComponent,
+        ModalComponent,
 
         SelectFunitureDirective
     ],
@@ -42,6 +46,7 @@ import { FavoritesListComponent } from './components/favorites-list/favorites-li
         ShoppingCarComponent,
         SnackbarComponent,
         FavoritesListComponent,
+        ModalComponent,
 
         SelectFunitureDirective
 

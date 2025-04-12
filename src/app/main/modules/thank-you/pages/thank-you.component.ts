@@ -4,6 +4,7 @@ import { ShoppingCarService } from 'src/app/main/shared/services/shopping-car.se
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CustomerService } from 'src/app/main/shared/services/customer.service';
 
 @Component({
     selector: 'main-component-thank-you',
@@ -20,6 +21,7 @@ export class ThankyouComponent implements OnInit {
     constructor(
         private _paymentService: PaymentService,
         private _shoppingCartService: ShoppingCarService,
+        private _customerService: CustomerService,
         private _modalService: ModalService,
         private _router: Router
     ) { }
@@ -43,7 +45,7 @@ export class ThankyouComponent implements OnInit {
                     this.email = email;
                     localStorage.removeItem('session_id');
                     localStorage.removeItem('payload');
-                    localStorage.setItem('customer_token', token);
+                    this._customerService.token = token;
                     this._shoppingCartService.resetFurniturestoBuy();
                 },
                 error: ({ error }: HttpErrorResponse) => {

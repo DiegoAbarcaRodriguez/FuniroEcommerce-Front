@@ -5,6 +5,8 @@ import { FormControl, FormGroup, ValidationErrors } from '@angular/forms';
 export class ValidationService {
     constructor() { }
 
+    telefonoRegx = /^(?:\+1\s?|1\s?)?(?:\(?[2-9][0-9]{2}\)?)[\s.-]?[2-9][0-9]{2}[\s.-]?[0-9]{4}$|^(?:\+52\s?|52\s?)?(?:\(?1?\d{2}\)?)[\s.-]?\d{4}[\s.-]?\d{4}$/
+
     isValidField(fieldName: string, form: FormGroup): boolean {
         return form.controls[fieldName].touched && form.controls[fieldName].invalid;
     }
@@ -12,6 +14,7 @@ export class ValidationService {
     getErrorsField(fieldName: string, form: FormGroup): string[] {
         const errors: string[] = [];
         const errorObject = form.controls[fieldName].errors || {};
+        console.log(errorObject)
 
 
         const errorsFromField = Object.keys(errorObject);
@@ -45,6 +48,9 @@ export class ValidationService {
                     break;
                 case 'maxExtension':
                     errors.push(`The ${fieldName} must have a extension equal to 5`);
+                    break;
+                case 'pattern':
+                    errors.push(`The ${fieldName} doesn't have the appropiate format`);
                     break;
                 default:
                     throw new Error(`The error: ${error} is not handled`);
@@ -93,7 +99,7 @@ export class ValidationService {
 
     validateMaxExtensionZipCodeInput(formControl: FormControl): ValidationErrors | null {
         const value: string = (formControl.value as number)?.toString();
-        
+
         if (value?.length !== 5) return ({ maxExtension: true });
 
 

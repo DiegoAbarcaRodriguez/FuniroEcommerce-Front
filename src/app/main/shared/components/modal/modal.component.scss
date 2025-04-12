@@ -1,0 +1,28 @@
+.modal-header {
+    border: none;
+}
+
+i {
+    font-size: 33px;
+}
+
+.input-group {
+    i {
+        font-size: 20px;
+    }
+}
+
+.text-underline {
+    font-size: 16px;
+}
+
+.text-underline:hover {
+    text-decoration: underline;
+}
+
+.rounded-5 {
+    display: grid;
+    place-items: center;
+    width: 70px;
+    height: 70px;
+}

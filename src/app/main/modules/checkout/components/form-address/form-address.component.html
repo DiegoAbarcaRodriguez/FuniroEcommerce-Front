@@ -27,21 +27,10 @@
     <label for="city" class="mt-4 mb-3">Town / City</label>
     <input type="text" id="city" class="py-4 px-2  w-100 mb-3 disable" formControlName="city" readonly>
 
-    <ng-container *ngIf="mustShowError('city')">
-        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('city')">
-            {{message}}!
-        </p>
-    </ng-container>
-
 
     <label for="province" class="mt-4 mb-3">Province</label>
     <input type="text" id="province" class="py-4 px-2  w-100 mb-3 disable" formControlName="province" readonly>
 
-    <ng-container *ngIf="mustShowError('province')">
-        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('province')">
-            {{message}}!
-        </p>
-    </ng-container>
 
     <label for="street" class="mt-4 mb-3">Street address</label>
     <input type="text" id="street" class="py-4 px-2  w-100" formControlName="street">

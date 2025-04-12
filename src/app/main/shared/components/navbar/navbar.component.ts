@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ShoppingCarService } from './../../services/shopping-car.service';
 import { FavoritesService } from '../../services/favorites.service';
+import { ModalCustomerService } from '../../services/modal-customer.service';
 
 @Component({
     selector: 'main-component-navbar',
@@ -43,11 +44,16 @@ export class NavbarComponent implements OnInit {
 
     constructor(
         private _shoppingCarService: ShoppingCarService,
-        private _favoritesService: FavoritesService
+        private _favoritesService: FavoritesService,
+        private _modalCustomerService: ModalCustomerService
     ) { }
 
     ngOnInit() {
         this._favoritesService.mustShowFavoritesListComponent.subscribe(mustShow => this.mustShowFavoriteList = mustShow);
+    }
+
+    openModalUser() {
+        this._modalCustomerService.openModal();
     }
 
     onToggleHiddenMenu() {
