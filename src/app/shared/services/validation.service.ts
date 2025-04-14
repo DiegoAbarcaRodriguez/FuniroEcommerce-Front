@@ -14,8 +14,6 @@ export class ValidationService {
     getErrorsField(fieldName: string, form: FormGroup): string[] {
         const errors: string[] = [];
         const errorObject = form.controls[fieldName].errors || {};
-        console.log(errorObject)
-
 
         const errorsFromField = Object.keys(errorObject);
 

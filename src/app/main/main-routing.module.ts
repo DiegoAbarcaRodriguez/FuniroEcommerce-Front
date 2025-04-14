@@ -57,6 +57,10 @@ const routes: Routes = [
                 loadChildren: () => import('../main/modules/thank-you/thank-you.module').then(m => m.ThankyouModule)
             },
             {
+                path: 'recover-password',
+                loadChildren: () => import('../main/modules/recover-password/recover-password.module').then(m => m.RecoverModule)
+            },
+            {
                 path: '**',
                 redirectTo: 'home'
             }

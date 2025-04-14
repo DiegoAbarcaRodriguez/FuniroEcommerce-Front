@@ -7,27 +7,48 @@
             <div class="modal-body">
                 <div class="d-flex flex-column align-items-center gap-3">
                     <div class="bg-primary rounded-5">
-                        <i class="fa-solid fa-user text-secondary" *ngIf="typeOfModal==='login'"></i>
+                        <i class="fa-solid fa-user text-secondary" *ngIf="typeOfModal!=='recover'"></i>
                         <i class="fa-regular fa-envelope text-secondary" *ngIf="typeOfModal==='recover'"></i>
                     </div>
-                    <p class="text-primary fw-bold fs-3" *ngIf="typeOfModal!== 'loggedIn'">{{typeOfModal ==='login'?'Login':'Recover Password'}}</p>
+                    <p class="text-primary fw-bold fs-3" *ngIf="typeOfModal!== 'loggedIn'">{{typeOfModal
+                        ==='login'?'Login':'Recover Password'}}</p>
+                    <p class="text-primary fw-bold fs-3" *ngIf="typeOfModal=== 'loggedIn'">Hi {{name}}</p>
                 </div>
 
                 <form [formGroup]="form" (ngSubmit)="submitRequest()">
 
                     <div class="input-group mb-3" *ngIf="typeOfModal !=='loggedIn' ">
-                        <input type="text" class="form-control" placeholder="Email">
+                        <input type="text" class="form-control" placeholder="Email" formControlName="email">
                         <span class="input-group-text"><i class="fa-solid fa-envelope text-primary"></i></span>
                     </div>
 
+                    <ng-container *ngIf="mustShowError('email')">
+                        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('email')">
+                            {{message}}!
+                        </p>
+                    </ng-container>
+                    
+
                     <div class="input-group mb-3" *ngIf="typeOfModal==='login'">
-                        <input type="text" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" formControlName="password">
                         <span class="input-group-text"><i class="fa-solid fa-lock text-primary"></i></span>
                     </div>
 
+                    <ng-container *ngIf=" mustShowError('password') && typeOfModal ==='login'">
+                        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('password')">
+                            {{message}}!
+                        </p>
+                    </ng-container>
+
                     <div class="text-center" *ngIf="typeOfModal!=='loggedIn'">
-                        <button type="submit" class="btn btn-primary px-4 py-2 w-75 fw-bold text-white">{{ typeOfModal === 'login'?'Enter':'Send'}}</button>
-                        <p class="text-primary fw-bold mt-3 text-underline pointer" (click)="changeTypeOfModal()" >{{typeOfModal === 'login'?'Recover password':'Do you have already an account?'}}</p>
+                        <button [disabled]="form.invalid" type="submit" class="btn btn-primary px-4 py-2 w-75 fw-bold text-white">{{ typeOfModal
+                            === 'login'?'Enter':'Send'}}</button>
+                        <p class="text-primary fw-bold mt-3 text-underline pointer" (click)="changeTypeOfModal()">
+                            {{typeOfModal === 'login'?'Recover password':'Do you have already an account?'}}</p>
+                    </div>
+
+                    <div class="text-center" *ngIf="typeOfModal==='loggedIn'">
+                        <p class="text-primary fw-bold mt-3 text-underline pointer fs-5" (click)="logOut()">Log out</p>
                     </div>
 
 

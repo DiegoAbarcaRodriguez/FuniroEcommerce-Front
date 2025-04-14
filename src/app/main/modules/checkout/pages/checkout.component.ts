@@ -5,7 +5,15 @@ import { ShoppingCarService } from 'src/app/main/shared/services/shopping-car.se
 import { Customer } from 'src/app/shared/interfaces';
 
 @Component({
-    templateUrl: 'checkout.component.html'
+    templateUrl: 'checkout.component.html',
+    styles:
+        [
+            `
+            input[type='checkbox']{
+                accent-color:#B88E2F;
+            }
+        `
+        ]
 })
 
 export class CheckoutComponent implements OnInit {

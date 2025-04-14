@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalCustomerService } from '../../services/modal-customer.service';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../../services/customer.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ModalService } from 'src/app/shared/services/modal.service';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
     selector: 'main-component-modal',
@@ -23,6 +26,8 @@ export class ModalComponent implements OnInit {
     constructor(
         private _modalCustomerService: ModalCustomerService,
         private _customerService: CustomerService,
+        private _modalService: ModalService,
+        private _validationService: ValidationService,
         private _formBuilder: FormBuilder
     ) { }
 
@@ -34,17 +39,24 @@ export class ModalComponent implements OnInit {
 
 
         if (this._customerService.token) {
-            this.name = this._customerService.customer?.first_name + ' ' + this._customerService.customer?.last_name;
+            this.name = this._customerService.customer?.first_name!;
             this.typeOfModal = 'loggedIn';
             return
         }
 
-        if (this.typeOfModal === 'recover') {
+        if (this.typeOfModal === 'login') {
             this.form.controls['password'].addValidators([Validators.required, Validators.minLength(6)]);
             return;
         }
 
-        this.form.controls['password'].removeValidators([Validators.required, Validators.minLength(6)]);
+    }
+
+    mustShowError(field: string) {
+        return this._validationService.isValidField(field, this.form);
+    }
+
+    getMessageErrors(field: string) {
+        return this._validationService.getErrorsField(field, this.form);
     }
 
     closeModal() {
@@ -52,11 +64,55 @@ export class ModalComponent implements OnInit {
     }
 
     submitRequest() {
-        console.log('Submit....');
+        if (this.typeOfModal === 'login') {
+            this._customerService.loginCustomerAccount(this.form.value.email!, this.form.value.password!)
+                .subscribe(
+                    {
+                        next: ({ customer, token }) => {
+                            this._customerService.token = token;
+                            this._customerService.customer = customer;
+                            this._modalCustomerService.closeModal();
+                        },
+                        error: ({ error }: HttpErrorResponse) => {
+                            this._modalCustomerService.closeModal();
+                            this._modalService.openModal({ status: 'error', message: error.message });
+
+                        }
+                    });
+        }
+
+        if (this.typeOfModal === 'recover') {
+            this._customerService.sendEmailRecoverPassword(this.form.value.email!)
+                .subscribe({
+                    next: () => {
+                        this._modalCustomerService.closeModal();
+                        this._modalService.openModal({ status: 'success', message: 'The email has been sent succesfully' });
+
+                    },
+                    error: ({ error }: HttpErrorResponse) => {
+                        this._modalCustomerService.closeModal();
+                        this._modalService.openModal({ status: 'error', message: error.message });
+                    }
+                })
+        }
     }
 
     changeTypeOfModal() {
         this.typeOfModal = this.typeOfModal === 'login' ? 'recover' : 'login';
-        console.log(this.typeOfModal)
+
+        if (this.typeOfModal === 'recover') {
+            this.form.controls['password'].clearValidators();
+            this.form.controls['password'].updateValueAndValidity();
+        } else {
+            this.form.controls['password'].setValidators([Validators.required, Validators.minLength(6)]);
+            this.form.controls['password'].updateValueAndValidity();
+        }
+
+
+    }
+
+    logOut() {
+        this._customerService.logOut();
+        this._modalCustomerService.closeModal();
     }
 }
