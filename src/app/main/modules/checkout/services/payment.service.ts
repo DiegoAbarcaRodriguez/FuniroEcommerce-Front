@@ -11,6 +11,7 @@ export class PaymentService {
     private _baseUrl = Environment.url;
     private _customerName: string = '';
     private _payload: any;
+    private _wasFilledWithCustomerData: boolean = false;
 
 
 
@@ -18,6 +19,9 @@ export class PaymentService {
         return this._customerName;
     }
 
+    set wasFilledWithCustomerData(value: boolean) {
+        this._wasFilledWithCustomerData = value;
+    }
 
     constructor(
         private _http: HttpClient,
@@ -26,6 +30,12 @@ export class PaymentService {
     ) { }
 
     private _preparePayload(furniture_id: string[], quantity: number[], total: string) {
+
+        if (localStorage.getItem('wasFilledWithCustomerData')) {
+            this._formsService.formContact?.controls['email'].setValue(this._customerService.customer?.email);
+            this._formsService.formContact?.controls['password'].setValue('******');
+            this._formsService.formContact?.controls['password2'].setValue('******');
+        }
 
         localStorage.setItem('payload', JSON.stringify({
             furniture_id,
@@ -63,6 +73,7 @@ export class PaymentService {
     }
 
     executePayment(furnitures_id: string[], quantities: number[], total: string): Observable<{ ok: boolean, url: string, session_id: string }> {
+        if (this._wasFilledWithCustomerData) localStorage.setItem('wasFilledWithCustomerData', 'true');
         const body = this._preparePayload(furnitures_id, quantities, total);
         return this._http.post<{ ok: boolean, url: string, session_id: string }>(`${this._baseUrl}/order/execute-payment`, body);
     }

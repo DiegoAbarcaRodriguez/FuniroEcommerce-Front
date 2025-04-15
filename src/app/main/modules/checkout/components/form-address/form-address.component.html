@@ -1,7 +1,7 @@
 <form class="mt-4 mb-3" [formGroup]="form">
 
     <label for="country" class="mt-4 mb-3">Country</label>
-    <select id="country" class="py-4 px-2  w-100 mb-3" formControlName="country">
+    <select [class.disable]="mustDisable" id="country" class="py-4 px-2  w-100 mb-3" formControlName="country">
         <option value="" selected>Select a Country</option>
         <option value="mx">Mexico</option>
         <option value="us">Usa</option>
@@ -14,7 +14,7 @@
     </ng-container>
 
     <label for="zip-code" class="mb-3">Zip Code</label>
-    <input type="number"  min="0" id="zip-code" class="py-4 px-2  w-100 mb-3" formControlName="zip_code" [class.disable]="mustDisableZipCodeInput" [readOnly]="mustDisableZipCodeInput">
+    <input  type="number"  min="0" id="zip-code" class="py-4 px-2  w-100 mb-3" formControlName="zip_code" [class.disable]="mustDisableZipCodeInput || mustDisable" [readOnly]="mustDisableZipCodeInput || mustDisable">
 
     <ng-container *ngIf="mustShowError('zip_code')">
         <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('zip_code')">
@@ -25,16 +25,16 @@
     
 
     <label for="city" class="mt-4 mb-3">Town / City</label>
-    <input type="text" id="city" class="py-4 px-2  w-100 mb-3 disable" formControlName="city" readonly>
+    <input type="text" id="city" class="py-4 px-2  w-100 mb-3 disable" formControlName="city" readonly [class.disable]="mustDisable"  >
 
 
     <label for="province" class="mt-4 mb-3">Province</label>
-    <input type="text" id="province" class="py-4 px-2  w-100 mb-3 disable" formControlName="province" readonly>
+    <input  type="text" id="province" class="py-4 px-2  w-100 mb-3 disable" formControlName="province" readonly [class.disable]="mustDisable"  >
 
 
     <label for="street" class="mt-4 mb-3">Street address</label>
-    <input type="text" id="street" class="py-4 px-2  w-100" formControlName="street">
-
+    <input  type="text" id="street" class="py-4 px-2  w-100" formControlName="street" [class.disable]="mustDisable" [readOnly]="mustDisable" >
+ 
     <ng-container *ngIf="mustShowError('street')">
         <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('street')">
             {{message}}!

@@ -1,6 +1,6 @@
 <form class="mt-4 mb-3" [formGroup]="form" autocomplete="off">
     <label for="phone" class="mb-3">Phone</label>
-    <input type="phone" id="phone" class="py-4 px-2  w-100 mb-3" formControlName="phone" maxlength="10">
+    <input [class.disable]="mustDisable" [readOnly]="mustDisable" type="phone" id="phone" class="py-4 px-2  w-100 mb-3" formControlName="phone" maxlength="10">
 
     <ng-container *ngIf="mustShowError('phone')">
         <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('phone')">
@@ -8,32 +8,35 @@
         </p>
     </ng-container>
 
-    <label for="email" class="mt-4 mb-3">Email address</label>
-    <input type="email" id="email" class="py-4 px-2  w-100 mb-3" formControlName="email">
-
-    <ng-container *ngIf="mustShowError('email')">
-        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('email')">
-            {{message}}!
-        </p>
+    <ng-container *ngIf="!mustDisable">
+        <label for="email" class="mt-4 mb-3">Email address</label>
+        <input type="email" id="email" class="py-4 px-2  w-100 mb-3" formControlName="email">
+    
+        <ng-container *ngIf="mustShowError('email')">
+            <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('email')">
+                {{message}}!
+            </p>
+        </ng-container>
+    
+        <label for="password" class="mt-4 mb-3">Password</label>
+        <input type="password" id="password" class="py-4 px-2  w-100 mb-3" formControlName="password">
+    
+        <ng-container *ngIf="mustShowError('password')">
+            <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('password')">
+                {{message}}!
+            </p>
+        </ng-container>
+    
+        <label for="password2" class="mt-4 mb-3">Confirm Password</label>
+        <input type="password" id="password2" class="py-4 px-2  w-100 mb-3" formControlName="password2">
+    
+        <ng-container *ngIf="mustShowError('password2')">
+            <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('password2')">
+                {{message}}!
+            </p>
+        </ng-container>
     </ng-container>
+   
 
-    <label for="password" class="mt-4 mb-3">Password</label>
-    <input type="password" id="password" class="py-4 px-2  w-100 mb-3" formControlName="password">
-
-    <ng-container *ngIf="mustShowError('password')">
-        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('password')">
-            {{message}}!
-        </p>
-    </ng-container>
-
-    <label for="password2" class="mt-4 mb-3">Confirm Password</label>
-    <input type="password" id="password2" class="py-4 px-2  w-100 mb-3" formControlName="password2">
-
-    <ng-container *ngIf="mustShowError('password2')">
-        <p class="form-text text-danger fw-bold" *ngFor="let message of getMessageErrors('password2')">
-            {{message}}!
-        </p>
-    </ng-container>
-
-    <textarea id="additional" class="py-4 px-2  w-100 mt-4 mb-3" placeholder="Additional information" formControlName="additional"></textarea>
+    <textarea [class.disable]="mustDisable" [readOnly]="mustDisable"  id="additional" class="py-4 px-2  w-100 mt-4 mb-3" placeholder="Additional information" formControlName="additional"></textarea>
 </form>

@@ -72,6 +72,7 @@ export class ModalComponent implements OnInit {
                             this._customerService.token = token;
                             this._customerService.customer = customer;
                             this._modalCustomerService.closeModal();
+                            window.location.reload();
                         },
                         error: ({ error }: HttpErrorResponse) => {
                             this._modalCustomerService.closeModal();
@@ -114,5 +115,6 @@ export class ModalComponent implements OnInit {
     logOut() {
         this._customerService.logOut();
         this._modalCustomerService.closeModal();
+        window.location.reload();
     }
 }

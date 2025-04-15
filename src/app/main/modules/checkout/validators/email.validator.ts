@@ -12,7 +12,7 @@ export class EmailValidatorService implements AsyncValidator {
     constructor(private _http: HttpClient) { }
 
     validate(control: AbstractControl): Observable<ValidationErrors | null> {
-        const email = (control.value as string).trim().toLocaleLowerCase();
+        const email = (control.value as string)?.trim().toLocaleLowerCase();
 
         return this._http.get(`${this._baseUrl}/customer/${email}`).pipe(
             map(() => {

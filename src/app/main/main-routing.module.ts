@@ -43,17 +43,17 @@ const routes: Routes = [
             },
             {
                 path: 'cart',
-                canActivate: [PaymentGuard],
+                canActivate: [PaymentGuard,CustomerSessionGuard],
                 loadChildren: () => import('../main/modules/cart/cart.module').then(m => m.CartModule)
             },
             {
                 path: 'checkout',
-                canActivate: [PaymentGuard],
+                canActivate: [PaymentGuard, CustomerSessionGuard],
                 loadChildren: () => import('../main/modules/checkout/checkout.module').then(m => m.CheckoutModule)
             },
             {
                 path: 'thank-you',
-                canActivate: [ThankyouGuard],
+                canActivate: [ThankyouGuard,CustomerSessionGuard],
                 loadChildren: () => import('../main/modules/thank-you/thank-you.module').then(m => m.ThankyouModule)
             },
             {

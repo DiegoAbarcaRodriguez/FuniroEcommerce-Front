@@ -45,11 +45,13 @@ export class ThankyouComponent implements OnInit {
                     this.email = email;
                     localStorage.removeItem('session_id');
                     localStorage.removeItem('payload');
+                    localStorage.removeItem('wasFilledWithCustomerData');
                     this._customerService.token = token;
                     this._shoppingCartService.resetFurniturestoBuy();
                 },
                 error: ({ error }: HttpErrorResponse) => {
                     localStorage.removeItem('session_id');
+                    localStorage.removeItem('wasFilledWithCustomerData');
                     this._router.navigateByUrl('/checkout');
                     this._modalService.openModal({ status: 'error', message: error.message });
                 }

@@ -5,13 +5,13 @@
         <div class="col-12 col-md-6">
             <h2 class="fw-bold mt-4 mb-2">Billing details</h2>
 
-            <p *ngIf="!customer" class="text-ligth-gray mb-4">Do you have an account already?
+            <p *ngIf="!isThereCustomerLoggedIn" class="text-ligth-gray mb-4">Do you have an account already?
                 <span class="ms-1 fw-bold text-danger pointer" (click)="openLoginModal()">Login</span>
             </p>
 
-            <div *ngIf="customer" class="d-flex align-items-center my-2 gap-2 fw-bold">
+            <div *ngIf="isThereCustomerLoggedIn" class="d-flex align-items-center my-2 gap-2 fw-bold">
                 <label for="yes" class="text-danger">Fill with your data account</label>
-                <input type="checkbox" name="yes">
+                <input type="checkbox" name="yes" [formControl]="formCheckControl">
             </div>
 
             <checkout-component-form-names></checkout-component-form-names>

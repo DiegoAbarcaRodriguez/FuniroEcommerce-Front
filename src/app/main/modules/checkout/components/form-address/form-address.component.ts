@@ -25,6 +25,7 @@ import { FormsService } from '../../services/forms.service';
 export class FormAddressComponent implements OnInit {
 
     mustDisableZipCodeInput: boolean = true;
+    mustDisable: boolean = false;
 
     form = this._fb.group({
         zip_code: ['', [Validators.required, Validators.minLength(5), Validators.min(0), this._validationService.validateMaxExtensionZipCodeInput]],
@@ -45,6 +46,7 @@ export class FormAddressComponent implements OnInit {
         this.onChangeSelect();
         this.onChangeZipCode();
         this._formsService.formAddress = this.form;
+        this._formsService.mustDisableInputs.subscribe(value => this.mustDisable = value);
     }
 
     private onChangeSelect() {

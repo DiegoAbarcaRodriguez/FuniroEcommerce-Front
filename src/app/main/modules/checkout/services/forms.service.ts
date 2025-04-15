@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class FormsService {
@@ -7,6 +8,16 @@ export class FormsService {
     private _formAddress?: FormGroup;
     private _formContact?: FormGroup;
     private _formNames?: FormGroup;
+
+    private _mustDisableInputs: Subject<boolean> = new Subject();
+
+    set mustDisableInputs(value: boolean) {
+        this._mustDisableInputs.next(value);
+    }
+
+    get mustDisableInputs(): Observable<boolean> {
+        return this._mustDisableInputs.asObservable();
+    }
 
     set formAddress(form: FormGroup) {
         this._formAddress = form;

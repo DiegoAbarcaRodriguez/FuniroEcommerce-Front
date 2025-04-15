@@ -5,10 +5,24 @@ import { FormsService } from '../../services/forms.service';
 
 @Component({
     selector: 'checkout-component-form-names',
-    templateUrl: 'form-names.component.html'
+    templateUrl: 'form-names.component.html',
+    styles: [
+        ` .disable {
+            cursor:not-allowed;
+        }
+
+        .disable {
+            background-color:#E8F0FE;
+            border: gray solid 1px;
+        }
+        
+        `
+    ]
 })
 
 export class FormNamesComponent implements OnInit {
+
+    mustDisable: boolean = false;
 
 
     form: FormGroup = this._fb.group({
@@ -25,6 +39,7 @@ export class FormNamesComponent implements OnInit {
 
     ngOnInit() {
         this._formsService.formNames = this.form;
+        this._formsService.mustDisableInputs.subscribe((value) => this.mustDisable = value);
     }
 
     getMessageErrors(fieldName: string): string[] {

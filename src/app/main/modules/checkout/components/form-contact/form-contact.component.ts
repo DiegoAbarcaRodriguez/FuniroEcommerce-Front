@@ -6,10 +6,23 @@ import { FormsService } from '../../services/forms.service';
 
 @Component({
     selector: 'checkout-component-form-contact',
-    templateUrl: 'form-contact.component.html'
+    templateUrl: 'form-contact.component.html',
+    styles: [`
+         .disable {
+                cursor:not-allowed;
+            }
+
+            .disable {
+                background-color:#E8F0FE;
+                border: gray solid 1px;
+            }
+        
+        `]
 })
 
 export class FormContactComponent implements OnInit {
+
+    mustDisable: boolean = false;
 
     form = this._fb.group({
         phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern(this._validationService.telefonoRegx)]],
@@ -32,6 +45,26 @@ export class FormContactComponent implements OnInit {
 
     ngOnInit() {
         this._formsService.formContact = this.form;
+        this._formsService.mustDisableInputs.subscribe(value => {
+            this.mustDisable = value;
+            if (value) {
+                this.form.controls['email'].clearValidators();
+                this.form.controls['email'].updateValueAndValidity();
+                this.form.controls['password'].clearValidators();
+                this.form.controls['password'].updateValueAndValidity();
+                this.form.controls['password2'].clearValidators();
+                this.form.controls['password2'].updateValueAndValidity();
+
+            } else {
+                this.form.controls['email'].setValidators([Validators.required, Validators.email]);
+                this.form.controls['email'].addAsyncValidators(this._emailValidatorService as any);
+                this.form.controls['email'].updateValueAndValidity();
+                this.form.controls['password'].setValidators([Validators.required, Validators.minLength(6)]);
+                this.form.controls['password'].updateValueAndValidity();
+                this.form.controls['password2'].setValidators([Validators.required, Validators.minLength(6)]);
+                this.form.controls['password2'].updateValueAndValidity();
+            }
+        });
     }
 
     getMessageErrors(fieldName: string): string[] {
