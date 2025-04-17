@@ -3,17 +3,30 @@ import { HttpClient } from '@angular/common/http';
 
 import { Carrousel } from '../interfaces/carrousel.interface';
 import { Furniture } from 'src/app/shared/interfaces';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, Subject } from 'rxjs';
 import { RespondApiGetFurnitures, RespondApiGetFurnituresByQuery, RespondApiGetOneFurniture } from 'src/app/dashboard/modules/furnitures/interfaces/furniture-api.interface';
 import { Environment } from 'src/environments/environment';
+import { CustomerService } from './customer.service';
 
 @Injectable({ providedIn: 'root' })
 export class FurnitureService {
 
 
     private _url = `${Environment.url}/furniture`;
+    private _mustReloadFavoriteFunirtures: Subject<boolean> = new Subject();
 
-    constructor(private _http: HttpClient) { }
+    set mustReloadFavoriteFurniture(value: boolean) {
+        this._mustReloadFavoriteFunirtures.next(value);
+    }
+
+    get mustReloadFavoriteFurniture(): Observable<boolean> {
+        return this._mustReloadFavoriteFunirtures.asObservable();
+    }
+
+    constructor(
+        private _http: HttpClient,
+        private _customerService: CustomerService
+    ) { }
 
     getFurnitures(page: number = 1, limit: number = 5, sortBy = ''): Observable<RespondApiGetFurnitures> {
         return this._http.get<RespondApiGetFurnitures>(`${this._url}/?page=${page}&limit=${limit}&sortBy=${sortBy}`)
@@ -49,6 +62,16 @@ export class FurnitureService {
         name = isNaN(+name) ? name.toLocaleLowerCase().trimStart().trimEnd() : name;
         return this._http.get<RespondApiGetOneFurniture>(`${this._url}/${name}`);
 
+    }
+
+
+    getFavoriteFurnitures(): Observable<{ furnitures: Furniture[] }> {
+        return this._http.get<{ furnitures: Furniture[] }>(`${this._url}/favorites`, { headers: { 'Authorization': `Bearer ${this._customerService.token}` } })
+            .pipe(catchError(() => []));
+    }
+
+    markFurnitureAsFavorite(furniture_id: string) {
+        return this._http.post(`${this._url}/mark-favorite`, { furniture_id }, { headers: { 'Authorization': `Bearer ${this._customerService.token}` } },)
     }
 
     getCarrouselElements(): Carrousel[] {

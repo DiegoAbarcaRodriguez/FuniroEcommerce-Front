@@ -2,6 +2,9 @@ import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/
 import { Furniture } from 'src/app/shared/interfaces';
 import { ComparisonService } from '../services/comparison.service';
 import { ShoppingCarService } from '../services/shopping-car.service';
+import { FurnitureService } from '../services/furniture.service';
+import { FavoritesService } from '../services/favorites.service';
+import { SnackbarService } from '../services/snackbar.service';
 
 @Directive({ selector: '[select-furniture]' })
 export class SelectFunitureDirective {
@@ -16,7 +19,10 @@ export class SelectFunitureDirective {
         elementHtml: ElementRef<HTMLElement>,
         private _renderer2: Renderer2,
         private _comparisonService: ComparisonService,
-        private _shoppingCartService: ShoppingCarService
+        private _shoppingCartService: ShoppingCarService,
+        private _furnitureService: FurnitureService,
+        private _favoritesService: FavoritesService,
+        private _snackBarService: SnackbarService
     ) {
         this._elementHtml = elementHtml;
     }
@@ -24,6 +30,9 @@ export class SelectFunitureDirective {
 
     @HostListener('mouseover', ['$event'])
     showOptionsBackground(event: any) {
+
+        let furniture_id: string = this._elementHtml?.nativeElement.getAttribute('data-id')?.toString() || '';
+
 
         if (!this._elementHtml) {
             return;
@@ -63,7 +72,7 @@ export class SelectFunitureDirective {
             this._renderer2.addClass(flex, 'text-white');
             flex.innerHTML = '<span class="text-white d-flex compare"><img src="../../../../assets/icons/compare.svg" class="me-1 text-white compare">Compare </span>';
             flex.innerHTML += '<span class="text-white d-flex view"><img src="../../../../assets/icons/eye.svg" class="me-1 text-white view"> View </span>';
-            flex.innerHTML += '<span class="text-white d-flex"><img src="../../../../assets/icons/heart-white.svg" class="me-1 text-white"> Like </span>';
+            flex.innerHTML += '<span class="text-white d-flex like"><img src="../../../../assets/icons/heart-white.svg" class="me-1 text-white"> Like </span>';
 
             this._renderer2.setAttribute(div, 'data-index', index);
 
@@ -79,14 +88,44 @@ export class SelectFunitureDirective {
                 if (e.target.className.includes('view')) {
                     window.location.href = '/product/' + name;
                 }
-            });
 
-            this._renderer2.listen(flex, 'click', (e) => {
                 if (e.target.className.includes('compare')) {
                     this._comparisonService.furnituresToCompare = this.furniture!;
                     window.location.href = '/comparison'
                 }
+
+
+                if (e.target.className.includes('like')) {
+                    this._furnitureService.markFurnitureAsFavorite(furniture_id)
+                        .subscribe({
+                            next: () => {
+                                if (this._favoritesService.mustSHowFavoritesListComponetValue) {
+                                    this._furnitureService.mustReloadFavoriteFurniture = true;
+                                    return;
+                                }
+                                this._favoritesService.mustShowFavoritesListComponent = true;
+                                this._favoritesService.mustShowFavoritesListComponentValue = true;
+                            },
+                            error: ({ error }) => {
+                                if (error.status !== 500) {
+                                    this._snackBarService.message = 'Log in to add it to favorites list!';
+
+                                } else {
+                                    this._snackBarService.message = error.message;
+
+                                }
+
+                                this._snackBarService.mustShowSnackBar = true;
+
+
+                            }
+                        });
+
+                }
+
+
             });
+
         }
 
     }

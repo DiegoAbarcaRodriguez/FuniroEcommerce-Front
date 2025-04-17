@@ -1,4 +1,4 @@
-<div class="bg-white rounded shadow">
+<div class="bg-white rounded shadow" [class.h-custom]="furnitures.length>=2">
 
 
     <div class="d-flex justify-content-end me-2 mt-2">
@@ -9,21 +9,36 @@
 
 
 
-    <ul class="list-group list-group-flush border-top">
-        <li class="d-flex justify-content-around align-items-center gap-3 list-group-item list-group-item-action">
-            <img src="" alt="" class="rounded">
-            <div class="">
-                <p class="text-sencondary fw-bold mb-1">Nombre</p>
-                <div class="d-flex align-items-center justify-content-center gap-2">
-                    <span>Price</span>
-                    <span class="text-decoration-line-through">Discount</span>
+    <ul class="list-group list-group-flush border-top" *ngIf="furnitures.length>0">
+        <li *ngFor="let furniture of furnitures"class="d-flex flex-column justify-content-around align-items-center gap-3 list-group-item list-group-item-action">
+
+            <div class="d-flex gap-2 ">
+
+                <img [src]="url_images+'/'+furniture.images[0]" alt="Image" class="rounded">
+
+                <div class="d-flex flex-column">
+                    <p class="text-sencondary fw-bold mb-1">{{furniture.name | titlecase }}</p>
+
+                    <div class="d-flex  align-items-center gap-2">
+                        <span class="text-decoration-line-through">{{furniture.price | currency:'USD':'symbol-narrow':'1.2-2' }}</span>
+                        <span>{{(furniture.price - furniture.discount! || 0) | currency:'USD':'symbol-narrow':'1.2-2' }}</span>
+                        
+                    </div>
+    
+                    <div class="d-flex  justify-content-center gap-2">
+                        <button class="btn btn-secondary text-primary fw-bold px-2" (click)="addFurnitureToCart(furniture)"><i class="me-1 fa-solid fa-cart-shopping pointer"></i>Add to Cart</button>
+                        <button class="btn btn-primary text-secondary fw-bold px-2"  (click)="removeFurniture(furniture.id)"> <i class="me-1 fa-solid fa-xmark pointer"></i> Remove  </button>
+                     
+                    </div>
+    
                 </div>
 
+                
             </div>
-            <div class="d-flex flex-column align-items-center gap-2">
-                <i class="fa-solid fa-xmark pointer"></i>
-                <i class="fa-solid fa-cart-shopping pointer"></i>
-            </div>
+           
+
         </li>
     </ul>
+
+    <p class="text-center text-ligth-gray" *ngIf="furnitures.length===0">No favorite furnitures yet</p>
 </div>
