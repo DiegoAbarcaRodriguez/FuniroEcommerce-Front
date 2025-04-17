@@ -5,6 +5,7 @@ import { CustomerService } from '../../services/customer.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { ValidationService } from 'src/app/shared/services/validation.service';
+import { ShoppingCarService } from '../../services/shopping-car.service';
 
 @Component({
     selector: 'main-component-modal',
@@ -28,6 +29,7 @@ export class ModalComponent implements OnInit {
         private _customerService: CustomerService,
         private _modalService: ModalService,
         private _validationService: ValidationService,
+        private _shoppingCartService: ShoppingCarService,
         private _formBuilder: FormBuilder
     ) { }
 
@@ -72,6 +74,7 @@ export class ModalComponent implements OnInit {
                             this._customerService.token = token;
                             this._customerService.customer = customer;
                             this._modalCustomerService.closeModal();
+                            this._shoppingCartService.resetFurniturestoBuy();
                             window.location.reload();
                         },
                         error: ({ error }: HttpErrorResponse) => {
@@ -115,6 +118,7 @@ export class ModalComponent implements OnInit {
     logOut() {
         this._customerService.logOut();
         this._modalCustomerService.closeModal();
+        this._shoppingCartService.resetFurniturestoBuy();
         window.location.reload();
     }
 }
