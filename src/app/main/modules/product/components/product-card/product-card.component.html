@@ -14,14 +14,12 @@
                 <div class="d-flex">
                     <div class="d-flex align-items-center gap-3">
                         <div class="">
-                            <img src="../../../../assets/icons/star.svg" alt="start">
-                            <img src="../../../../assets/icons/star.svg" alt="start">
-                            <img src="../../../../assets/icons/star.svg" alt="start">
-                            <img src="../../../../assets/icons/star.svg" alt="start">
-                            <img src="../../../../assets/icons/star.svg" alt="start">
+                            <img src="../../../../assets/icons/star.svg" alt="start" *ngFor="let start of stars">
+                            <img src="../../../../assets/icons/half-star.svg" alt="start" *ngIf="mustShowHalfStar">
+                            
                         </div>
                         <span class="display-6 bar">|</span>
-                        <span class="text-gray">5 Customer Review</span>
+                        <span class="text-gray">{{total_furnitures}} Customer Review</span>
                     </div>
                 </div>
 

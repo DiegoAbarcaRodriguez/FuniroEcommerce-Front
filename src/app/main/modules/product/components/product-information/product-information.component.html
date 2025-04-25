@@ -5,7 +5,7 @@
         [ngClass]="{'text-black fw-bold':selectedOption==='additional information'}"
         (click)="navigateToOption('additional information')">Additional Information</a>
     <a class="text-decoration-none pointer text-gray" [ngClass]="{'text-black fw-bold':selectedOption==='reviews'}"
-        (click)="navigateToOption('reviews')">Reviews [{{reviews.length}}]</a>
+        (click)="navigateToOption('reviews')">Reviews [{{totalReviews}}]</a>
 </nav>
 
 <div class="container-lg" *ngIf="selectedOption === 'description'">
@@ -106,23 +106,44 @@
 <div class="container-md my-5" *ngIf="selectedOption==='reviews'">
     <div class="row">
 
-        <div class="col-12" *ngFor="let review of reviews">
+        <div class="d-flex align-items-center justify-content-center" *ngIf="reviews.length===0">
+            <div class="alert alert-primary text-primary fw-bold">
+                There are no reviews for this furniture yet!
+            </div>
+        </div>
+
+        <div class="col-12 card border p-4 mb-4" *ngFor="let review of reviews">
             <div class="d-flex align-items-center justify-content-between mb-2">
-                <span class="fw-bold text-gray">{{review.customer.first_name+' '+ review.customer.last_name}}</span>
+                <div class="d-flex flex-column gap-1">
+                    <span class="fw-bold text-gray">{{review.customer.first_name+' '+review.customer.last_name}}</span>
+                    <span class="text-gray">{{review.created_at |date:'short'}}</span>
+                </div>
+                
                 <div class="d-flex align-items-center justify-content-center gap-1">
-                    <img src="../../../../assets/icons/star.svg" alt="Star" *ngFor="let start of stars">
+                    <img src="../../../../assets/icons/star.svg" alt="Star" *ngFor="let star of review.stars">
                 </div>
 
             </div>
+
+            <h2 class="fw-bold fs-6 text-gray">{{review.title}}</h2>
+
             <p class="text-gray">
                 {{review.comment}}
             </p>
 
-            <div class="d-flex flex-wrap gap-3">
-                <img width="250px" height="250px" src="../../../../assets/products/Sofa.png" alt="Product">
+            
+        </div>
+        
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary text-secondary fw-bold px-4 py-2" (click)="openWriteReviewModal() ">&plus; Write a review</button>
+        </div>
 
-            </div>
+        <div class="d-flex justify-content-center">
+            <shared-component-pagination [pagesNumber]="pageNumber" (changedPage)="onChangePageReviews($event)"></shared-component-pagination>
         </div>
 
     </div>
 </div>
+
+
+<product-component-modal *ngIf="mustShowModal" (onEmitReview)="addReview($event)"></product-component-modal>

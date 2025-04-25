@@ -29,6 +29,9 @@ export class ValidationService {
                 case 'min':
                     errors.push(`The ${fieldName} must be greater than ${errorObject['min']['min']}`);
                     break;
+                case 'max':
+                    errors.push(`The ${fieldName} must be minor than ${errorObject['min']['min']}`);
+                    break;
                 case 'notEqual':
                     errors.push(`The passwords are differents`);
                     break;

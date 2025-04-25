@@ -7,8 +7,10 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductInformationComponent } from './components/product-information/product-information.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { SharedMainModule } from '../../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ModalComponent } from './components/modal/modal.component';
+import { SelectStarDirective } from './directives/select-star.directive';
 
 
 
@@ -19,15 +21,19 @@ import { SharedModule } from 'src/app/shared/shared.module';
         SharedMainModule,
         ProductRoutingModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule
     ],
     exports: [],
     declarations: [
         BreadcrumbComponent,
         ProductCardComponent,
         ProductInformationComponent,
+        ModalComponent,
 
-        ProductComponent
+        ProductComponent,
+
+        SelectStarDirective
     ],
     providers: [],
 })
