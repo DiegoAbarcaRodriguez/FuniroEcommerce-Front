@@ -18,7 +18,13 @@
 
             <div class="d-flex gap-5 me-lg-5 align-items-center">
                 <img src="../../../../assets/icons/user.svg" alt="user" (click)="openModalUser()">
-                <img src="../../../../assets/icons/search.svg" alt="search">
+                
+                <div class="position-relative">
+                    <img  src="../../../../assets/icons/box.svg" width="28px" height="28px" alt="box" (click)="onDeployPurchaseList()">
+                    <span class="position-absolute top-0 start-100 translate-middle rounded-circle bg-danger text-white text-center">{{totalPurchasedFurnitures}}</span>
+                    <main-component-purchase-list *ngIf="mustShowPurchaseList"></main-component-purchase-list>
+                </div>
+               
                 <div class="position-relative">
                     <img src="../../../../assets/icons/heart.svg" alt="heart" (click)="onDeployFavoritesList()">
                     <main-component-favorites-list *ngIf="mustShowFavoriteList"></main-component-favorites-list>

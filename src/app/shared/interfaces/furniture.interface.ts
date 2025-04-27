@@ -27,8 +27,9 @@ export interface Furniture {
     origin: string;
     modify_at: Date;
     images: string[];
-    user: User;
+    user?: User;
     discount_percentage?: number;
+    quatity?: number;
 }
 
 

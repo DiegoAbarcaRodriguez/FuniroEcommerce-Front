@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular
 import { ShoppingCarService } from './../../services/shopping-car.service';
 import { FavoritesService } from '../../services/favorites.service';
 import { ModalCustomerService } from '../../services/modal-customer.service';
+import { PurchaseListService } from '../../services/purchase-list.service';
 
 @Component({
     selector: 'main-component-navbar',
@@ -29,6 +30,12 @@ import { ModalCustomerService } from '../../services/modal-customer.service';
                 left:0;
                 align-text:center;
             }
+
+            .translate-middle{
+                width:15px;
+                height:15px;
+                font-size:12px;
+            }
            
         `
     ]
@@ -41,15 +48,29 @@ export class NavbarComponent implements OnInit {
 
     mustShowHiddenMenu: boolean = false;
     mustShowFavoriteList: boolean = false;
+    mustShowPurchaseList: boolean = false;
+    totalPurchasedFurnitures?: number;
 
     constructor(
         private _shoppingCarService: ShoppingCarService,
         private _favoritesService: FavoritesService,
-        private _modalCustomerService: ModalCustomerService
+        private _modalCustomerService: ModalCustomerService,
+        private _purchaseListService: PurchaseListService
     ) { }
 
     ngOnInit() {
         this._favoritesService.mustShowFavoritesListComponent.subscribe(mustShow => this.mustShowFavoriteList = mustShow);
+        this._purchaseListService.mustShowPurchaseList.subscribe(mustShow => this.mustShowPurchaseList = mustShow);
+        this.getTotalPurchasedFurnitures();
+    }
+
+    private getTotalPurchasedFurnitures() {
+        this._purchaseListService.getPurchasedFurnitures().subscribe(
+            {
+                next: ({ furnitures }) => {
+                    this.totalPurchasedFurnitures = furnitures[0].map(furniture => ({ ...furniture.furniture, quantity: furniture.quantity })).length;
+                }
+            });
     }
 
     openModalUser() {
@@ -86,6 +107,12 @@ export class NavbarComponent implements OnInit {
     }
 
     onDeployFavoritesList() {
+        this._purchaseListService.mustShowPurchaseList = false;
         this._favoritesService.mustShowFavoritesListComponent = true;
+    }
+
+    onDeployPurchaseList() {
+        this._favoritesService.mustShowFavoritesListComponent = false;
+        this._purchaseListService.mustShowPurchaseList = true;
     }
 }

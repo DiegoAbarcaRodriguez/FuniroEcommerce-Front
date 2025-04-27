@@ -19,7 +19,7 @@
                 <td>{{furniture.price | currency:'USD':'symbol'}}</td>
                 <td>{{furniture.stock}}</td>
                 <td>{{furniture.modify_at | date:'short'}}</td>
-                <td>{{furniture.user.username}}</td>
+                <td>{{furniture.user!.username}}</td>
                 <td><img class="bg-secondary img-product" [src]="baseUrlImage+'/'+furniture.images[0]" alt="Image"></td>
 
                 <td>

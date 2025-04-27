@@ -14,6 +14,7 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { FavoritesListComponent } from './components/favorites-list/favorites-list.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PurchaseListComponent } from './components/purchase-list/purchase-list.component';
 
 @NgModule({
     imports: [
@@ -47,6 +48,7 @@ import { ReactiveFormsModule } from '@angular/forms';
         SnackbarComponent,
         FavoritesListComponent,
         ModalComponent,
+        PurchaseListComponent,
 
         SelectFunitureDirective
 
