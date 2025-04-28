@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
     mustShowHiddenMenu: boolean = false;
     mustShowFavoriteList: boolean = false;
     mustShowPurchaseList: boolean = false;
-    totalPurchasedFurnitures?: number;
+    totalOrders?: number;
 
     constructor(
         private _shoppingCarService: ShoppingCarService,
@@ -61,14 +61,14 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         this._favoritesService.mustShowFavoritesListComponent.subscribe(mustShow => this.mustShowFavoriteList = mustShow);
         this._purchaseListService.mustShowPurchaseList.subscribe(mustShow => this.mustShowPurchaseList = mustShow);
-        this.getTotalPurchasedFurnitures();
+        this.getTotalOrders();
     }
 
-    private getTotalPurchasedFurnitures() {
-        this._purchaseListService.getPurchasedFurnitures().subscribe(
+    private getTotalOrders() {
+        this._purchaseListService.getOrders().subscribe(
             {
-                next: ({ furnitures }) => {
-                    this.totalPurchasedFurnitures = furnitures[0].map(furniture => ({ ...furniture.furniture, quantity: furniture.quantity })).length;
+                next: ({ orders }) => {
+                    this.totalOrders = orders.length;
                 }
             });
     }

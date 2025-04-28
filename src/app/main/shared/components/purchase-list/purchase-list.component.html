@@ -7,6 +7,23 @@
 
     <p class="text-ligth-gray text-center border-bottom pb-2">Recently purchased furniture items</p>
 
+
+    <div class="d-flex justify-content-center align-items-center gap-2" *ngIf="orders.length>0">
+
+        <select class="form-select form-select-sm  ms-3 mb-3" [formControl]="select">
+            <option selected disabled>Search your order</option>
+            <option [value]="order.id" *ngFor="let order of orders">Order #{{ order.id.substring(0,8)}} - {{
+                order.created_at |date:'short'}} </option>
+        </select>
+
+        <button class="btn border btn-view-status fw-bold" *ngIf="furnitures.length>0">
+            <i class="fa-solid fa-eye"></i>
+        </button>
+    </div>
+
+
+
+
     <div class="d-flex align-items-center justify-content-center pb-4 pt-2 gap-2" *ngFor="let furniture of furnitures">
         <img [src]="url_image+'/'+furniture.images[0]" alt="Img" class="rounded">
 
@@ -15,14 +32,16 @@
 
             <div class="d-flex align-items-center gap-2 mb-3 mt-0 custom-fs fw-bold">
                 <span class="text-gray ">Qty: {{furniture.quatity}}</span>
-                <span class="text-decoration-line-through">{{furniture.price | currency:'USD':'symbol-narrow':'1.2-2'}}</span>
+                <span class="text-decoration-line-through">{{furniture.price |
+                    currency:'USD':'symbol-narrow':'1.2-2'}}</span>
                 <span>{{(furniture.price - furniture.discount! || 0) | currency:'USD':'symbol-narrow':'1.2-2' }}</span>
             </div>
 
-            <div class="d-flex align-items-center gap-4">
+            <div class="d-flex justify-content-start">
                 <div class="badge rounded-pill bg-success text-white">Delivered</div>
-                <button class="btn border p-2 btn-view-status fw-bold">View Status</button>
             </div>
         </div>
     </div>
+
+    <p class="text-center text-ligth-gray" *ngIf="orders.length===0">No orders placed yet</p>
 </div>
