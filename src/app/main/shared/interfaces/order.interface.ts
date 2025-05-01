@@ -7,7 +7,7 @@ export interface Order {
     id: string;
     total: number;
     status: string;
-    customer_fk: string;
+    customer_fk?: string;
     user_fk?: string;
     created_at: Date;
 }

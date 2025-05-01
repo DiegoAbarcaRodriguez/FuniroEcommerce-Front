@@ -43,7 +43,7 @@ const routes: Routes = [
             },
             {
                 path: 'cart',
-                canActivate: [PaymentGuard,CustomerSessionGuard],
+                canActivate: [PaymentGuard, CustomerSessionGuard],
                 loadChildren: () => import('../main/modules/cart/cart.module').then(m => m.CartModule)
             },
             {
@@ -53,12 +53,17 @@ const routes: Routes = [
             },
             {
                 path: 'thank-you',
-                canActivate: [ThankyouGuard,CustomerSessionGuard],
+                canActivate: [ThankyouGuard, CustomerSessionGuard],
                 loadChildren: () => import('../main/modules/thank-you/thank-you.module').then(m => m.ThankyouModule)
             },
             {
                 path: 'recover-password',
                 loadChildren: () => import('../main/modules/recover-password/recover-password.module').then(m => m.RecoverModule)
+            },
+            {
+                path: 'order',
+                loadChildren: () => import('../main/modules/executed-order/executed-order.module').then(m => m.ExecutedOrderModule),
+                canActivate:[CustomerSessionGuard]
             },
             {
                 path: '**',

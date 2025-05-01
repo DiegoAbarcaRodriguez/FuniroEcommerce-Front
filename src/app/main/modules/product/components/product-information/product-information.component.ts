@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { ReviewService } from 'src/app/main/shared/services/review.service';
 import { Furniture } from 'src/app/shared/interfaces';
 import { Environment } from 'src/environments/environment';
-import { ModalService } from '../../services/modal.service';
 import { Review } from 'src/app/main/shared/interfaces/review.interface';
 
 @Component({
@@ -32,7 +31,6 @@ export class ProductInformationComponent implements OnChanges {
     @Input()
     furniture?: Furniture;
 
-    mustShowModal: boolean = false;
     pageNumber: number = 0;
     currentPage: number = 1;
     limit: number = 5;
@@ -45,13 +43,7 @@ export class ProductInformationComponent implements OnChanges {
 
     selectedOption: 'description' | 'additional information' | 'reviews' = 'description';
 
-    constructor(
-        private _reviewService: ReviewService,
-        private _modalService: ModalService
-    ) {
-        this._modalService.mustShowReviewModal.subscribe(value => this.mustShowModal = value);
-
-    }
+    constructor(private _reviewService: ReviewService) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         const { furniture } = changes;
@@ -103,14 +95,6 @@ export class ProductInformationComponent implements OnChanges {
         this.selectedOption = option;
     }
 
-    openWriteReviewModal() {
-        this._modalService.openModal();
-    }
-
-    addReview(review: Review) {
-        review.stars = this.generateStarsArray(review.grade);
-        this.reviews.unshift(review);
-    }
 
     onChangePageReviews(page: number) {
         this.currentPage = page;

@@ -1,3 +1,4 @@
+import { Review } from "src/app/main/shared/interfaces/review.interface";
 import { User } from "src/app/shared/interfaces";
 
 export interface Furniture {
@@ -17,7 +18,7 @@ export interface Furniture {
     upholstery_color: null | string;
     height: number;
     width: number;
-    depth: null;
+    depth?: number;
     weight: number;
     warranty_domestic: number;
     warranty_general: number;
@@ -30,6 +31,8 @@ export interface Furniture {
     user?: User;
     discount_percentage?: number;
     quatity?: number;
+    review?: Review;
+    stars?: number[];
 }
 
 

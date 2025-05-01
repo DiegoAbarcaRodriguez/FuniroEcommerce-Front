@@ -46,7 +46,8 @@ export class ModalService {
 
     constructor() { }
 
-    openQuestionModal(content: User | Furniture) {
+    openQuestionModal(content?: User | Furniture) {
+        window.scrollTo(0, 0);
         this._mustShowQuestionModal.next(true);
         this._contentQuestionModal = content;
         document.querySelector('body')?.classList.add('no-scroll');

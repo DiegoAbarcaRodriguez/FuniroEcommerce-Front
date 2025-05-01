@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { FurnitureService } from 'src/app/main/shared/services/furniture.service';
 import { Furniture } from 'src/app/shared/interfaces';
-import { ModalService } from '../services/modal.service';
 
 @Component({
     templateUrl: 'product.component.html'

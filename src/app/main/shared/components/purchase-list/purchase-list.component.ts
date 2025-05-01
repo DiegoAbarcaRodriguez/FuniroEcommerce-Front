@@ -4,7 +4,9 @@ import { Furniture } from 'src/app/shared/interfaces';
 import { Environment } from 'src/environments/environment';
 import { Order } from '../../interfaces/order.interface';
 import { FormControl } from '@angular/forms';
-import { filter, switchMap } from 'rxjs';
+import { filter,  switchMap } from 'rxjs';
+import { ReviewService } from '../../services/review.service';
+
 
 @Component({
     selector: 'main-component-purchase-list',
@@ -18,10 +20,13 @@ export class PurchaseListComponent implements OnInit {
     url_image: string = Environment.imagesUrl;
 
     orders: Order[] = [];
+    indexSelectedOrder?: number;
 
     select: FormControl = new FormControl();
 
-    constructor(private _purchaseListService: PurchaseListService) { }
+    constructor(
+        private _purchaseListService: PurchaseListService,
+    ) { }
 
     ngOnInit() {
         this.getOrders();
@@ -50,7 +55,11 @@ export class PurchaseListComponent implements OnInit {
     private onChangeSelect() {
         this.select.valueChanges.pipe(
             filter(value => value !== ''),
-            switchMap((value) => this._purchaseListService.getPurchasedFurnitures(value))
+            switchMap((value) => {
+                const values = (value as string).split(',');
+                this.indexSelectedOrder = Number(values[1]);
+                return this._purchaseListService.getPurchasedFurnitures(values[0]);
+            })
         ).subscribe({
             next: ({ furnitures }) => this.furnitures = furnitures,
             error: () => this.furnitures = []
@@ -61,4 +70,6 @@ export class PurchaseListComponent implements OnInit {
     closePurchaseList() {
         this._purchaseListService.mustShowPurchaseList = false;
     }
+
+    
 }

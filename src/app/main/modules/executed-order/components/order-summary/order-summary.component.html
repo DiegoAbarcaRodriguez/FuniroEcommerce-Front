@@ -1,0 +1,23 @@
+<h2 class="text-primary fs-4">Order Summary</h2>
+
+<div class="mt-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <span>Subtotal</span>
+        <span>{{order?.total | currency:'USD':'symbol-narrow':'1.2-2'}}</span>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <span>Shipping</span>
+        <span>Free</span>
+    </div>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <span>Tax</span>
+        <span>$0.00</span>
+    </div>
+
+    <div class="border-top border-2">
+        <div class="d-flex justify-content-between align-items-center mt-2">
+            <span class="fw-bold">Total</span>
+            <span class="fw-bold text-primary">{{order?.total | currency:'USD':'symbol-narrow':'1.2-2'}}</span>
+        </div>
+    </div>
+</div>

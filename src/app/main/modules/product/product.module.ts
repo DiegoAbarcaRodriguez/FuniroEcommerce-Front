@@ -9,9 +9,6 @@ import { ProductRoutingModule } from './product-routing.module';
 import { SharedMainModule } from '../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ModalComponent } from './components/modal/modal.component';
-import { SelectStarDirective } from './directives/select-star.directive';
-
 
 
 @NgModule({
@@ -29,11 +26,7 @@ import { SelectStarDirective } from './directives/select-star.directive';
         BreadcrumbComponent,
         ProductCardComponent,
         ProductInformationComponent,
-        ModalComponent,
-
-        ProductComponent,
-
-        SelectStarDirective
+        ProductComponent
     ],
     providers: [],
 })

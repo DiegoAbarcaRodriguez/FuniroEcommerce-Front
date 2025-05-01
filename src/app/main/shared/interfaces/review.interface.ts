@@ -15,7 +15,8 @@ export interface Review {
     grade: number,
     customer: Customer,
     created_at: Date,
-    furniture_fk: string
+    furniture_fk: string,
+    customer_fk?:string,
     stars?: number[]
 
 }

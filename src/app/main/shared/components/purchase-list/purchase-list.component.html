@@ -12,11 +12,11 @@
 
         <select class="form-select form-select-sm  ms-3 mb-3" [formControl]="select">
             <option selected disabled>Search your order</option>
-            <option [value]="order.id" *ngFor="let order of orders">Order #{{ order.id.substring(0,8)}} - {{
+            <option [value]="[order.id,index]" *ngFor="let order of orders;let index = index">Order #{{ order.id.substring(0,8)}} - {{
                 order.created_at |date:'short'}} </option>
         </select>
 
-        <button class="btn border btn-view-status fw-bold" *ngIf="furnitures.length>0">
+        <button class="btn border btn-view-status fw-bold" *ngIf="furnitures.length>0" [routerLink]="'order/'+orders[indexSelectedOrder!].id">
             <i class="fa-solid fa-eye"></i>
         </button>
     </div>

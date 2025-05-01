@@ -1,0 +1,18 @@
+<div class="border-2 border-bottom pb-3">
+    <h2 class="text-primary fs-4">Customer Information</h2>
+
+    <h3 class="mt-3 fs-6 fw-bold">Contact Details</h3>
+    
+    <span class="d-block">{{customer?.first_name}} {{customer?.last_name}}</span>
+    <span class="d-block">{{customer?.email}}</span>
+    <span class="d-block">{{customer?.phone}}</span>
+
+</div>
+
+<div class="mt-4">
+    <h3 class="fs-6 mb-2 fw-bold">Shipping Address</h3>
+
+    <span class="d-block">{{customer?.street}}</span>
+    <span class="d-block">{{customer?.city}}, {{customer?.province}} {{customer?.zip_code}}</span>
+    <span class="d-block">{{customer?.country | titlecase}}</span>
+</div>

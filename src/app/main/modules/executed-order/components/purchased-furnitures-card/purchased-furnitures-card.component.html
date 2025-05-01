@@ -1,0 +1,65 @@
+<h2 class="text-primary fs-4">Purchased Items</h2>
+
+<ng-container *ngFor="let furniture of furnitures">
+    <div class="d-flex align-items-center" >
+        <img [src]="urlImage+'/'+furniture.images[0]" alt="item" class="rounded me-3" width="100" height="100">
+    
+        <div class="d-flex justify-content-between align-items-center flex-grow-1">
+    
+            <div class="">
+                <span class="fw-bold fs-5 text-capitalize">{{furniture.name}}</span>
+                <div class="mb-3 mt-2">
+                    <span class="me-2 text-gray">Qty: {{furniture.quatity}}</span>
+                    <span class="badge rounded-pill bg-success text-white"  [ngClass]="{'bg-warning': status ==='confirm', 'bg-primary':status==='on_way','bg-danger':status==='rejected','bg-success':status==='complete'}">{{status}}</span>
+                </div>
+            </div>
+    
+            <div class="text-end">
+                <div class="d-flex align-items-center gap-2 mb-2 mt-0 custom-fs fw-bold">
+                    <span class="text-gray text-decoration-line-through">{{furniture.price |
+                        currency:'USD':'symbol-narrow':'1.2-2' }}</span>
+                    <span class="text-primary">{{(furniture.price - furniture.discount! || 0) |
+                        currency:'USD':'symbol-narrow':'1.2-2' }}</span>
+                </div>
+                <span class=" text-gray">Total: {{(furniture.price - furniture.discount! || 0) |
+                    currency:'USD':'symbol-narrow':'1.2-2' }}</span>
+            </div>
+    
+        </div>
+    </div>
+    
+    <div class="review">
+        <span class="fw-bold text-start mb-2">
+            {{furniture.review?.title}}
+        </span>
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex gap-2">
+                <img src="../../../../assets/icons/star.svg" alt="start" *ngFor="let start of furniture.stars">
+                <span class="ms-2">{{furniture.review?.grade}}</span>
+            </div>
+    
+            <button class="btn btn-primary text-secondary fw-bold px-4 py-2 text-start" *ngIf="!furniture.review" (click)="openReviewModal(furniture.id)">
+                &plus; Write a review
+            </button>
+    
+            <div class="d-flex gap-4" *ngIf="furniture.review">
+                <div class="d-flex align-items-center gap-2" (click)="openReviewModal(furniture.id,furniture.review)">
+                    <i class="text-primary fa-solid fa-pencil pointer"></i>
+                    <span class="text-primary pointer">Edit</span>
+                </div>
+    
+                <div class="d-flex align-items-center gap-2" (click)="deleteReview(furniture.review.id)">
+                    <i class="text-danger fa-solid fa-trash pointer"></i>
+                    <span class="text-danger pointer">Delete</span>
+                </div>
+            </div>
+        </div>
+    
+        <p class="mt-2">
+            {{furniture.review?.comment}}
+        </p>
+    
+    
+    
+    </div>
+</ng-container>

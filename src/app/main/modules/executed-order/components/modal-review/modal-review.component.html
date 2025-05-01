@@ -19,12 +19,18 @@
 
                     <div class="mb-2">
                         <label for="rating" class="mb-1 text-gray">Rating</label>
-                        <div class="d-flex align-items-center gap-1">
+                        <div class="d-flex align-items-center gap-1" *ngIf="!review || (wasClickedStar | async)">
                             <img src="../../../../../../assets/icons/star-disable.svg" alt="Star" id="1" select-star (onEmitIdStar)="setRating($event)">
                             <img src="../../../../../../assets/icons/star-disable.svg" alt="Star" id="2" select-star (onEmitIdStar)="setRating($event)" >
                             <img src="../../../../../../assets/icons/star-disable.svg" alt="Star" id="3" select-star (onEmitIdStar)="setRating($event)">
                             <img src="../../../../../../assets/icons/star-disable.svg" alt="Star" id="4" select-star (onEmitIdStar)="setRating($event)">
                             <img src="../../../../../../assets/icons/star-disable.svg" alt="Star" id="5" select-star (onEmitIdStar)="setRating($event)">
+                        </div>
+                        <div class="d-flex align-items-center gap-1" *ngIf="review && !(wasClickedStar | async)">
+                            <ng-container *ngFor="let star of stars">
+                                <img src="../../../../../../assets/icons/star.svg" alt="Star" (mouseover)="enableRatingStars()">
+                            </ng-container>
+                            
                         </div>
         
                     </div>
