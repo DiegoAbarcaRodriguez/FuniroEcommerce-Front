@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalUsersComponent } from './components/modal-users/modal-user.component';
+import { DashboardTitlesComponent } from './components/dashboard-titles/dashboard-titles.component';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { ModalUsersComponent } from './components/modal-users/modal-user.compone
         SideBarComponent,
         DahsboardLayoutComponent,
         ToolbarComponent,
-        ModalUsersComponent
-    ]
+        ModalUsersComponent,
+        DashboardTitlesComponent
+    ],
+    exports: [DashboardTitlesComponent]
 })
 export class DashboardModule { }

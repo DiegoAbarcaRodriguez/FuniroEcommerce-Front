@@ -8,6 +8,6 @@
     </div>
     <div class="col-3 offset-6 text-end">
         <span class="text-primary d-block fw-bold fs-5">{{order?.total | currency:'USD':'symbol-narrow':'1.2-2' }}</span>
-        <div class="badge rounded-pill bg-success text-white text-capitalize" [ngClass]="{'bg-warning': order?.status ==='confirm', 'bg-primary':order?.status==='on_way','bg-danger':order?.status==='rejected','bg-success':order?.status==='complete'}">{{order?.status}}</div>
+        <div class="badge rounded-pill bg-success text-white text-capitalize" [ngClass]="{'bg-warning': order?.status ==='confirm', 'bg-info':order?.status==='on_way','bg-danger':order?.status==='rejected','bg-success':order?.status==='complete'}">{{order?.status}}</div>
     </div>
 </div>

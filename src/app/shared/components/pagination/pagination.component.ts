@@ -30,6 +30,8 @@ export class PaginationComponent implements OnChanges {
 
     private createIndexArray(currentPageNumber?: number) {
         if (!currentPageNumber) return;
+
+        this.indexArray = [];
         for (let index = 0; index < currentPageNumber; index++) {
             this.indexArray.push(index + 1);
         }

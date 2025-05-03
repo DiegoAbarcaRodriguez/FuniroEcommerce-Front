@@ -1,0 +1,12 @@
+<dashboard-component-titles title="Shippings"></dashboard-component-titles>
+
+<div class="d-flex justify-content-start my-3 align-items-center bg-white rounded box-shadow">
+    <shared-component-searcher class="border ms-3"
+        (onEmit)="page=1; customerName=$event; getOrdersByCustomerName()"></shared-component-searcher>
+    <dashboard-shippings-orders-filterer-component
+        (onEmitStatus)="page=1; status=$event; getOrders()"></dashboard-shippings-orders-filterer-component>
+</div>
+
+<dashboard-shippings-table-component [orders]="orders"></dashboard-shippings-table-component>
+<shared-component-pagination [pagesNumber]="pagesNumber" *ngIf="orders.length >0"
+    (changedPage)="page=$event; getOrders()"></shared-component-pagination>

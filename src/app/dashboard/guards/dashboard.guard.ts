@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { DashboardModule } from '../../dashboard/dashboard.module';
+import { DashboardModule } from '../dashboard.module';
 import {
     ActivatedRouteSnapshot,
     CanActivateFn,

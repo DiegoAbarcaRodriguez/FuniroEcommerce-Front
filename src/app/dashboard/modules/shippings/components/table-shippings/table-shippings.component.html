@@ -1,0 +1,35 @@
+<div class="table-responsive">
+    <table class="table table-white  rounded mb-5 mt-3">
+        <thead>
+            <tr class="table-primary">
+                <th class="text-primary fw-bold text-center">ID</th>
+                <th class="text-primary fw-bold">Ordered by</th>
+                <th class="text-primary fw-bold">Total</th>
+                <th class="text-primary fw-bold">Created at</th>
+                <th class="text-primary fw-bold">Last modification</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{order.id.substring(0,8)}}</td>
+                <td>{{order.customer.first_name}} {{order.customer.last_name}}</td>
+                <td>{{order.total | currency:'USD':'symbol-narrow':'1.2-2' }}</td>
+                <td>{{order.created_at | date:'short'}}</td>
+                <td>{{(order.modify_at | date:'short') || order.created_at | date:'short'}}</td>
+
+
+                <td>
+                    <div class="d-flex gap-2">
+                        <button class="btn border btn-view-status fw-bold"> <i class=" fa-solid fa-eye"></i></button>
+                        <button class="btn  fw-bold text-white"
+                            [ngClass]="{'bg-warning': order?.status ==='confirm', 'bg-info':order?.status==='on_way','bg-danger':order?.status==='rejected','bg-success':order?.status==='complete'}"
+                            (click)="updateShippingStatus(order.id,order.status)">{{order.status}}</button>
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

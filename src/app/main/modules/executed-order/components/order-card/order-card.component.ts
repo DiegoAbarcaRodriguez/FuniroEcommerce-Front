@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Order } from 'src/app/main/shared/interfaces/order.interface';
 
 @Component({
@@ -7,12 +7,16 @@ import { Order } from 'src/app/main/shared/interfaces/order.interface';
 
 })
 
-export class OrderCardComponent implements OnInit {
+export class OrderCardComponent {
 
     @Input()
     order?: Order;
 
     constructor() { }
 
-    ngOnInit() { }
+    changeStatus() { 
+        
+    }
+
+
 }

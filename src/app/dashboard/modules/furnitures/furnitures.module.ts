@@ -11,16 +11,18 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { DimensionFormComponent } from './components/dimension-form/dimension-form.component';
 import { WarrantyFormComponent } from './components/warranty-form/warranty-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DashboardModule } from "../../dashboard.module";
 
 
 
 @NgModule({
     imports: [
-        FurnituresRoutingModule,
-        CommonModule,
-        ReactiveFormsModule,
-        SharedModule
-    ],
+    FurnituresRoutingModule,
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule,
+    DashboardModule
+],
     exports: [],
     declarations: [
         DashboardFurnituresComponent,

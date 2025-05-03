@@ -51,7 +51,7 @@ export class AuthService {
 
     login(body: LoginBody): Observable<RespondSuccessLogin | GenericRespondApi> {
         const username = body.username.trimStart().trimEnd().toLocaleLowerCase();
-        return this._http.post<RespondSuccessLogin>(this._url, { ...body, username, mustValidateAdminStatus: true })
+        return this._http.post<RespondSuccessLogin>(this._url, { ...body, username })
             .pipe(
                 tap(({ token }) => this.saveToken(token)),
                 catchError(({ error }) => of({ ok: error.ok, message: error.message }))
@@ -62,7 +62,7 @@ export class AuthService {
         return this._http.post<RespondCheckLogginStatus>(`${this._url}/check-jwt`, {}, { headers: { 'Authorization': `Bearer ${this._token}` } })
             .pipe(
                 map(({ token, user, ok }) => {
-                    if (!user.is_admin || !ok) return false;
+                    if (!ok) return false;
                     this.saveToken(token);
                     this._user = user;
                     return true;

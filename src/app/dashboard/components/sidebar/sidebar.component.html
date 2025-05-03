@@ -2,13 +2,17 @@
     <h1 class="mx-3  my-4 fs-5 text-primary">Funiro Dashboard</h1>
 
     <ul class="list-group list-group-flush">
-        <li routerLink="users" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center pointer">
+        <li routerLink="users" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center pointer" *ngIf="isAdmin">
             <i class="fa-solid fa-users me-3"></i>
             <span>Users</span>
         </li>
         <li routerLink="furnitures" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center pointer">
             <i class="fa-solid fa-box me-3"></i>
             <span>Furnitures</span>
+        </li>
+        <li routerLink="shippings" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center pointer">
+            <i class="fa-solid fa-truck-fast me-3"></i>
+            <span>Shippings</span>
         </li>
         <li routerLink="incomes" routerLinkActive="active" class="list-group-item list-group-item-action d-flex align-items-center pointer">
             <i class="fa-solid fa-chart-column me-3"></i>

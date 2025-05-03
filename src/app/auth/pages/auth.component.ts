@@ -55,7 +55,7 @@ export class AuthComponent implements OnInit {
                 next: ({ ok, message }) => {
 
                     if (ok) {
-                        this._router.navigateByUrl('dashboard');
+                        this._router.navigateByUrl('dashboard/furnitures');
                         return;
                     }
 

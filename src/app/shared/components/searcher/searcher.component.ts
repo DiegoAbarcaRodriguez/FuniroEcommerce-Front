@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule, Output, EventEmitter, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { debounceTime, Subject, Subscription } from 'rxjs';
+import { debounceTime, Subject, Subscription, tap } from 'rxjs';
 
 @Component({
     selector: 'shared-component-searcher',
@@ -32,8 +32,10 @@ export class SearcherComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.subscription = this.onDebounce
-            .pipe(debounceTime(3000))
-            .subscribe(value => this.onEmit.emit(value));
+            .pipe(
+                debounceTime(3000),
+                tap(() => this.input!.nativeElement.value = '')
+            ).subscribe(value => this.onEmit.emit(value));
 
     }
 
@@ -44,7 +46,9 @@ export class SearcherComponent implements OnInit, OnDestroy {
 
         if (event.key === 'Enter') {
             this.onEmit.emit(value);
+            this.input!.nativeElement.value = ''
         }
         this.onDebounce.next(value!);
+        
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 
 @Component({
@@ -15,10 +16,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class SideBarComponent implements OnInit {
 
+    isAdmin: boolean = false;
 
-    constructor() { }
+    constructor(private _authService: AuthService) { }
 
     ngOnInit() {
-
+        this.isAdmin = this._authService.user?.is_admin || false;
     }
 }

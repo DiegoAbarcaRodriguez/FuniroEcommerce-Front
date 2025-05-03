@@ -7,6 +7,6 @@
 
 <shared-component-pagination (changedPage)="getUsers($event)" [pagesNumber]="pagesNumber"></shared-component-pagination>
 
-<div class="d-flex justify-content-end" *ngIf="mustShowAddButton">
+<div class="d-flex justify-content-end">
     <button class="btn btn-primary text-white fw-bold" (click)="openModalForm()">Add User</button>
 </div>

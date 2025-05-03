@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 export class DashboardUsersComponent implements OnInit, OnDestroy {
 
     users: User[] = [];
-    mustShowAddButton: boolean = false;
     subscription: Subscription = new Subscription();
     pagesNumber: number = 0;
     limit: number = 5;
@@ -30,7 +29,6 @@ export class DashboardUsersComponent implements OnInit, OnDestroy {
         this.getUsers();
         this.onCreateOrUpdateUser();
         this.onDeleteUser();
-        this.mustShowAddButton = this._authService.user!.is_root;
     }
 
     openModalForm() {
