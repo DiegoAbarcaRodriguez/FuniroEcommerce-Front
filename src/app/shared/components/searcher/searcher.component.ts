@@ -1,5 +1,6 @@
-import { Component, OnInit, NgModule, Output, EventEmitter, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { debounceTime, Subject, Subscription, tap } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, ViewChild, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { debounceTime, Subject, Subscription } from 'rxjs';
+import { OrderService } from 'src/app/dashboard/modules/shippings/services/order.service';
 
 @Component({
     selector: 'shared-component-searcher',
@@ -11,7 +12,7 @@ import { debounceTime, Subject, Subscription, tap } from 'rxjs';
     template: `<input class="form-control text-primary" placeholder="Search an item" type="search" (keyup)="onSearch($event)" #input>`
 })
 
-export class SearcherComponent implements OnInit, OnDestroy {
+export class SearcherComponent implements OnInit, OnDestroy, AfterViewInit {
 
     subscription?: Subscription;
     term: string = '';
@@ -24,7 +25,19 @@ export class SearcherComponent implements OnInit, OnDestroy {
     onEmit: EventEmitter<string> = new EventEmitter();
 
 
-    constructor() { }
+    constructor(
+        private _orderService: OrderService
+    ) { }
+
+
+    ngAfterViewInit() {
+        this._orderService.mustClearSearchInput.subscribe(value => {
+            if (value) {
+                this.input!.nativeElement.value = '';
+            }
+        })
+    }
+
 
     ngOnDestroy(): void {
         this.subscription?.unsubscribe();
@@ -32,10 +45,7 @@ export class SearcherComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.subscription = this.onDebounce
-            .pipe(
-                debounceTime(3000),
-                tap(() => this.input!.nativeElement.value = '')
-            ).subscribe(value => this.onEmit.emit(value));
+            .pipe(debounceTime(3000)).subscribe(value => this.onEmit.emit(value));
 
     }
 
@@ -46,9 +56,10 @@ export class SearcherComponent implements OnInit, OnDestroy {
 
         if (event.key === 'Enter') {
             this.onEmit.emit(value);
-            this.input!.nativeElement.value = ''
         }
         this.onDebounce.next(value!);
         
+        this._orderService.mustClearSearchInput = false;
+
     }
 }

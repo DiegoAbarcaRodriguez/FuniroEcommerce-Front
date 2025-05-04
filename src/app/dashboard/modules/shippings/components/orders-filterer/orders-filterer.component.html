@@ -1,18 +1,22 @@
 <div class="d-flex justify-content-center align-items-center gap-3 p-4">
     <div class=" d-flex gap-2">
+        <label for="all">All</label>
+        <input type="radio" name="filter" id="all" (click)="selectStatus('')" #all checked>
+    </div>
+    <div class=" d-flex gap-2">
         <label for="confirm">Confirm</label>
-        <input type="radio" name="filter" id="confirm" (click)="onEmitStatus.emit('confirm')">
+        <input type="radio" name="filter" id="confirm" (click)="selectStatus('confirm')">
     </div>
     <div class=" d-flex gap-2">
         <label for="on way">On Way</label>
-        <input type="radio" name="filter" id="on way" (click)="onEmitStatus.emit('on_way')">
+        <input type="radio" name="filter" id="on way" (click)="selectStatus('on_way')">
     </div>
     <div class=" d-flex gap-2">
         <label for="complete">Complete</label>
-        <input type="radio" name="filter" id="complete" (click)="onEmitStatus.emit('complete')">
+        <input type="radio" name="filter" id="complete" (click)="selectStatus('complete')">
     </div>
     <div class=" d-flex gap-2">
         <label for="rejected">Rejected</label>
-        <input type="radio" name="filter" id="rejected" (click)="onEmitStatus.emit('rejected')">
+        <input type="radio" name="filter" id="rejected" (click)="selectStatus('rejected')">
     </div>
 </div>

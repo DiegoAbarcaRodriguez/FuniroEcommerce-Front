@@ -3,13 +3,21 @@ import { Injectable } from '@angular/core';
 import { OrderResponse } from '../inferfaces/orders-response';
 import { Environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, Subject } from 'rxjs';
 import { status, UpdateStatusResponse } from '../inferfaces/update-status-response.interface';
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
 
     private _url: string = Environment.url + '/order';
+    private _mustClearSearchInput: Subject<boolean> = new Subject;
+
+    get mustClearSearchInput(): Observable<boolean> {
+        return this._mustClearSearchInput.asObservable();
+    }
+    set mustClearSearchInput(value: boolean) {
+        this._mustClearSearchInput.next(value);
+    }
 
     constructor(
         private _http: HttpClient,

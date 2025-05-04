@@ -9,6 +9,8 @@ import { status } from '../inferfaces/update-status-response.interface';
 
 export class DashBoardShippingComponent implements OnInit {
 
+    wasMadeByCustomerName: boolean = false;
+
     pagesNumber: number = 0;
     limit: number = 5;
     page: number = 1;
@@ -31,6 +33,7 @@ export class DashBoardShippingComponent implements OnInit {
             .subscribe(({ orders, total }) => {
                 this.orders = orders;
                 this.pagesNumber = Math.ceil(total / this.limit);
+                this.wasMadeByCustomerName = false;
             });
 
     }
@@ -40,6 +43,7 @@ export class DashBoardShippingComponent implements OnInit {
             .subscribe(({ orders, total }) => {
                 this.orders = orders;
                 this.pagesNumber = Math.ceil(total / this.limit);
+                this.wasMadeByCustomerName = true;
             });
     }
 

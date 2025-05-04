@@ -9,4 +9,4 @@
 
 <dashboard-shippings-table-component [orders]="orders"></dashboard-shippings-table-component>
 <shared-component-pagination [pagesNumber]="pagesNumber" *ngIf="orders.length >0"
-    (changedPage)="page=$event; getOrders()"></shared-component-pagination>
+    (changedPage)="page=$event; wasMadeByCustomerName? getOrdersByCustomerName() : getOrders()"></shared-component-pagination>
