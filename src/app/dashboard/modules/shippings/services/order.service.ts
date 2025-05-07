@@ -7,7 +7,7 @@ import { catchError, Observable, Subject } from 'rxjs';
 import { status, UpdateStatusResponse } from '../inferfaces/update-status-response.interface';
 
 @Injectable({ providedIn: 'root' })
-export class OrderService {
+export class OrderDashboardShippingService {
 
     private _url: string = Environment.url + '/order';
     private _mustClearSearchInput: Subject<boolean> = new Subject;

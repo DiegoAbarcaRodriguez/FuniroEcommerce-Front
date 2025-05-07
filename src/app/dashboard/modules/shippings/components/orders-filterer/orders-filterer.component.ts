@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { status } from '../../inferfaces/update-status-response.interface';
-import { OrderService } from '../../services/order.service';
+import { OrderDashboardShippingService } from '../../services/order.service';
 
 @Component({
     selector: 'dashboard-shippings-orders-filterer-component',
@@ -16,7 +16,7 @@ export class OrdersFiltererComponent implements AfterViewInit {
     @Output()
     onEmitStatus: EventEmitter<status> = new EventEmitter();
 
-    constructor(private _orderService: OrderService) { }
+    constructor(private _orderService: OrderDashboardShippingService) { }
 
     ngAfterViewInit() {
         this._orderService.mustClearSearchInput.subscribe(value => {

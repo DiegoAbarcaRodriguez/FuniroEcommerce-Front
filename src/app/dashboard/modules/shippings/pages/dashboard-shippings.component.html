@@ -10,3 +10,5 @@
 <dashboard-shippings-table-component [orders]="orders"></dashboard-shippings-table-component>
 <shared-component-pagination [pagesNumber]="pagesNumber" *ngIf="orders.length >0"
     (changedPage)="page=$event; wasMadeByCustomerName? getOrdersByCustomerName() : getOrders()"></shared-component-pagination>
+
+<dashboard-shipping-modal-details-component *ngIf="mustShowDetailsOrderModal"></dashboard-shipping-modal-details-component>

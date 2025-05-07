@@ -47,8 +47,13 @@ export interface Order {
     status: string;
     customer_fk: string;
     user_fk?: string;
+    user: User;
     created_at: Date;
     customer: Customer;
+}
+
+export interface User {
+    username: string;
 }
 
 export interface Customer {

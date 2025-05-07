@@ -6,6 +6,7 @@ import { DashBoardShippingComponent } from './pages/dashboard-shippings.componen
 import { SharedModule } from "../../../shared/shared.module";
 import { DashboardModule } from '../../dashboard.module';
 import { OrdersFiltererComponent } from './components/orders-filterer/orders-filterer.component';
+import { ModalDetailsComponent } from './components/modal-details/modal-details.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { OrdersFiltererComponent } from './components/orders-filterer/orders-fil
     declarations: [
         TableShippingComponent,
         DashBoardShippingComponent,
-        OrdersFiltererComponent
+        OrdersFiltererComponent,
+        ModalDetailsComponent
     ],
 
 })

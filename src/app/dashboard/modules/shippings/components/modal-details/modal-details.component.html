@@ -1,0 +1,96 @@
+<div class="modal">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-y modal-lg">
+        <div class="modal-content">
+            <div class="modal-header border-0 me-3 mt-2">
+                <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body px-5 pb-5">
+
+                <h2 class="text-start fw-bold my-2 fs-4">Order Details - #{{order?.id?.substring(0,8)}}</h2>
+
+                <div class="badge rounded-pill text-white text-capitalize"
+                    [ngClass]="{'bg-warning': order?.status ==='confirm', 'bg-info':order?.status==='on_way','bg-danger':order?.status==='rejected','bg-success':order?.status==='complete'}">
+                    {{order?.status}}</div>
+
+                <div class="row mt-3 border-bottom border-2 mb-3">
+                    <div class="col-6">
+                        <h3 class="text-ligth-gray fs-5">Customer Information</h3>
+                        <ul class="list-unstyled">
+                            <li class="fs-6 fw-custom">{{order?.customer?.first_name}} {{order?.customer?.last_name}}
+                            </li>
+                            <li class=" fs-6">
+                                {{order?.customer?.street}}, {{order?.customer?.province}}, {{order?.customer?.city}},
+                                {{order?.customer?.country}}, {{order?.customer?.zip_code}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-ligth-gray fs-5">Order Information</h3>
+                        <ul class="list-unstyled">
+                            <li><span class="fw-custom">Created:</span> {{order?.created_at | date:'short'}}</li>
+                            <li><span class="fw-custom">Last Modification:</span> {{(order?.modify_at ||
+                                order?.created_at) | date:'short'}}</li>
+                            <li><span class="fw-custom">Modified by:</span> {{order?.user?.username}}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2 class="text-ligth-gray fs-5 mb-3">Order Items</h2>
+
+                    <table class="table w-90">
+                        <thead>
+                            <tr>
+                                <th class="text-ligth-gray">
+                                    Name
+                                </th>
+                                <th class="text-ligth-gray">
+                                    Price
+                                </th>
+
+                                <th class="text-ligth-gray text-center">
+                                    Quantity
+                                </th>
+
+                                <th class="text-ligth-gray">
+                                    Subtotal
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <ng-container *ngFor="let furniture of furnitures">
+                                <tr>
+                                    <td>
+                                        {{furniture.furniture.name}}
+                                    </td>
+
+                                    <td>
+                                        {{(furniture.furniture!.price - furniture!.furniture.discount!) |
+                                        currency:'USD':'symbol-narrow':'1.2-2' }}
+                                    </td>
+
+                                    <td class="text-center">
+                                        {{furniture.quantity}}
+                                    </td>
+
+                                    <td>
+                                        {{furniture.quantity *(furniture.furniture!.price -
+                                        furniture!.furniture.discount!) | currency:'USD':'symbol-narrow':'1.2-2' }}
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div class="mt-3 d-flex gap-5 align-items-center justify-content-end w-90">
+                   <span>Total</span> 
+                   <span class="fw-bold">{{order?.total | currency:'USD':'symbol-narrow':'1.2-2' }}</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy, ViewChild, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import { debounceTime, Subject, Subscription } from 'rxjs';
-import { OrderService } from 'src/app/dashboard/modules/shippings/services/order.service';
+import { OrderDashboardShippingService } from 'src/app/dashboard/modules/shippings/services/order.service';
 
 @Component({
     selector: 'shared-component-searcher',
@@ -26,7 +26,7 @@ export class SearcherComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
     constructor(
-        private _orderService: OrderService
+        private _orderService: OrderDashboardShippingService
     ) { }
 
 
@@ -58,7 +58,7 @@ export class SearcherComponent implements OnInit, OnDestroy, AfterViewInit {
             this.onEmit.emit(value);
         }
         this.onDebounce.next(value!);
-        
+
         this._orderService.mustClearSearchInput = false;
 
     }
