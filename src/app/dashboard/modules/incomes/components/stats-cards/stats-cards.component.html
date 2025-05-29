@@ -1,0 +1,20 @@
+<div class="mt-4 d-flex justify-content-around gap-5 ">
+    <div class="card rounded shadow bg-white p-4 w-100" *ngFor="let incomeStat of incomesStat">
+        <h3 class="fs-6 text-ligth-gray mb-2">{{incomeStat.key | i18nSelect: incomesStatTitlesMap }}</h3>
+
+        <span class="fw-bold fs-3 mb-2 d-block" *ngIf="incomeStat.key !== '_count'">
+            {{(incomeStat.total || 0) | currency:'USD':'symbol-narrow':'1.2-2'}}
+        </span>
+
+        <span class="fw-bold fs-3 mb-2 d-block" *ngIf="incomeStat.key === '_count'">
+            {{(incomeStat.total || 0)}}
+        </span>
+
+        <div class="fs-custom">
+           <span [ngClass]="{'text-success': incomeStat.percentage > 0,'text-danger':incomeStat.percentage<0}"> <i class="fa-solid" [ngClass]="{'fa-arrow-up': incomeStat.percentage > 0,'fa-arrow-down':incomeStat.percentage<0}"></i>{{incomeStat.percentage || 0 | number:'1.2-2'}}%</span>  from last week
+        </div>
+
+
+    </div>
+   
+</div>

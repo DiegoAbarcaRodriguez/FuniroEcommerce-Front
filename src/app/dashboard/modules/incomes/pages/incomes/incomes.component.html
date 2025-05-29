@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center justify-content-between mt-5">
+    <h1 class="text-primary fs-2 fw-bold">Incomes</h1>
+
+    <select class="form-select w-25" [formControl]="yearSelector">
+        <option selected value="2025">2025</option>
+        <option value="2024">2024</option>
+    </select>
+</div>
+
+
+<dashboard-incomes-stats-cards-component [selectedYear]="selectedYear"></dashboard-incomes-stats-cards-component>
+
+<dashboard-incomes-chart-component [selectedYear]="selectedYear"></dashboard-incomes-chart-component>
