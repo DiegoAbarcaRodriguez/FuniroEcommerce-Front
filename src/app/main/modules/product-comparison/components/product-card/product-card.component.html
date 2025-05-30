@@ -4,21 +4,17 @@
 <p class="fw-bold fs-5 mb-1" *ngIf="furniture?.discount">{{furniture!.price - furniture!.discount! |
     currency:'USD':'symbol-narrow':'1.2-2' }}
 </p>
-<p class="mb-1"
-    [ngClass]="{'text-decoration-line-through':furniture?.discount, 'fw-bold fs-5':!furniture?.discount}">
+<p class="mb-1" [ngClass]="{'text-decoration-line-through':furniture?.discount, 'fw-bold fs-5':!furniture?.discount}">
     {{furniture?.price | currency:'USD':'symbol-narrow':'1.2-2' }}
 </p>
 
 <div class="d-flex flex-nowrap  align-items-center gap-1">
-    <span>5</span>
+    <span>{{average}}</span>
     <div class="d-flex gap-1">
-        <img src="../../../../assets/icons/star.svg" alt="Stars">
-        <img src="../../../../assets/icons/star.svg" alt="Stars">
-        <img src="../../../../assets/icons/star.svg" alt="Stars">
-        <img src="../../../../assets/icons/star.svg" alt="Stars">
-        <img src="../../../../assets/icons/star.svg" alt="Stars">
+        <img src="../../../../../../assets/icons/star.svg" alt="Stars" *ngFor="let star of stars">
+        <img src="../../../../../../assets/icons/half-star.svg " alt="Stars" *ngIf="mustShowHalfStar">
     </div>
 
     <span class="display-6 bar">|</span>
-    <span class="fs-6 text-ligth-gray">204 Review</span>
+    <span class="fs-6 text-ligth-gray">{{totalReviews}}</span>
 </div>

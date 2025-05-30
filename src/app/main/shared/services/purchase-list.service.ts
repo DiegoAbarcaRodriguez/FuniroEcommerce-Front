@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { catchError, Observable, of, Subject } from 'rxjs';
 import { Environment } from 'src/environments/environment';
 import { CustomerService } from './customer.service';
 import { OrderResponse } from '../interfaces/order.interface';
@@ -31,7 +31,7 @@ export class PurchaseListService {
             headers: {
                 'Authorization': `Bearer ${this._customerService.token}`
             }
-        });
+        }).pipe(catchError(() => of({ ok: false, orders: [] })));
     }
 
     getPurchasedFurnitures(order_id: string): Observable<{ ok: boolean, furnitures: Furniture[] }> {
@@ -39,7 +39,7 @@ export class PurchaseListService {
             headers: {
                 'Authorization': `Bearer ${this._customerService.token}`
             }
-        })
+        }).pipe(catchError(() => of({ ok: false, furnitures: [] })));
     }
 
 }

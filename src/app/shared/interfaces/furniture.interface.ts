@@ -32,6 +32,7 @@ export interface Furniture {
     discount_percentage?: number;
     quatity?: number;
     review?: Review;
+    reviews?: Review[];
     stars?: number[];
 }
 
