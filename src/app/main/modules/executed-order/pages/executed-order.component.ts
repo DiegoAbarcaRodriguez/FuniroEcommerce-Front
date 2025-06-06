@@ -6,6 +6,7 @@ import { OrderService } from 'src/app/main/shared/services/order.service';
 import { Customer, Furniture } from 'src/app/shared/interfaces';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { ModalReviewService } from '../services/modal-review.service';
+import { PurchaseListService } from 'src/app/main/shared/services/purchase-list.service';
 
 @Component({
     templateUrl: 'executed-order.component.html',
@@ -25,10 +26,12 @@ export class ExecutedOrderComponent implements OnInit {
         private _orderService: OrderService,
         private _modalService: ModalService,
         private _modalReviewService: ModalReviewService,
+        private _purchaseListService: PurchaseListService,
         private _router: Router
     ) { }
 
     ngOnInit() {
+        this._purchaseListService.mustShowPurchaseList = false;
         this.getOrderDetails();
         this._modalReviewService.mustShowReviewModal.subscribe(mustShow => this.mustShowModal = mustShow);
     }
