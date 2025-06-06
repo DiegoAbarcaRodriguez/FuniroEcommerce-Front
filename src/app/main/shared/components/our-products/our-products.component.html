@@ -5,8 +5,8 @@
             -{{furniture.discount_percentage | percent}}
         </div>
 
-        <div class="bg-success circle circle--right text-white p-2" *ngIf="furniture.is_new">
-            New
+        <div class="bg-dark circle circle--right text-white p-2" *ngIf="furniture.stock ===0">
+            Sold Out
         </div>
 
         <img [src]="url_images+'/'+furniture.images[0]" alt="Image"  [attr.data-index]="i">

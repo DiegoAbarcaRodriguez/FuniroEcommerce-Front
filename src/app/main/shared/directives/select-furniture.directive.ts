@@ -63,6 +63,11 @@ export class SelectFunitureDirective {
             this._renderer2.addClass(button, 'py-2');
             this._renderer2.addClass(button, 'px-5');
             this._renderer2.addClass(button, 'fw-bold');
+            if (this.furniture?.stock === 0) {
+                this._renderer2.setAttribute(button, 'disabled', 'true');
+                this._renderer2.addClass(button, 'bg-gray');
+                this._renderer2.addClass(button, 'no-pointer');
+            }
             button.textContent = 'Add to cart';
 
             this._renderer2.addClass(flex, 'd-flex');

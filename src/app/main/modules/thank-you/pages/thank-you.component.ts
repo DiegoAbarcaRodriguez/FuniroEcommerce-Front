@@ -46,6 +46,8 @@ export class ThankyouComponent implements OnInit {
                     localStorage.removeItem('session_id');
                     localStorage.removeItem('payload');
                     localStorage.removeItem('wasFilledWithCustomerData');
+                    localStorage.removeItem('furnituresToCompare');
+                    localStorage.removeItem('furnituresToBuy');
                     this._customerService.token = token;
                     this._shoppingCartService.resetFurniturestoBuy();
                 },

@@ -68,6 +68,11 @@ export class FormAddressComponent implements OnInit {
         let countryCode = '';
 
         this.form.get('zip_code')?.valueChanges.pipe(
+            tap(() => {
+                this.form.get('city')?.reset();
+                this.form.get('province')?.reset();
+                this.form.get('street')?.reset();
+            }),
             tap(() => countryCode = this.form.get('country')?.value as 'mx' | 'us'),
             filter(() => countryCode !== '' && this.form.get('zip_code')!.valid),
             switchMap((value) => this._cpService.getLocationFromCp(countryCode as 'mx' | 'us', value!)),

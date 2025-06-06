@@ -52,7 +52,7 @@ export class ProductCardComponent implements OnChanges {
     }
 
     private createArrayForStars() {
-        for (let index = 0; index < Math.floor(this.average); index++) {
+        for (let index = 0; index < Math.round(this.average); index++) {
             this.stars.push(1);
         }
 

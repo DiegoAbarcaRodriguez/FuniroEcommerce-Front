@@ -5,7 +5,16 @@
         </div>
         <div class="col-md-6 col-12 mt-2">
             <div class="d-flex flex-column">
-                <h1>{{furniture?.name | titlecase}}</h1>
+
+                <div class="d-flex gap-2 align-items-center">
+                    <h1>{{furniture?.name | titlecase}}</h1>
+                    <div class="bg-dark  rounded-pill text-white p-2" *ngIf="furniture!.stock ===0">
+                        Sold Out
+                    </div>
+                </div>
+
+
+
                 <p class="fw-bold fs-5 mb-1" *ngIf="furniture?.discount">{{furniture!.price - furniture!.discount! |
                     currency:'USD':'symbol-narrow':'1.2-2' }}</p>
                 <p class="mb-1"
@@ -16,25 +25,28 @@
                         <div class="">
                             <img src="../../../../assets/icons/star.svg" alt="start" *ngFor="let start of stars">
                             <img src="../../../../assets/icons/half-star.svg" alt="start" *ngIf="mustShowHalfStar">
-                            
+
                         </div>
                         <span class="display-6 bar">|</span>
                         <span class="text-gray">{{total_furnitures}} Customer Review</span>
                     </div>
                 </div>
 
-                <p> {{furniture!.description!.length >120 ? furniture!.description!.substring(0,120)+ '...':furniture?.description }}</p>
+                <p> {{furniture!.description!.length >120 ? furniture!.description!.substring(0,120)+
+                    '...':furniture?.description }}</p>
 
                 <div
                     class="mt-3 mt-md-0 d-flex flex-wrap align-items-center justify-content-between gap-md-4 gap-3 border-bottom pb-5 ">
                     <div class="group-input p-1">
                         <button class="pointer" (click)="changeNumberInput(-1)">-</button>
-                        <input type="number" min="0"  [max]="furniture!.stock" [(ngModel)]="inputValue" #input>
+                        <input type="number" min="1" [max]="furniture!.stock" [(ngModel)]="inputValue" #input>
                         <button class="pointer" (click)="changeNumberInput(1)">+</button>
                     </div>
 
-                    <button class="btn btn-outline-primary flex-grow-1" (click)="addFurnitureToCart()">Add to Cart</button>
-                    <button class="btn btn-outline-primary flex-grow-1" (click)="addToComparisonOption()">Compare</button>
+                    <button class="btn btn-outline-primary flex-grow-1" (click)="addFurnitureToCart()" [class.no-pointer]="furniture!.stock===0" [disabled]="furniture!.stock===0">Add to
+                        Cart</button>
+                    <button class="btn btn-outline-primary flex-grow-1"
+                        (click)="addToComparisonOption()">Compare</button>
                 </div>
 
                 <ul class="list-unstyled mt-3">

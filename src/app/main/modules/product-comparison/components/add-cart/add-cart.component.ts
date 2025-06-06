@@ -4,7 +4,7 @@ import { Furniture } from 'src/app/shared/interfaces';
 
 @Component({
     selector: 'product-comparison-component-add-cart',
-    template: ` <button class="btn btn-primary text-white px-4 py-2" (click)="addFurnitureToCart()">Add To Cart</button>`
+    template: ` <button class="btn btn-primary text-white px-4 py-2" (click)="addFurnitureToCart()" [class.no-pointer]="furniture?.stock === 0"  [disabled]="furniture?.stock === 0">Add To Cart</button>`
 })
 
 export class AddCartComponent implements OnInit {
