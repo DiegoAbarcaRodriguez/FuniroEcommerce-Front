@@ -1,6 +1,13 @@
 .summary {
-    margin-left: 3.333333%;
-    width: 30% !important;
+
+    width: 100%;
+    order: 0;
+
+    @media (min-width:768px) {
+        margin-left: 3.333333%;
+        width: 30% !important;
+
+    }
 }
 
 .h-custom {
