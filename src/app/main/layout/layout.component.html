@@ -11,3 +11,7 @@
 <main-component-snackbar *ngIf="mustShowSnackbarComponent"></main-component-snackbar>
 
 <main-component-modal *ngIf="mustShowModalCustomerComponent"></main-component-modal>
+
+<main-component-purchase-list *ngIf="isMobile && mustShowPurchasedFurnituresListComponent"></main-component-purchase-list>
+
+<main-component-favorites-list *ngIf="mustShowFavoriteList && isMobile"></main-component-favorites-list>

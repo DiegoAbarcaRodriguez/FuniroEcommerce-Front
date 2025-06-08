@@ -1,8 +1,30 @@
 .bg-white {
+
     position: absolute;
-    right: 0;
-    width: 350px;
-    overflow: scroll;
+    overflow-y: scroll;
+
+    @media(max-width: 768px) {
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: 100vh;
+
+    }
+
+    @media(min-width:768px) {
+        right: 0;
+        width: 350px;
+
+    }
+}
+
+h3 {
+    text-align: center;
+
+    @media (min-width:768px) {
+        text-align: start;
+    }
 }
 
 img {
@@ -15,5 +37,10 @@ img {
 }
 
 .h-custom {
-    height: 330px;
+    height: 100vh;
+
+    @media(min-width:768px) {
+        height: 330px;
+
+    }
 }

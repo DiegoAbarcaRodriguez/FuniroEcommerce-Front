@@ -18,16 +18,19 @@
 
             <div class="d-flex gap-5 me-lg-5 align-items-center">
                 <img src="../../../../assets/icons/user.svg" alt="user" (click)="openModalUser()">
-                
+
                 <div class="position-relative">
-                    <img  src="../../../../assets/icons/box.svg" width="28px" height="28px" alt="box" (click)="onDeployPurchaseList()">
-                    <span class="position-absolute top-0 start-100 translate-middle rounded-circle bg-danger text-white text-center">{{totalOrders}}</span>
-                    <main-component-purchase-list *ngIf="mustShowPurchaseList"></main-component-purchase-list>
-                </div>
-               
+                    <img src="../../../../assets/icons/box.svg" width="28px" height="28px" alt="box"
+                        (click)="onDeployPurchaseList()">
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle rounded-circle bg-danger text-white text-center">{{totalOrders}}</span>
+                    <main-component-purchase-list *ngIf="mustShowPurchaseList && !isMobile"></main-component-purchase-list>
+                </div>               
+                
+
                 <div class="position-relative">
                     <img src="../../../../assets/icons/heart.svg" alt="heart" (click)="onDeployFavoritesList()">
-                    <main-component-favorites-list *ngIf="mustShowFavoriteList"></main-component-favorites-list>
+                    <main-component-favorites-list *ngIf="mustShowFavoriteList &&!isMobile"></main-component-favorites-list>
                 </div>
                 <img src="../../../../assets/icons/cart.svg" alt="cart" (click)="onAddToShoppingCar()">
                 <i class="fa-solid fa-bars fs-4 d-lg-none d-inline" (click)="onToggleHiddenMenu()"></i>
@@ -38,7 +41,7 @@
     </div>
 
     <div *ngIf="mustShowHiddenMenu"
-        class="w-100 border-none  ps-4 d-flex flex-column align-items-start justify-content-center">
+        class="w-100 border-none d-flex flex-column align-items-center justify-content-center">
         <a class="text-decoration-none text-dark" routerLink="/home" routerLinkActive="active">Home</a>
         <a class="text-decoration-none text-dark" routerLink="/shop" routerLinkActive="active">Shop</a>
         <a class="text-decoration-none text-dark" routerLink="/about" routerLinkActive="active">About</a>

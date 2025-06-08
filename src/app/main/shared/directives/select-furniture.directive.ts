@@ -96,12 +96,12 @@ export class SelectFunitureDirective {
 
                 if (e.target.className.includes('compare')) {
                     this._comparisonService.furnituresToCompare = this.furniture!;
-                    window.location.href = '/comparison'
-                    console.log(this.furniture)
+                    window.location.href = '/comparison';
                 }
 
 
                 if (e.target.className.includes('like')) {
+                    window.scroll(0, 0);
                     this._furnitureService.markFurnitureAsFavorite(furniture_id)
                         .subscribe({
                             next: () => {

@@ -43,8 +43,11 @@ import { PurchaseListService } from '../../services/purchase-list.service';
 
 export class NavbarComponent implements OnInit {
 
+
     @ViewChild('navbar')
     navbar?: ElementRef<HTMLDivElement>
+
+    isMobile: boolean = window.innerWidth <= 768;
 
     mustShowHiddenMenu: boolean = false;
     mustShowFavoriteList: boolean = false;
@@ -59,6 +62,7 @@ export class NavbarComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+
         this._favoritesService.mustShowFavoritesListComponent.subscribe(mustShow => this.mustShowFavoriteList = mustShow);
         this._purchaseListService.mustShowPurchaseList.subscribe(mustShow => this.mustShowPurchaseList = mustShow);
         this.getTotalOrders();
@@ -83,7 +87,10 @@ export class NavbarComponent implements OnInit {
 
     @HostListener('window:resize', ['$event'])
     onResizeWindow(event: any) {
-        this.mustShowHiddenMenu = event.currentTarget.innerWidth < 992;
+        this.isMobile = window.innerWidth <= 768;
+        if (event.currentTarget.innerWidth >= 992) {
+            this.mustShowHiddenMenu = false;
+        }
     }
 
     @HostListener('window:scroll', ['$event'])
@@ -109,10 +116,12 @@ export class NavbarComponent implements OnInit {
     onDeployFavoritesList() {
         this._purchaseListService.mustShowPurchaseList = false;
         this._favoritesService.mustShowFavoritesListComponent = true;
+        window.scroll(0, 0);
     }
 
     onDeployPurchaseList() {
         this._favoritesService.mustShowFavoritesListComponent = false;
         this._purchaseListService.mustShowPurchaseList = true;
+        window.scroll(0, 0);
     }
 }

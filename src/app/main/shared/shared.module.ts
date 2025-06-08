@@ -34,6 +34,7 @@ import { PurchaseListComponent } from './components/purchase-list/purchase-list.
         SnackbarComponent,
         FavoritesListComponent,
         ModalComponent,
+        PurchaseListComponent,
 
         SelectFunitureDirective
     ],
